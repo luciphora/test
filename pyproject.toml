@@ -1,0 +1,23 @@
+[project]
+name = "identity-audio-pipeline"
+version = "0.1.0"
+description = "Scripted-audio production pack -> finished masters (see CLAUDE.md)"
+requires-python = ">=3.11"
+dependencies = [
+  "elevenlabs",
+  "numpy",
+  "soundfile",
+  "soxr",
+  "faster-whisper",
+  "pyyaml",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["scripts"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

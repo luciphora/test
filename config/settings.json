@@ -1,0 +1,39 @@
+{
+  "pack_file": "BYMOE_250K_Identity_Installation_Production_Pack.md",
+  "voice_id": null,
+  "bymoe_spelling": "BYMOE",
+  "session": { "sample_rate": 48000, "bit_depth": 24 },
+  "tracks": {
+    "id_prefixes": { "N": "night", "W": "whisper_stem", "M": "morning" },
+    "section_map": { "(?i)track\\s*4": "anchor" },
+    "expected_counts": { "night": 25, "whisper_stem": 4, "morning": 6, "anchor": 1 },
+    "grid_required": ["night", "morning"]
+  },
+  "pack_headings": {
+    "voice_design": "(?i)voice\\s+design",
+    "final_checklist": "(?i)final\\s+production\\s+checklist",
+    "speaker_qa": "(?i)speaker\\s+qa"
+  },
+  "tts": {
+    "model": "eleven_v3",
+    "night":        { "stability": 60, "similarity": 75, "style": 0, "speed": 0.88 },
+    "whisper_stem": { "stability": 65, "similarity": 75, "style": 0, "speed": 0.90,
+                      "prefix_tag": "[whispering, calm and intimate]" },
+    "morning":      { "stability": 50, "similarity": 75, "style": 0, "speed": 0.97 },
+    "anchor":       { "profile": "morning", "speed": 0.95 },
+    "takes_per_chunk": 3
+  },
+  "isochronic": { "carrier_hz": 240, "pulse_hz": 4.0, "depth": 0.90,
+                  "fade_in_s": 45, "fade_out_start": "24:00", "silent_by": "27:30" },
+  "whisper_stem_layer": { "start": "6:00", "end": "24:00",
+                          "gap_s": [5, 12], "loop_orders": 3, "seed": 250 },
+  "levels_db_below_narration": { "whisper_stem": 27, "isochronic": 29, "ambience": 25 },
+  "ambience": { "enabled": false },
+  "narration_chain": { "hpf_hz": 75, "mud_cut": { "hz": 250, "db": -1.5, "q": 1.2 },
+                       "comp_ratio": 2.0, "comp_gr_db": 3,
+                       "premaster_lufs": -20, "premaster_peak_dbfs": -6 },
+  "duck": { "gr_db": 1.5, "attack_ms": 50, "release_ms": 800 },
+  "master": { "lufs": -19, "true_peak_dbtp": -1.0 },
+  "pronunciation_watchlist": ["BYMOE", "Alhamdulillah", "Tawakkul", "Sabr",
+                               "Salah", "Amanah", "Rhode Island", "New England"]
+}

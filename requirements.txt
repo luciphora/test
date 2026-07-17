@@ -1,0 +1,6 @@
+elevenlabs
+numpy
+soundfile
+soxr
+faster-whisper
+pyyaml

@@ -1,0 +1,13 @@
+# generated audio & reports — reproducible from the pack + config
+chunks/
+takes/
+stems/
+premaster/
+masters/
+reports/
+config/selections.yaml
+
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
