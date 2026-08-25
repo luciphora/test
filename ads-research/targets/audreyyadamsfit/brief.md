@@ -62,6 +62,29 @@ were transcribed and checked; the silence holds in both channels. Her site is si
 too. In a 2026 women's fat-loss market this is the loudest unhandled objection there
 is, and she has never once addressed it, on paper or on video.
 
+### Which creatives were handed over, and the rule
+
+Longevity is the only public signal of a winner, so it is also the shipping rule:
+**every video running 60+ days that clears the 30 MB transfer cap**, plus all 21
+static images. That is 44 of the 57 proven videos.
+
+Longevity tiers across the 98 videos:
+
+| Tier | Videos | Read |
+| --- | ---: | --- |
+| 250 days | 10 | Her original proven cohort, all launched 2025-12-18 |
+| 100–249 days | 24 | Strongly proven |
+| 60–99 days | 23 | Proven |
+| Under 60 days | 41 | Too new to judge, whatever the copy says |
+
+Two groups are absent from the handover and both keep their thumbnail and
+transcript: **13 proven videos exceed 30 MB** — including the 250-day
+`25482162174734091` (32 MB), the 211-day `1604037337453134` (43 MB) and the
+59-minute testimonial call (131 MB) — and **the 41 sub-60-day videos are excluded
+by the rule**. An earlier hand-off leaned on ads cited in this brief rather than on
+longevity, which put eight 7–13-day creatives ahead of two dozen proven ones; the
+rule above replaced that judgement call.
+
 ### What the creatives add beyond the copy
 
 119 creatives downloaded (98 video, 21 static), all 98 videos transcribed with
