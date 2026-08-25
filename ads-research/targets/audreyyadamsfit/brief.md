@@ -6,7 +6,69 @@ TikTok as `@audrey_fit`.
 
 ## Status of the ad pull
 
-Still blocked on credentials, not on capability. Meta's Ad Library returns `403` to
+**Done.** 119 ads, page-scoped to `view_all_page_id=569004103465529`, pulled
+2026-08-25 via `collect_apify.py`. Teardown in `analysis.md`; raw dataset in
+`raw.json` (both gitignored).
+
+One caveat worth repeating from the report: Meta publishes no spend or performance
+data, so "winning" here is longevity plus duplication, which is inference, not
+measurement.
+
+### Read the keyword search carefully
+
+The first pull, keyed on "Metabolic Makeover Academy", came back 196/200 **Will
+Nelson** (`thefitproceo.com`) — an agency selling paid-ads services to fitness
+coaches, whose copy name-drops Audrey and Mason as a case study. Only 4 of 200 were
+hers. A keyword search in the Ad Library matches anyone whose copy mentions the term,
+so always scope to a page id. The collector now prints the advertiser breakdown and
+warns when more than one page comes back.
+
+### What her ads actually run
+
+- **Video-first: 98 of 119.** Static images are the minority.
+- **Metabolism damage is the spine — 53% of ads.** Hormones/perimenopause 45%,
+  client-proof stories 44%, strength/recomp 29%.
+- **The identity hook her site leads with is not her main ad angle.** "The woman who
+  has tried it all" shows up in 12% of ads. What carries the volume is the *mechanism*
+  claim — your metabolism is the problem — not the identity framing.
+- **The sharpest line she owns:** *"You're not undisciplined. You're under-repaired."*
+  Second-most duplicated creative, and it reframes the prospect's self-blame as a
+  physiological problem she can fix. That is the ad to model.
+- **Traffic splits two ways:** 29 ads to `metabolicmakeoveracademy.com`, 35 to
+  Instagram. `Send message` is the single most common CTA (27) — she runs
+  comment/DM-to-conversation, not just click-to-site.
+
+### The funnel changed on 2026-08-18 — this is the story
+
+Her *website* is application-gated with no lead magnet. Her *ads*, as of a week ago,
+are not. 49 of 119 ads launched in August, and the newest cohort is all one thing:
+
+> "Free Live Masterclass — This Wednesday. Save My Seat — 60 Min + Live Q&A.
+> Losing the fat was never the hard part. Keeping it off is… Nothing to buy."
+
+Twelve ads, all dated 2026-08-18, pushing a free webinar in front of the application.
+Only **one** ad in the whole 119 uses apply/book-a-call language. She has moved from
+ad→application to ad→masterclass→application, and she is spending behind it now.
+
+The four-phase framing in that masterclass ("lose the weight, build muscle, fix
+hormones, rebuild metabolism") is also an expansion of the 3-phase method on her site.
+The offer narrative is being rebuilt, live.
+
+### The GLP-1 gap is real
+
+**Zero of 119 ads mention Ozempic, GLP-1s, semaglutide or any weight-loss medication.**
+Her site does not either. In a 2026 women's fat-loss market this is the loudest
+unhandled objection there is, and she is completely silent on it — not a positioning
+choice she has made and lost, an opening nobody has taken.
+
+## Original pre-pull research
+
+Everything below was written before the pull, from her public funnel. Kept as
+written — the "no webinar" claim is exactly what the ad data overturned.
+
+### Prior status note
+
+Was blocked on credentials, not on capability. Meta's Ad Library returns `403` to
 every direct request from this environment and `facebook.com/robots.txt` is a blanket
 `Disallow: /`; Google's Ads Transparency Center search RPC returns empty without a
 browser session, and TikTok's Creative Center top-ads API answers `40101 no permission`

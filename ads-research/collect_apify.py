@@ -23,6 +23,7 @@ import sys
 import time
 import urllib.parse
 import urllib.request
+from collections import Counter
 from datetime import date, datetime, timezone
 from pathlib import Path
 
@@ -47,6 +48,9 @@ FIELD_ALIASES = {
     "cta": ("ctaText", "cta_text", "ctaType", "cta_type"),
     "link": ("linkUrl", "link_url", "link"),
 }
+# The live actor nests cta/link inside `snapshot`; older builds put them at the
+# top level. Probe both rather than picking one.
+NESTED = ("snapshot",)
 BODY_PATHS = (
     ("snapshot", "body", "text"),
     ("snapshot", "body"),
@@ -57,9 +61,11 @@ TITLE_PATHS = (("snapshot", "title"), ("title",))
 
 
 def _first(d: dict, keys: tuple[str, ...]):
-    for k in keys:
-        if d.get(k) not in (None, ""):
-            return d[k]
+    scopes = [d] + [d[n] for n in NESTED if isinstance(d.get(n), dict)]
+    for scope in scopes:
+        for k in keys:
+            if scope.get(k) not in (None, ""):
+                return scope[k]
     return None
 
 
@@ -152,6 +158,8 @@ def normalize(items: list[dict]) -> list[dict]:
 
         ads.append({
             "library_id": str(library_id),
+            "page_name": _first(item, FIELD_ALIASES["page"]),
+            "page_id": item.get("pageID") or item.get("pageId"),
             "started_on": started,
             "days_running": days,
             "status": "Active" if active in (True, "active") else "Inactive",
@@ -179,12 +187,13 @@ def write(ads: list[dict], out: Path) -> None:
     (out / "ads.json").write_text(json.dumps(ads, indent=2))
     with (out / "ads.csv").open("w", newline="") as fh:
         w = csv.writer(fh)
-        w.writerow(["library_id", "started_on", "days_running", "status",
+        w.writerow(["library_id", "page_name", "started_on", "days_running", "status",
                     "media", "cta", "landing_domain", "first_line"])
         for a in sorted(ads, key=lambda x: x["days_running"] or 0, reverse=True):
             first = next((ln for ln in a["body"].split("\n") if len(ln) > 25), "")
-            w.writerow([a["library_id"], a["started_on"], a["days_running"], a["status"],
-                        a["media"], a["cta"], a["landing_domain"], first])
+            w.writerow([a["library_id"], a["page_name"], a["started_on"],
+                        a["days_running"], a["status"], a["media"], a["cta"],
+                        a["landing_domain"], first])
     print(f"Wrote {len(ads)} ads to {out}/ads.json and {out}/ads.csv")
 
 
@@ -215,7 +224,18 @@ def main() -> None:
     items = run_actor(token, url, args.limit, args.active_status,
                       args.newer_than, args.wait)
     print(f"Dataset returned {len(items)} rows.")
-    write(normalize(items), args.out)
+    (args.out / "raw.json").write_text(json.dumps(items, indent=2))
+
+    ads = normalize(items)
+    pages = Counter(a["page_name"] for a in ads)
+    print("Advertisers in this pull:")
+    for name, n in pages.most_common(10):
+        print(f"  {n:>4}  {name}")
+    if len(pages) > 1:
+        print("More than one advertiser came back — a keyword search matches anyone "
+              "whose copy mentions the term. Re-run with --url and a "
+              "view_all_page_id link to scope it to one page.", file=sys.stderr)
+    write(ads, args.out)
 
 
 if __name__ == "__main__":
