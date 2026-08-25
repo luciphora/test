@@ -3,22 +3,36 @@
 Pull a competitor's ads out of the Meta Ad Library, rank them by the signals the
 library actually exposes, and keep the teardown next to the raw capture.
 
-```bash
-pip install playwright && playwright install chromium
+Two collectors write the same `ads.json`, so either can feed the analysis.
 
-python collect_meta_ads.py --query "Metabolic Makeover Academy" --out targets/audreyyadamsfit
+**Apify (default — runs anywhere).** Apify supplies the browsers and residential IPs,
+so Meta's datacenter block does not apply and this works from CI or a cloud session.
+
+```bash
+export APIFY_TOKEN=...   # console.apify.com/settings/integrations
+
+python collect_apify.py --query "Metabolic Makeover Academy" --out targets/audreyyadamsfit
 python analyze_ads.py targets/audreyyadamsfit
 ```
 
-`collect_meta_ads.py` writes `ads.json`, `ads.csv` and a screenshot per card into the
-target directory. `analyze_ads.py` reads `ads.json` and writes `analysis.md` beside it.
+It drives `apify/facebook-ads-scraper`. Pass `--url` instead of `--query` to use a
+`view_all_page_id` link, which is exact where a keyword search is fuzzy. The actor's
+field names have drifted across builds, so the normalizer probes the known spellings
+(`FIELD_ALIASES` at the top of the file) and warns on rows it cannot map.
 
-## Run it locally, not in CI
+**Playwright (fallback — your own machine only).** No Apify account needed, and it
+captures a screenshot per card, which the Apify path does not.
 
-Meta serves `403` to datacenter IPs and `facebook.com/robots.txt` is `Disallow: /`.
-The collector runs headed by default because a visible window is far less likely to be
-blocked; `--headless` exists but expect it to fail more often. If a run comes back
-empty, open the library URL by hand first and confirm the page renders for you.
+```bash
+pip install playwright && playwright install chromium
+python collect_meta_ads.py --query "Metabolic Makeover Academy" --out targets/audreyyadamsfit
+```
+
+Meta serves `403` to datacenter IPs and `facebook.com/robots.txt` is `Disallow: /`, so
+this one only works from a residential connection. It runs headed by default because a
+visible window is far less likely to be blocked; `--headless` exists but expect it to
+fail more often. If a run comes back empty, open the library URL by hand first and
+confirm the page renders for you.
 
 ## What "winning" means here
 

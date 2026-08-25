@@ -6,15 +6,17 @@ TikTok as `@audrey_fit`.
 
 ## Status of the ad pull
 
-Not done. Meta's Ad Library returns `403` to every request from this environment and
-`facebook.com/robots.txt` is a blanket `Disallow: /`, so there is no compliant path to
-her live ads from a datacenter IP. Google's Ads Transparency Center is reachable but
-its search RPC returns empty without a browser session, and TikTok's Creative Center
-top-ads API answers `40101 no permission` unauthenticated.
+Still blocked on credentials, not on capability. Meta's Ad Library returns `403` to
+every direct request from this environment and `facebook.com/robots.txt` is a blanket
+`Disallow: /`; Google's Ads Transparency Center search RPC returns empty without a
+browser session, and TikTok's Creative Center top-ads API answers `40101 no permission`
+unauthenticated.
 
-Run `collect_meta_ads.py` from your Mac — the Ad Library loads normally from a
-residential IP in a logged-in browser. Everything below is what could be established
-without it, and it is all from her own public funnel, not from her ads.
+`collect_apify.py` routes around all of that — Apify supplies the browsers and
+residential IPs — and is tested end to end against both of the actor's schema variants.
+It needs `APIFY_TOKEN` in the environment, which is not set here. Set it and the pull
+is one command. Everything below is what could be established without it, and it is all
+from her own public funnel, not from her ads.
 
 ## Open these three first
 
