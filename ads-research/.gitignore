@@ -4,3 +4,4 @@ targets/*/ads.json
 targets/*/ads.csv
 targets/*/analysis.md
 targets/*/raw.json
+targets/*/creatives/

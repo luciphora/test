@@ -34,6 +34,42 @@ visible window is far less likely to be blocked; `--headless` exists but expect 
 fail more often. If a run comes back empty, open the library URL by hand first and
 confirm the page renders for you.
 
+## Creatives and transcripts
+
+The three steps above give you copy and metadata. These give you the assets and
+what is actually said out loud in them.
+
+```bash
+python download_creatives.py targets/audreyyadamsfit
+python transcribe_creatives.py targets/audreyyadamsfit --model small --workers 4
+python analyze_creatives.py targets/audreyyadamsfit
+```
+
+Everything lands in `targets/<name>/creatives/`:
+
+```
+video/<library_id>.mp4        one per video ad
+image/<library_id>.jpg        one per static ad
+transcripts/<library_id>.txt  plain text, one per video
+transcripts.json              text + hook + duration + wpm per clip
+index.csv                     what was downloaded, and how big
+creative_analysis.md          the report
+```
+
+Meta's CDN URLs are signed and expire within days, so download against a fresh
+`raw.json` — a 403 here means the pull is stale, not that the script is broken.
+Transcription is CPU-only faster-whisper; `small` is the sweet spot for
+ad-length clips at roughly a clip a minute on four cores. It is resumable:
+already-transcribed clips are skipped, so a killed run costs nothing.
+
+`analyze_creatives.py` reuses the same `HOOK_PATTERNS` taxonomy as
+`analyze_ads.py`, so spoken hooks and written hooks are scored alike and can be
+compared directly. Its most useful output is the claims table: a theme that
+appears in the audio but never in the ad text is one a copy-only teardown
+misses entirely.
+
+Creatives are gitignored — they are third-party assets and run to gigabytes.
+
 ## What "winning" means here
 
 The Ad Library publishes no spend, impressions or conversions. Two things it does
