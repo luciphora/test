@@ -54,12 +54,41 @@ The four-phase framing in that masterclass ("lose the weight, build muscle, fix
 hormones, rebuild metabolism") is also an expansion of the 3-phase method on her site.
 The offer narrative is being rebuilt, live.
 
-### The GLP-1 gap is real
+### The GLP-1 gap is real — and confirmed on audio, not just copy
 
-**Zero of 119 ads mention Ozempic, GLP-1s, semaglutide or any weight-loss medication.**
-Her site does not either. In a 2026 women's fat-loss market this is the loudest
-unhandled objection there is, and she is completely silent on it — not a positioning
-choice she has made and lost, an opening nobody has taken.
+**Zero of 119 ads mention Ozempic, GLP-1s, semaglutide or any weight-loss medication —
+in the written copy or in what she says on camera.** All 94 spoken-word video creatives
+were transcribed and checked; the silence holds in both channels. Her site is silent
+too. In a 2026 women's fat-loss market this is the loudest unhandled objection there
+is, and she has never once addressed it, on paper or on video.
+
+### What the creatives add beyond the copy
+
+119 creatives downloaded (98 video, 21 static), all 98 videos transcribed with
+faster-whisper. Full report: `creatives/creative_analysis.md`.
+
+- **Video skews harder into proof than the on-screen copy does.** 60% of spoken
+  creatives lead with a named client's numbers ("I lost 40 pounds twice"), against
+  44% in the written hook analysis. Strength/recomp language is 49% spoken vs. 29%
+  written. The videos are where the testimonial format actually lives.
+- **Two claims she makes on camera but never writes down:** a guarantee (8 spoken
+  mentions vs. 1 in copy) and price/cost framing (12 spoken vs. 6 in copy). Worth
+  pulling the actual guarantee language from `creatives/transcripts/` before citing
+  it — it may be conditional or informal, not a headline offer.
+- **A handful of "ads" are not ad-length.** Five videos run 5–59 minutes — full
+  client case-study calls and a webinar replay, not 15–60s creatives. The 59-minute
+  one (`1510732374030107`, 125 MB) is a client testimonial call run as a paid ad,
+  103 days and counting. That's either an unusually committed long-form funnel or
+  ad spend parked behind content that was never meant to be a cold-audience ad —
+  worth checking which on the next pull.
+- **She reuses scripts verbatim across different clients.** The same opening line
+  — *"Is there a drawer in your house you're keeping for a woman who—"* and *"I know
+  you're not gonna want to hear this but [N] months [N] months—"* — recurs across 3
+  different creatives each, presumably with a different client's face and name
+  swapped in. That's a template worth having, not just a line.
+- **4 of 119 creatives are silent** (no speech, message carried by on-screen text
+  or music) — all from the 18 August cohort, all 7 days old. Worth a manual look at
+  what's on-screen in those, since the transcript pass can't see it.
 
 ## Original pre-pull research
 
