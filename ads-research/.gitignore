@@ -5,3 +5,13 @@ targets/*/ads.csv
 targets/*/analysis.md
 targets/*/raw.json
 targets/*/creatives/
+
+# Foreplay pulls: third-party ad data + creatives, large and not ours to redistribute
+targets/*/pages/
+targets/*/thumbs/
+targets/*/thumbs_small/
+targets/*/transcripts/
+targets/*/all_transcripts.md
+targets/*/transcripts_index.csv
+targets/*/report.html
+targets/*/shot_*.png
