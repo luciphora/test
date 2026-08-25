@@ -43,7 +43,20 @@ what is actually said out loud in them.
 python download_creatives.py targets/audreyyadamsfit
 python transcribe_creatives.py targets/audreyyadamsfit --model small --workers 4
 python analyze_creatives.py targets/audreyyadamsfit
+python compile_transcripts.py targets/audreyyadamsfit
 ```
+
+The first three give you assets and an aggregate report. `compile_transcripts.py`
+gives you the raw, per-ad transcripts in a form a human can actually use — the
+`.txt` files in `transcripts/` are named by Ad Library ID and mean nothing on
+their own. It cross-references `ads.json` and writes:
+
+- `transcripts_index.csv` — one row per video: days running, duration, CTA,
+  landing domain, opening line, and which files it maps to. Sort it in a
+  spreadsheet.
+- `all_transcripts.md` — every transcript in one document, longest-running
+  first, each preceded by its metadata. Scan or Ctrl-F instead of opening 98
+  files one at a time.
 
 Everything lands in `targets/<name>/creatives/`:
 
