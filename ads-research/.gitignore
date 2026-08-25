@@ -1,0 +1,5 @@
+# Captured ad creatives are third-party material — keep them out of the repo.
+targets/*/shots/
+targets/*/ads.json
+targets/*/ads.csv
+targets/*/analysis.md
