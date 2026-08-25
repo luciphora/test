@@ -31,6 +31,23 @@ def hook_of(text: str, max_chars: int = 180) -> str:
     return first if len(first) <= max_chars else first[:max_chars].rsplit(" ", 1)[0] + "…"
 
 
+def _by_longevity(root: Path, target: Path) -> list[Path]:
+    """Longest-running clips first.
+
+    A big pull can take hours, and it is resumable, so the order decides which
+    transcripts exist if it is interrupted. Longevity is the winner signal, so
+    the proven ads should be transcribed before the untested ones. Falls back to
+    filename order when ads.json is missing.
+    """
+    videos = sorted((root / "video").glob("*.mp4"))
+    ads_path = target / "ads.json"
+    if not ads_path.exists():
+        return videos
+    days = {a["library_id"]: (a.get("days_running") or -1)
+            for a in json.loads(ads_path.read_text())}
+    return sorted(videos, key=lambda v: days.get(v.stem, -1), reverse=True)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("target", type=Path)
@@ -45,7 +62,7 @@ def main() -> None:
     from faster_whisper import WhisperModel
 
     root = args.target / "creatives"
-    videos = sorted((root / "video").glob("*.mp4"))
+    videos = _by_longevity(root, args.target)
     if args.limit:
         videos = videos[: args.limit]
     if not videos:
