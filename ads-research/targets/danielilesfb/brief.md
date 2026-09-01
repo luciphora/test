@@ -1,151 +1,126 @@
 # Viral Coach (Daniel Iles) — ad teardown
 
-Page `265406025348448` · Viral Coach LLC · scraped 25 Aug 2026 via Foreplay
-**2,025 unique ads · 253 live · 1,505 transcripts**
+Page `265406025348448` · Viral Coach LLC · two snapshots: **25 Aug** and **1 Sep 2026** via Foreplay
+**2,048 unique ads · 211 live · 1,528 transcripts · 63 ads with a real stop window**
 
 ---
 
 ## The question Moe asked
 
-> He launched niche-specific ads (med spas, chiropractors, etc.) in the last
-> month or two. Are they still running, and have they been successful?
+> He launched niche-specific ads (med spas, chiropractors, etc.) in the last month or two.
+> Are they still running, and have they been successful?
 
-**Yes for medical. Yes for legal. No for the trades — those are dead.**
+**A week ago: yes for medical, yes for legal, no for trades.**
+**Now: trades still no; medical and legal were culled hard at the 7-week mark; his new money
+went back to the general funnel.** The niche test is being wound down, not scaled.
 
 ---
 
-## What the funnels tell you
+## What changed between the two snapshots
 
-Iles routes each niche to its own landing page, so the funnel URL *is* the
-segment label. No guessing required.
-
-| Funnel | Ads | Live | Killed | Survival |
-|---|--:|--:|--:|--:|
-| `viralcoach.com/cpy/about-you` — main, general B2B | 1,818 | 172 | 1,646 | 9% |
-| `med.viralcoach.com` — dentists, med spas, chiro, plastic surgery | 103 | 53 | 50 | 51% |
-| `law.viralcoach.com` — attorneys | 36 | 14 | 22 | 38% |
-| `pros.viralcoach.com` — roofers, plumbers, contractors | 51 | 4 | 47 | **7%** |
-
-The niche funnels launched in **two waves**:
-
-| | Wave 1 — 7/8 Jul | Wave 2 — 19 Aug |
-|---|---|---|
-| **med** | 57 ads → **51 still live at 49 days (89%)** | 46 new ads |
-| **law** | 26 ads → 14 still live (53%) | 10 new ads |
-| **pros** | 51 ads → 4 still live (7%) | **0 new ads** |
-
-Wave 2 is the tell. Six weeks after launching all three, he went back in and
-re-funded medical and legal. He put **nothing** into the trades. That is his own
-verdict on his own test, spent in his own money — a cleaner signal than any
-survival percentage.
-
-## Wave 1 survival by vertical — apples to apples
-
-Every ad below launched the same week, so tenure is directly comparable.
-
-| Vertical | Ads | Live | Survival |
+| | 25 Aug | 1 Sep | Δ |
 |---|--:|--:|--:|
-| Plastic surgeon | 10 | 10 | **100%** |
-| Med spa | 12 | 12 | **100%** |
-| Personal injury attorney | 4 | 4 | **100%** |
-| Dentist | 15 | 14 | 93% |
-| Chiropractor | 12 | 9 | 75% |
-| Attorney | 15 | 9 | 60% |
-| Contractor | 12 | 2 | 16% |
-| Plumber | 8 | 1 | 12% |
-| Home services | 10 | 1 | 10% |
-| Roofer | 6 | 0 | **0%** |
+| Live ads (all funnels) | 253 | 211 | −42 net (63 died, 23 new) |
+| Medical live | 53 (51%) | 30 (29%) | −23 |
+| Legal live | 14 (38%) | 8 (21%) | −7 |
+| Trades live | 4 (7%) | 4 (7%) | 0 |
+| Wave 2 (19 Aug) live | 3 of 56 | 2 of 57 | dead on arrival |
 
-There is a clean break between the licensed, high-ticket practices (75–100%) and
-the trades (0–16%). Nothing in between.
+Because both snapshots exist, the 63 ads that vanished have a **real tenure at death** — the only
+inactive ads in the library for which that's true (the rest report a bogus 1 day):
+
+| Tenure at death | Ads | What they were |
+|--:|--:|---|
+| 5–6 d | 23 | wave-2 (19 Aug) survivors, switched off ~21 Aug |
+| 14 d | 1 | main funnel |
+| 36 d | 10 | main funnel |
+| 48–49 d | 29 | **wave-1 niche ads, cut together at exactly seven weeks** |
+
+The 49-day cluster is a scheduled review, not attrition. He looked at seven weeks of data and cut
+roughly half the medical set, all four personal-injury ads, and a third of the attorneys.
+
+Daily active count (Foreplay analytics): peaked at 222 on 15–16 Aug, 153 on 25 Aug, **99 on 29–31 Aug**.
+
+## Three waves, read together
+
+| Segment | Wave 1 · 7–8 Jul | Live at 56 d | Wave 2 · 19 Aug | Wave 3 · 31 Aug |
+|---|--:|--:|--:|--:|
+| Medical | 57 | 29 (51%) | 46 → 2 live | **0 new** |
+| Legal | 26 | 8 (31%) | 10 → 0 live | 1 new |
+| Trades | 51 | 4 (8%) | — | 0 new |
+| General funnel | — | — | — | **18 new** |
+
+A week ago the 19 Aug re-fund looked like a verdict *for* medical and legal. With another snapshot
+it reads as: wave 2 was killed within 48 hours, wave-1 survivors were culled at seven weeks, and
+wave 3 went to the general offer. **Test → re-test → retreat.**
+
+## Wave 1 by vertical, at 56 days (all launched same week)
+
+| Vertical | Ads | Live | Survival | Killed this week |
+|---|--:|--:|--:|--:|
+| Plastic surgeon | 10 | 6 | 60% | −4 |
+| Dentist | 15 | 8 | 53% | −6 |
+| Chiropractor | 12 | 6 | 50% | −3 |
+| Attorney | 15 | 6 | 40% | −3 |
+| Med spa | 12 | 4 | 33% | **−8** (was 100%) |
+| Contractor | 12 | 2 | 16% | 0 |
+| Plumber | 8 | 1 | 12% | 0 |
+| Home services | 10 | 1 | 10% | 0 |
+| Personal injury attorney | 4 | 0 | **0%** | **−4** (was 100%) |
+| Roofer | 6 | 0 | 0% | 0 |
+
+Licensed practices still sit above trades, but the gap closed from a cliff to a slope. The two
+verticals at 100% last week took the heaviest cuts.
 
 ## Why it isn't the creative
 
-He runs a **template system**: one hook formula, re-shot per vertical with only
-the trade noun swapped. Same script, same structure, same offer.
+Template system: one hook formula, re-shot per vertical with only the noun swapped. Same words,
+same structure, same offer — so survival differences are about the audience, not the writing.
 
-> "If you're a **dentist** and the only way you're getting patients right now is
-> word of mouth…" — **live at 49 days**
->
-> "If you're a **chiropractor** and the only way you're getting patients right
-> now is word of mouth…" — **live at 49 days**
+> "If you're a **dentist** and the only way you're getting patients is word of mouth…" — live, 56 d
+> "If you're a **plumber** struggling to get clients, try my team for seven days…" — dead
 
-> "If you're a **plumber** struggling to get clients, you can try my social media
-> team for seven days…" — **dead**
->
-> "If you're a **roofer** struggling to get clients, you can try my social media
-> team for seven days…" — **dead**
-
-Same words. Different audience. Different outcome. The variable that moved is the
-vertical, not the copy — which is exactly what makes this worth stealing.
-
-## Hooks that survived best inside the niche cohort
+## Hook survival inside the niche cohort, now
 
 | Hook family | Ads | Live | Survival |
 |---|--:|--:|--:|
-| Status-quo callout — *"the only way you're getting patients is word of mouth"* | 15 | 9 | 60% |
-| Case study — *"we got a dentist 16 million views"* | 7 | 4 | 57% |
-| Channel callout — *"relying on Google SEO to get found"* | 12 | 6 | 50% |
-| Authority — *"the #1 way to grow right now is social media"* | 26 | 12 | 46% |
-| Failed-attempt callout | 12 | 4 | 33% |
-| Hypothetical scale — *"what if 15 million people saw your business"* | 25 | 8 | 32% |
-| Guarantee — *"1M views or you don't pay"* | 26 | 8 | 30% |
-| Risk reversal — *"try my team for seven days"* | 17 | 5 | 29% |
+| Authority — *"#1 way to grow right now is social media"* | 27 | 11 | 40% |
+| Channel callout — *"relying on Google SEO"* | 12 | 4 | 33% |
+| Status-quo callout — *"only getting patients by word of mouth"* | 15 | 5 | 33% |
+| Case study | 7 | 2 | 28% |
+| Hypothetical scale — *"what if 15M people saw your business"* | 25 | 5 | 20% |
+| Risk reversal — *"try my team for seven days"* | 17 | 3 | 17% |
+| Failed-attempt callout | 12 | 2 | 16% |
+| Guarantee — *"1M views or you don't pay"* | 26 | 2 | **7%** |
 
-The two hooks he leads with in his branding — the **guarantee** and the **7-day
-risk reversal** — are the two that survive *worst*. What actually holds is naming
-the prospect's current situation back to them.
+**Guarantee is niche-fragile, not dead.** Worst family inside the niches — yet his two longest-running
+ads ever (407 d, 341 d) are guarantee headlines, and wave 3 leads with it again on the general funnel.
+The promise lands with a broad B2B audience and falls flat when made to a dentist by name.
 
-## The longest-running ads overall
+## The longest-running ads — untouched by the cull
 
-| Days | Funnel | Headline |
-|--:|---|---|
-| 400 | `nico-vc` | 10M Views... or you don't pay |
-| 389 | `getting-started-fb1` | 10M Views....Or You Don't Pay |
-| 382 | `getting-started-fb1` | Effortless Social Media Success |
-| 334 | `cpy` | 1M views...or you don't pay |
-| 299 | `getting-started-fb1` | 1M views...or you don't pay |
-| 287 | `fb-10m` | *(no headline)* |
-| 227–186 | `cpy` | Our avg clients get 15.5m views |
+407 d `nico-vc` · 396 d / 389 d / 306 d `getting-started-fb1` · 341 d `cpy` · 294 d ×2 / 267 d `fb-10m`.
+All eight survived the week. Then a cliff to 89 days.
 
-Then a cliff to 82 days. Eight ads have run past six months; everything else is
-churn. Those eight are the control set — the copy he has never needed to change.
+## How ads were selected
 
-## How ads were selected for this report
+No spend/impressions/conversions exist in the Ad Library for commercial ads. Two inference signals:
+**longevity** (he doesn't pay to keep losers live) and **where new money goes** (a segment skipped in a
+new wave is one he's stopped believing in). Everything here is ranked on those two.
 
-Meta's Ad Library publishes **no spend, impressions or conversions** for
-commercial ads. Two signals are available, and both are inference:
+## Limits
 
-1. **Longevity.** A performance advertiser does not pay to keep a losing ad live.
-   The longer it runs, the more it has survived his own culling.
-2. **Re-investment.** New money into a segment weeks after launch means the first
-   round paid back.
-
-Everything featured here is ranked on those two, in that order. Nothing was
-picked because it read well.
-
-## Limits — read before quoting this
-
-- **No performance data exists.** Longevity is a proxy. A well-funded advertiser
-  can keep a mediocre ad alive; longevity says "not killed", not "profitable".
-- **Inactive ads have no usable tenure.** 98.4% of the 1,772 stopped ads report
-  exactly 1 day, which is a Foreplay artifact, not a real stop date. So this
-  report never states how long a dead ad ran — only that it started, and stopped.
-  Live-ad tenure is sound.
-- **Wave 2 (19 Aug) is six days old.** It shows *where he re-invested*, which is
-  the useful part. It cannot yet show whether wave 2 worked.
-- **Transcripts are machine ASR** and garble brand terms — "MedSpot" for "med
-  spa", "Rufus" for "roofers". Quotes are directionally right, not verbatim.
-- **Coverage:** every currently-live ad is captured regardless of age, plus every
-  ad started since 6 Jun 2026. Dead ads older than that are not in this pull.
-- 1,505 of 2,025 ads (74%) had usable audio; 885 of those classified into 22
-  hook families derived from this corpus. The remaining 620 are genuine one-offs.
+- Longevity says "not killed", not "profitable".
+- 98% of *historical* inactive ads report 1 day — an artifact. Only the 63 snapshot-to-snapshot deaths
+  have a real tenure, and they're what this report leans on.
+- **One week is one data point.** The retreat read rests on wave 2 dying, the 7-week cull, and wave 3
+  skipping the niches. A fourth wave into medical would change it. Re-pull in two weeks.
+- ASR garbles brand terms ("MedSpot", "Rufus"). Quotes are directional.
+- Coverage: everything live on either snapshot, plus everything started since 6 Jun 2026.
 
 ## What to take
 
-1. **Sell to licensed, high-ticket practices, not trades.** He proved the same
-   pitch converts in one and not the other, and voted with a second budget.
-2. **Open with the prospect's status quo**, not your guarantee. 60% vs 30%.
-3. **One script, N verticals.** Swap the noun, re-shoot, let survival pick.
-4. Watch `med.viralcoach.com` — 46 fresh ads landed 19 Aug. Re-pull in 3 weeks to
-   see which cleared 60 days.
+1. **Trades are a confirmed no** — killed by week 7, never re-funded, untouched by three waves.
+2. **Medical works but isn't a free lunch** — he kept half at eight weeks and didn't scale it.
+3. **In a niche, name the status quo; don't lead with the guarantee** (33–40% vs 7%).
+4. **Copy the cadence** — 48-hour kill on new batches, hard review at week 7, one script per vertical.

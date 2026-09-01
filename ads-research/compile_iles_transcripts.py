@@ -15,6 +15,10 @@ def main(target):
     ads = json.load(open(os.path.join(target, "ads.json")))
     tdir = os.path.join(target, "transcripts")
     os.makedirs(tdir, exist_ok=True)
+    # Filenames encode status and tenure, so a re-run after a refresh must drop
+    # last week's files or an ad that died shows up twice.
+    for old in os.listdir(tdir):
+        if old.endswith(".txt"): os.remove(os.path.join(tdir, old))
     have = [a for a in ads if a.get("full_transcription")]
     have.sort(key=lambda a: (a.get("live") is not True, -a["days_running"]))
 

@@ -3,116 +3,115 @@
 <div class="wrap">
 
 <header class="top">
-  <p class="eyebrow"><span>Viral Coach LLC</span><span>page 265406025348448</span><span>scraped 25 Aug 2026</span></p>
-  <h1>He tested three niches.<br>Two are still running.</h1>
-  <p class="deck">A full pull of Daniel Iles's Meta ad library — <b>2,025 unique ads, 253 live,
-  1,505 transcripts</b> — to answer one question: the vertical-specific ads he launched in
-  July, are they still up, and did they work?</p>
+  <p class="eyebrow"><span>Viral Coach LLC</span><span>page 265406025348448</span><span>snapshots 25 Aug · 1 Sep 2026</span></p>
+  <h1>He tested three niches.<br>A week on, he's pulling back.</h1>
+  <p class="deck">Two pulls of Daniel Iles's Meta ad library a week apart — <b>{{N_ADS}} unique ads, {{N_LIVE}} live,
+  {{N_TX}} transcripts</b> — to answer one question: the vertical-specific ads he launched in July, are they
+  still up, and did they work? The second pull changed the answer.</p>
   <div class="verdict">
-    <div class="vpill yes"><b>51%</b> medical still live</div>
-    <div class="vpill yes"><b>38%</b> legal still live</div>
-    <div class="vpill no"><b>7%</b> trades still live</div>
-    <div class="vpill no"><b>0</b> new trades ads since</div>
+    <div class="vpill yes"><b>{{MED_P}}%</b> medical still live · was 51%</div>
+    <div class="vpill no"><b>{{LAW_P}}%</b> legal still live · was 38%</div>
+    <div class="vpill no"><b>{{PRO_P}}%</b> trades still live</div>
+    <div class="vpill no"><b>{{N_DIED}}</b> ads killed in the week</div>
   </div>
 </header>
 
 <section>
-  <p class="lede">What the funnels give away</p>
+  <p class="lede">What changed 25 Aug → 1 Sep</p>
+  <h2>The week he culled the niche test</h2>
+  <div class="col">
+    <p>Live ads fell from 253 to {{N_LIVE}}. Because both snapshots exist, the {{N_DIED}} that vanished
+    have a <em>real</em> stop window and a real tenure at death — the only dead ads in this whole library
+    for which that's true. Breakdown: {{DEATH_FUNNEL}}.</p>
+  </div>
+  <div class="note" style="padding-bottom:.6rem">
+    <p><b>Active ads, daily</b> — peaked at {{PEAK}} on {{PEAK_D}}, now {{NOW_ACT}}. Two cuts are visible: the
+    19 Aug wave-2 test being switched off on the 21st, and the 7-week cull on 28–29 Aug.</p>
+    {{SPARK}}
+  </div>
+  <div class="scroll"><table>
+    <thead><tr><th>Tenure at death</th><th>Ads</th><th>What they were</th></tr></thead>
+    <tbody>{{DEATH_ROWS}}</tbody>
+  </table></div>
+  <div class="col">
+    <p>The 49-day cluster is the story. Twenty-two niche ads from the July launch were switched off together at
+    exactly seven weeks — that's a scheduled review, not attrition. He looked at the numbers and cut roughly
+    half the medical set, all four personal-injury ads, and a third of the attorneys.</p>
+    <p>Meanwhile <b>{{N_NEW}} new ads</b> appeared. {{W3_N}} of them landed on 31 Aug–1 Sep as a third wave — and
+    {{W3_CPY}} of those went to the <em>general</em> funnel, not a niche. One went to legal. None to medical.
+    None to trades.</p>
+  </div>
+</section>
+
+<section>
+  <p class="lede">Where the four funnels stand now</p>
   <h2>Each niche got its own landing page</h2>
   <div class="col">
-    <p>Iles routes every vertical to a dedicated subdomain, so the funnel URL <em>is</em> the
-    segment label — no guessing at targeting. That makes the four cohorts below directly
-    comparable, and it makes his own segmentation visible from the outside.</p>
+    <p>Iles routes every vertical to a dedicated subdomain, so the funnel URL <em>is</em> the segment label — no
+    guessing at targeting. That makes the cohorts below directly comparable, and it makes his own segmentation
+    visible from the outside.</p>
   </div>
-  <div class="waves">
-    <div class="wave"><h4>Main funnel</h4><code>viralcoach.com/cpy</code>
-      <div class="row"><span>Ads</span><b>1,818</b></div>
-      <div class="row"><span>Still live</span><b>172</b></div>
-      <div class="row"><span>Survival</span><b>9%</b></div></div>
-    <div class="wave"><h4>Medical</h4><code>med.viralcoach.com</code>
-      <div class="row"><span>Ads</span><b>103</b></div>
-      <div class="row"><span>Still live</span><b class="hi">53</b></div>
-      <div class="row"><span>Survival</span><b class="hi">51%</b></div></div>
-    <div class="wave"><h4>Legal</h4><code>law.viralcoach.com</code>
-      <div class="row"><span>Ads</span><b>36</b></div>
-      <div class="row"><span>Still live</span><b class="hi">14</b></div>
-      <div class="row"><span>Survival</span><b class="hi">38%</b></div></div>
-    <div class="wave"><h4>Trades</h4><code>pros.viralcoach.com</code>
-      <div class="row"><span>Ads</span><b>51</b></div>
-      <div class="row"><span>Still live</span><b class="zero">4</b></div>
-      <div class="row"><span>Survival</span><b class="zero">7%</b></div></div>
-  </div>
+  <div class="waves">{{FUNNEL_CARDS}}</div>
 </section>
 
 <section>
-  <p class="lede">The strongest signal in the whole pull</p>
-  <h2>He launched all three, then re-funded two</h2>
+  <p class="lede">Three waves, read together</p>
+  <h2>Launch, re-fund, retreat</h2>
   <div class="col">
-    <p>The niche ads went live in two distinct waves. Wave one, 7–8 July, seeded all three
-    segments at once. Wave two, six weeks later on 19 August, is where he put fresh money —
-    and it went to medical and legal only.</p>
+    <p>A week ago the 19 Aug re-fund of medical and legal looked like his verdict in favour of those niches.
+    With one more snapshot it reads differently: wave 2 was switched off within 48 hours ({{W2_L}} of {{W2_N}}
+    still live), the wave-1 survivors were then culled at seven weeks, and wave 3 went back to the general
+    offer. The sequence is <em>test → re-test → retreat</em>, not doubling down.</p>
   </div>
   <div class="scroll"><table>
-    <thead><tr><th>Segment</th><th>Wave 1 · 7–8 Jul</th><th>Live at 49 days</th><th>Wave 2 · 19 Aug</th></tr></thead>
-    <tbody>
-      <tr><td><b>Medical</b></td><td class="n">57 ads</td>
-          <td><div class="bar"><i class="good" style="width:89%"></i><span>89%</span></div></td>
-          <td class="n"><b style="color:var(--live)">46 new ads</b></td></tr>
-      <tr><td><b>Legal</b></td><td class="n">26 ads</td>
-          <td><div class="bar"><i class="mid" style="width:53%"></i><span>53%</span></div></td>
-          <td class="n"><b style="color:var(--live)">10 new ads</b></td></tr>
-      <tr><td><b>Trades</b></td><td class="n">51 ads</td>
-          <td><div class="bar"><i class="bad" style="width:7%"></i><span>7%</span></div></td>
-          <td class="n"><b style="color:var(--dead)">0 new ads</b></td></tr>
-    </tbody>
+    <thead><tr><th>Segment</th><th>Wave 1 · 7–8 Jul</th><th>Live at 56 days</th><th>Wave 2 · 19 Aug</th><th>Wave 3 · 31 Aug</th></tr></thead>
+    <tbody>{{WAVE_ROWS}}</tbody>
   </table></div>
   <div class="note">
-    <p><b>Why this beats the survival percentage.</b> A live ad only tells you he hasn't
-    switched it off. A <em>second budget</em>, committed six weeks after launch with the
-    first round's numbers in hand, is him telling you which test paid back. He wrote off the
-    trades and tripled down on medical.</p>
+    <p><b>What still holds.</b> Medical is the only niche with a real surviving set — {{MED_L}} ads at eight
+    weeks, four times the trades' {{PRO_L}}. The trades verdict from the first pull is unchanged: killed early,
+    never re-funded. What <em>doesn't</em> hold is the idea that medical was a clean winner he'd scale; he's
+    keeping a core and moving his new money elsewhere.</p>
   </div>
 </section>
 
 <section>
-  <p class="lede">Wave one only — every ad below launched the same week</p>
-  <h2>Where the line falls</h2>
+  <p class="lede">Wave one only — every ad launched the same week</p>
+  <h2>Where the line falls, at eight weeks</h2>
   <div class="col">
-    <p>Restricting to the July cohort makes tenure directly comparable: same launch date, same
-    creative system, same offer. The only thing that varies is who the ad is aimed at.</p>
+    <p>Restricting to the July cohort keeps tenure comparable: same launch date, same creative system, same
+    offer. The right-hand column is this week's cull, and it landed almost entirely on the verticals that were
+    at 100% a week ago.</p>
   </div>
   <div class="scroll"><table>
-    <thead><tr><th>Vertical</th><th>Ads</th><th>Live</th><th>Survival at 49 days</th></tr></thead>
+    <thead><tr><th>Vertical</th><th>Ads</th><th>Live</th><th>Survival at 56 days</th><th>This week</th></tr></thead>
     <tbody>{{VERT_ROWS}}</tbody>
   </table></div>
   <div class="col">
-    <p>Licensed, high-ticket practices cluster at 75–100%. The trades sit at 0–16%. There is
-    nothing in the middle — this is a break, not a gradient.</p>
+    <p>Licensed practices still sit above the trades, but the gap has closed from a cliff to a slope. Med spa and
+    personal injury — both 100% last week — took the heaviest cuts. Dentist, chiropractor and plastic surgeon
+    kept about half. The trades were already at the floor and didn't move.</p>
   </div>
 </section>
 
 <section>
   <p class="lede">Same script, swapped noun</p>
-  <h2>It isn't the creative — it's the audience</h2>
+  <h2>The creative is held constant</h2>
   <div class="col">
-    <p>Iles runs a template system: one hook formula, re-shot per vertical with the trade noun
-    swapped and nothing else changed. That accidentally makes his library a controlled
-    experiment, because identical copy ran against different audiences at the same time.</p>
+    <p>Iles runs a template system: one hook formula, re-shot per vertical with the trade noun swapped and nothing
+    else changed. That makes his library a controlled experiment — identical copy against different audiences
+    at the same time — which is exactly what lets the survival tables above be read as a statement about
+    <em>audiences</em> rather than about writing.</p>
   </div>
   <div class="pair">
-    <div class="quote won"><p>"If you're a <em>dentist</em> and the only way you're getting
-      patients right now is word of mouth…"</p><p class="out">Live · 49 days</p></div>
-    <div class="quote won"><p>"If you're a <em>chiropractor</em> and the only way you're getting
-      patients right now is word of mouth…"</p><p class="out">Live · 49 days</p></div>
-    <div class="quote lost"><p>"If you're a <em>plumber</em> struggling to get clients, you can
-      try my social media team for seven days…"</p><p class="out">Stopped</p></div>
-    <div class="quote lost"><p>"If you're a <em>roofer</em> struggling to get clients, you can
-      try my social media team for seven days…"</p><p class="out">Stopped</p></div>
-  </div>
-  <div class="col">
-    <p>Same words, same structure, same guarantee. The variable that moved is the vertical.
-    That is the transferable finding: the offer works on licensed practices with high patient
-    lifetime value, and does not work on trades — regardless of how the ad is written.</p>
+    <div class="quote won"><p>"If you're a <em>dentist</em> and the only way you're getting patients right now is
+      word of mouth…"</p><p class="out">Live · 56 days</p></div>
+    <div class="quote won"><p>"If you're a <em>chiropractor</em> and the only way you're getting patients right
+      now is word of mouth…"</p><p class="out">Live · 56 days</p></div>
+    <div class="quote lost"><p>"If you're a <em>plumber</em> struggling to get clients, you can try my social
+      media team for seven days…"</p><p class="out">Stopped</p></div>
+    <div class="quote lost"><p>"If you're a <em>roofer</em> struggling to get clients, you can try my social
+      media team for seven days…"</p><p class="out">Stopped</p></div>
   </div>
 </section>
 
@@ -120,19 +119,18 @@
   <p class="lede">Hook families derived from his own transcripts</p>
   <h2>The openers that held</h2>
   <div class="col">
-    <p>These families were read off the corpus, not brought to it: each is a phrasing template
-    that recurs verbatim across multiple verticals. Survival is measured inside the niche
-    cohort, where every ad launched the same week.</p>
+    <p>These families were read off the corpus, not brought to it: each is a phrasing template that recurs
+    verbatim across multiple verticals. Survival is measured inside the niche cohort only.</p>
   </div>
   <div class="scroll"><table>
     <thead><tr><th>Hook family</th><th>Ads</th><th>Live</th><th>Survival</th></tr></thead>
     <tbody>{{HOOK_ROWS}}</tbody>
   </table></div>
   <div class="note">
-    <p><b>The counter-intuitive bit.</b> The two hooks Viral Coach leads with publicly — the
-    <em>1M-views guarantee</em> and the <em>7-day risk reversal</em> — are the two that survive
-    worst (30% and 29%). What holds is the plainest move available: naming the prospect's
-    current situation back to them.</p>
+    <p><b>Guarantee is niche-fragile, not dead.</b> Inside the niche cohort the <em>1M-views-or-you-don't-pay</em>
+    hook is now at 7% — the worst of any family. Yet his longest-running ads of all are guarantee headlines
+    (407 and 341 days), and wave 3 leads with it again on the general funnel. The read: the guarantee lands
+    with a broad B2B audience and falls flat when the same promise is made to a dentist by name.</p>
   </div>
 </section>
 
@@ -140,8 +138,8 @@
   <p class="lede">Ranked on tenure — the control set</p>
   <h2>The ads he has never had to change</h2>
   <div class="col">
-    <p>Eight ads have run past six months; everything after them falls off a cliff to 82 days.
-    These are the evergreen backbone the rest of the library churns around.</p>
+    <p>Eight ads have run past six months and all eight survived this week's cull untouched. Below them the
+    library falls away to 89 days. These are the evergreen backbone the rest churns around.</p>
   </div>
   <div class="scroll"><table>
     <thead><tr><th>Days live</th><th>Funnel</th><th>Headline</th><th></th></tr></thead>
@@ -154,14 +152,14 @@
   <p class="lede">Every live niche ad · thumbnails link to the video file</p>
   <h2>What's running right now</h2>
   <div class="col">
-    <p>The surviving medical and legal creative, in full. This is the set worth studying frame
-    by frame — it has been through 49 days of his culling.</p>
+    <p>The surviving medical and legal creative, in full. These have now been through both the 48-hour
+    wave-2 cut and the 7-week cull — this is the set worth studying frame by frame.</p>
   </div>
   <div class="gal">{{NICHE_LIVE}}</div>
-  <h3>And what he switched off</h3>
+  <h3>And what he switched off — this week's cull first</h3>
   <div class="col">
-    <p>The same campaign's casualties, mostly trades. Useful as contrast: near-identical
-    production, same offer, killed anyway.</p>
+    <p>The 30 niche ads killed between the two snapshots lead, each tagged with its real tenure at death.
+    The earlier casualties follow. Same production, same offer, killed anyway.</p>
   </div>
   <div class="gal">{{NICHE_DEAD}}</div>
 </section>
@@ -170,9 +168,8 @@
   <p class="lede">Raw transcripts · search and filter</p>
   <h2>Read the actual scripts</h2>
   <div class="col">
-    <p>{{TX_COUNT}} transcripts inline — every live ad plus every niche ad that was killed.
-    Search hits the full text, so you can pull every ad that says "word of mouth" or
-    "guarantee" and read them side by side.</p>
+    <p>{{TX_COUNT}} transcripts inline — every live ad plus every niche ad that was killed. Search hits the
+    full text, so you can pull every ad that says "word of mouth" or "guarantee" and read them side by side.</p>
   </div>
   <div class="filters">
     <input id="q" type="search" placeholder="Search transcript text…" aria-label="Search transcripts">
@@ -193,33 +190,28 @@
   <p class="lede">Method</p>
   <h2>How these ads were picked</h2>
   <div class="col">
-    <p>Meta's Ad Library publishes <b>no spend, impressions or conversions</b> for commercial
-    ads. Nobody can read performance out of it directly. Two signals are available, and both
-    are inference:</p>
+    <p>Meta's Ad Library publishes <b>no spend, impressions or conversions</b> for commercial ads. Two signals are
+    available, and both are inference:</p>
     <ul class="tight">
-      <li><b>Longevity.</b> A performance advertiser does not pay to keep a losing ad live.
-        The longer an ad runs, the more of his own culling it has survived.</li>
-      <li><b>Re-investment.</b> Fresh ads pushed into a segment weeks after launch mean the
-        first round paid back.</li>
+      <li><b>Longevity.</b> A performance advertiser does not pay to keep a losing ad live. The longer an ad runs,
+        the more of his own culling it has survived.</li>
+      <li><b>Where new money goes.</b> Fresh ads pushed into a segment mean the last round earned another look;
+        a segment skipped in a new wave is one he's stopped believing in.</li>
     </ul>
-    <p>Everything featured here is ranked on those two, in that order. Nothing was chosen
-    because it read well.</p>
+    <p>Everything featured here is ranked on those two. Nothing was chosen because it read well.</p>
     <h3>Limits — read before quoting any of this</h3>
     <ul class="tight">
-      <li><b>Longevity is a proxy, not profit.</b> A well-funded advertiser can keep a mediocre
-        ad alive. Longevity says "not killed", not "profitable".</li>
-      <li><b>Stopped ads have no usable tenure.</b> 98.4% of the 1,772 inactive ads report
-        exactly one day, which is a data artifact rather than a real stop date. So this report
-        never says how long a dead ad ran — only that it started and then stopped. Live-ad
-        tenure is sound.</li>
-      <li><b>Wave two is six days old.</b> It shows where he re-invested, which is the useful
-        part. It cannot yet show whether wave two worked.</li>
-      <li><b>Transcripts are machine ASR</b> and garble brand terms — "MedSpot" for med spa,
-        "Rufus" for roofers. Quotes are directionally right, not verbatim.</li>
-      <li><b>Coverage:</b> every currently-live ad regardless of age, plus every ad started
-        since 6 June 2026. Inactive ads older than that are outside this pull.</li>
-      <li>1,505 of 2,025 ads had usable audio; 885 of those classified into 22 hook families
-        derived from this corpus. The remaining 620 are genuine one-offs.</li>
+      <li><b>Longevity is a proxy, not profit.</b> A well-funded advertiser can keep a mediocre ad alive.
+        Longevity says "not killed", not "profitable".</li>
+      <li><b>Most stopped ads have no usable tenure.</b> 98% of the historical inactive ads report exactly one
+        day, a data artifact. The only dead ads with a real tenure are the {{N_DIED}} that died between the two
+        snapshots — and those are the ones this report leans on.</li>
+      <li><b>A week is one data point.</b> The retreat reading rests on wave 2 dying, the 7-week cull, and wave 3
+        skipping the niches. It's consistent, but a fourth wave into medical would change it. Re-pull in two weeks.</li>
+      <li><b>Transcripts are machine ASR</b> and garble brand terms — "MedSpot" for med spa, "Rufus" for roofers.
+        Quotes are directionally right, not verbatim.</li>
+      <li><b>Coverage:</b> every ad live on either snapshot regardless of age, plus every ad started since 6 June
+        2026. Inactive ads older than that are outside this pull.</li>
     </ul>
   </div>
 </section>
@@ -229,19 +221,20 @@
   <h2>What to do with it</h2>
   <div class="col">
     <ul class="tight">
-      <li><b>Sell to licensed, high-ticket practices — not trades.</b> He proved the same pitch
-        converts in one and not the other, then backed it with a second budget.</li>
-      <li><b>Open on the status quo, not the guarantee.</b> 60% survival versus 30%.</li>
-      <li><b>One script, N verticals.</b> Swap the noun, re-shoot, let survival pick the winner.
-        The production cost of testing a vertical is one afternoon.</li>
-      <li><b>Re-pull in three weeks.</b> 46 fresh medical ads landed 19 August. Whichever clear
-        60 days are the next control set.</li>
+      <li><b>Trades are a confirmed no.</b> Killed by week seven, never re-funded, untouched by three waves.
+        That verdict survived the week intact.</li>
+      <li><b>Medical works but isn't a free lunch.</b> He kept about half at eight weeks and didn't scale it. If
+        you go there, expect to cull hard, not to coast.</li>
+      <li><b>Name the prospect's status quo; don't lead with the guarantee in a niche.</b> Status-quo and
+        authority hooks hold at 33–40%; the guarantee is at 7% inside the niches and 400+ days outside them.</li>
+      <li><b>Copy his cadence.</b> 48-hour kill on new batches, a hard review at seven weeks, one script re-shot
+        per vertical. The production cost of testing a vertical is one afternoon.</li>
     </ul>
   </div>
 </section>
 
-<footer>Meta Ad Library data via Foreplay · 2,025 ads · scraped 25 Aug 2026 ·
-No spend or conversion data exists for commercial ads; every performance claim here is
-inference from longevity and re-investment.</footer>
+<footer>Meta Ad Library data via Foreplay · {{N_ADS}} ads · snapshots 25 Aug and 1 Sep 2026 · No spend or
+conversion data exists for commercial ads; every performance claim here is inference from longevity and
+where new money went.</footer>
 
 </div>

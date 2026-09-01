@@ -15,3 +15,5 @@ targets/*/all_transcripts.md
 targets/*/transcripts_index.csv
 targets/*/report.html
 targets/*/shot_*.png
+targets/*/pages_*/
+targets/*/snapshots/
