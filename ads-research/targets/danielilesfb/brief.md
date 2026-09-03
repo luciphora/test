@@ -45,8 +45,8 @@ The 49-day and 56-day clusters are scheduled reviews, not attrition.
 
 | Segment | Wave 1 · 7–8 Jul | Live at 58 d | Wave 2 · 19 Aug | Wave 3 · 31 Aug–2 Sep |
 |---|--:|--:|--:|--:|
-| Medical | 57 | 27 (47%) | 46 → 2 live | **0 new** |
-| Legal | 26 | 3 (12%) | 10 → 0 live | 5 new |
+| Medical | 57 | 28 (49%) | 46 → 1 live | **0 new** |
+| Legal | 26 | 2 (7%) | 10 → 0 live | 5 new |
 | Trades | 51 | 4 (8%) | — | 0 new |
 | General funnel | — | — | — | **81 new** |
 

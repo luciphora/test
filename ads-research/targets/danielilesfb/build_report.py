@@ -40,7 +40,7 @@ w1 = [a for a in niche if a["started_date"] < "2026-08-01"]
 vert = collections.defaultdict(list)
 for a in w1:
     if a["vertical"] != "General / no vertical": vert[a["vertical"]].append(a)
-vrows = sorted(((k, len(v), sum(1 for x in v if x.get("live") is True), sum(1 for x in v if x.get("died_between")))
+vrows = sorted(((k, len(v), sum(1 for x in v if x.get("live") is True), sum(1 for x in v if x.get("died_between") == [SNAP, NOW]))
                 for k,v in vert.items()), key=lambda r: -(r[2]/r[1]))
 
 top = sorted(live, key=lambda a: -a["days_running"])[:12]
