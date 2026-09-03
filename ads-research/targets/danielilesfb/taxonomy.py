@@ -1,15 +1,11 @@
-#!/usr/bin/env python3
-"""Derive a hook x vertical taxonomy from an advertiser's own corpus.
+"""Viral Coach taxonomy — derived from this advertiser's own openers and URLs, not imported.
 
-Nothing here is pre-written: the vertical comes from the noun the ad names in
-its own opening line, and the hook family comes from the phrasing template that
-recurs across those verticals. Ads that match neither are reported as
-unclassified rather than forced into a bucket.
+VERTICALS: the trade the ad names in its first 200 chars (specific before general).
+HOOKS: phrasing templates that recur verbatim across verticals.
+FEATURED_FUNNELS: funnels whose every ad gets a card and transcript in the report.
 """
-import json, re, sys, collections, statistics
+import re
 
-# Verticals: the trade the ad names in its opener. Order matters - the more
-# specific label wins (personal injury attorney before attorney).
 VERTICALS = [
     ("Personal injury attorney", r"personal injury attorney"),
     ("Criminal defense attorney", r"criminal defense attorney"),
@@ -53,13 +49,6 @@ HOOKS = [
     ("Never-post-again",     r"never had to post on|years worth of content in four"),
 ]
 
-def classify(text, table):
-    low = (text or "").lower()
-    for label, pat in table:
-        if re.search(pat, low):
-            return label
-    return None
-
 def funnel(url):
     u = url or ""
     m = re.search(r"//(?:www\.)?([a-z0-9-]+)\.viralcoach\.com", u)
@@ -68,48 +57,5 @@ def funnel(url):
     m = re.search(r"viralcoach\.com/([a-z0-9-]+)", u)
     return m.group(1) if m else "(none)"
 
-def main(path):
-    ads = json.load(open(path))
-    for a in ads:
-        head = (a.get("full_transcription") or "")[:200]
-        a["vertical"] = classify(head, VERTICALS) or "General / no vertical"
-        a["hook"] = classify(head, HOOKS) or "Unclassified"
-        a["funnel"] = funnel(a.get("link_url"))
 
-    def block(title, rows, keyfn):
-        """Survival table.
-
-        running_duration is only trustworthy for LIVE ads: 98.4% of inactive ads
-        in this corpus report exactly 1 day, which is a Foreplay artifact rather
-        than a real stop date. So every day-figure below is computed from live
-        ads only, and dead ads contribute to counts alone.
-        """
-        print(f"\n## {title}\n")
-        groups = collections.defaultdict(list)
-        for a in rows:
-            groups[keyfn(a)].append(a)
-        print(f"| {title} | Ads | Live | Killed | Survival | Median days (live) | Max days (live) |")
-        print("|---|--:|--:|--:|--:|--:|--:|")
-        for k, g in sorted(groups.items(), key=lambda kv: -len(kv[1])):
-            live = [x for x in g if x.get("live") is True]
-            med = int(statistics.median([x["days_running"] for x in live])) if live else 0
-            mx = max((x["days_running"] for x in live), default=0)
-            print(f"| {k} | {len(g)} | {len(live)} | {len(g)-len(live)} | "
-                  f"{100*len(live)//len(g)}% | {med or '-'} | {mx or '-'} |")
-
-    print(f"# Viral Coach ad corpus — {len(ads)} unique ads")
-    live = [a for a in ads if a.get("live") is True]
-    print(f"\nLive: {len(live)} · Inactive: {len(ads)-len(live)} · "
-          f"With transcript: {sum(1 for a in ads if a.get('full_transcription'))}")
-
-    block("Funnel", ads, lambda a: a["funnel"])
-    niche = [a for a in ads if a["funnel"] in ("med", "law", "pros")]
-    block("Vertical (niche funnels only)", niche, lambda a: a["vertical"])
-    block("Hook family (niche funnels only)", niche, lambda a: a["hook"])
-    block("Hook family (main /cpy funnel)", [a for a in ads if a["funnel"] == "cpy"],
-          lambda a: a["hook"])
-
-    json.dump(ads, open(path, "w"), indent=1)
-
-if __name__ == "__main__":
-    main(sys.argv[1])
+FEATURED_FUNNELS = ("med", "law", "pros")

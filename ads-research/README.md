@@ -113,3 +113,15 @@ verticals — the analysis is only as good as that table.
 
 Research and inspiration. Model structure, angle and offer mechanics; do not lift copy
 or creative.
+
+## Running a teardown
+
+The procedure lives in the project skill at `.claude/skills/ad-teardown/` — ask for a
+competitor's winning ads, or to refresh an existing target, and it fires. The post-pull
+half is one command:
+
+    python run_after_pull.py targets/<slug> --pages targets/<slug>/pages_<date> [--snap <prev> --now <today>]
+
+Each target keeps its own `taxonomy.py` (derived from that advertiser's ads, never copied),
+`build_report.py` + `report_body.html` (its prose), and `snapshots.json` (the dates it has
+been pulled). Raw pulls, media and transcripts are gitignored.

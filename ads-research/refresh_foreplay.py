@@ -7,9 +7,19 @@ snapshot and is absent from today's live set died in between. That window is
 recorded on the ad as `died_between`, and live-ad tenure is refreshed from the
 new pull. New ads are appended.
 """
-import json, sys, glob, os, datetime
+import json, sys, glob, os, re, datetime
 
 import re
+def _repair(s):
+    """Foreplay transcripts lose the odd byte, always an apostrophe ("don\ufffdt")."""
+    if not isinstance(s, str) or "\ufffd" not in s: return s
+    return re.sub(r"(?<=[A-Za-z])\ufffd(?=[A-Za-z])", "'", s).replace("\ufffd", "")
+
+def _repair_ad(a):
+    for k in ("full_transcription", "description", "headline"):
+        if k in a: a[k] = _repair(a[k])
+    return a
+
 def scrub(s):
     """Foreplay transcripts occasionally carry U+FFFD where an apostrophe was lost
     ("don<?>t pay"). Restore it between letters, drop it elsewhere; the artifact
@@ -25,7 +35,7 @@ def main(target, pages_dir, snap_date, now_date):
     for p in sorted(glob.glob(os.path.join(pages_dir, "*.json"))):
         for a in json.load(open(p)).get("data") or []:
             if a["id"] not in fresh or a.get("live") is True:
-                fresh[a["id"]] = a
+                fresh[a["id"]] = _repair_ad(a)
     live_now = {i for i, a in fresh.items() if a.get("live") is True}
 
     died = added = refreshed = 0
@@ -60,6 +70,11 @@ def main(target, pages_dir, snap_date, now_date):
             a[k] = scrub(a.get(k))
     ads = sorted(base.values(), key=lambda a: (-a["days_running"], a.get("started_date") or ""))
     json.dump(ads, open(os.path.join(target, "ads.json"), "w"), indent=1)
+    sp = os.path.join(target, "snapshots.json")
+    snaps = json.load(open(sp)) if os.path.exists(sp) else []
+    for dte in (snap_date, now_date):
+        if dte not in snaps: snaps.append(dte)
+    json.dump(sorted(snaps), open(sp, "w"))
     live = sum(1 for a in ads if a.get("live") is True)
     print(f"{len(ads)} ads · live={live} · refreshed={refreshed} · died in window={died} · new={added}")
 

@@ -4,7 +4,10 @@ import json, base64, os, html, collections, statistics
 
 ads = json.load(open("ads.json"))
 live = [a for a in ads if a.get("live") is True]
-SNAPS = ["2026-08-25", "2026-09-01", "2026-09-03"]
+import importlib.util as _iu
+_s=_iu.spec_from_file_location("t","taxonomy.py"); _t=_iu.module_from_spec(_s); _s.loader.exec_module(_t)
+FEATURED = _t.FEATURED_FUNNELS
+SNAPS = json.load(open("snapshots.json"))
 SNAP, NOW = SNAPS[-2], SNAPS[-1]
 
 def b64(aid):
@@ -35,7 +38,7 @@ def card(a, show_days=True):
 </figure>"""
 
 # ---- data blocks -------------------------------------------------------
-niche = [a for a in ads if a["funnel"] in ("med","law","pros")]
+niche = [a for a in ads if a["funnel"] in FEATURED]
 w1 = [a for a in niche if a["started_date"] < "2026-08-01"]
 vert = collections.defaultdict(list)
 for a in w1:
@@ -57,7 +60,7 @@ hrows = sorted(((k, len(v), sum(1 for x in v if x.get("live") is True))
 
 # transcripts shown in-page: every live ad + every niche ad that died
 tx_ads = [a for a in ads if a.get("full_transcription") and
-          (a.get("live") is True or a["funnel"] in ("med","law","pros"))]
+          (a.get("live") is True or a["funnel"] in FEATURED)]
 tx_ads.sort(key=lambda a: (a.get("live") is not True, -a["days_running"]))
 
 def bar(pct, cls):
@@ -135,8 +138,8 @@ def _lbl(rows):
     fun = collections.Counter(a["funnel"] for a in rows).most_common(1)[0][0]
     day = collections.Counter(a.get("started_date") for a in rows).most_common(1)[0][0]
     what = {"med":"medical","law":"legal","pros":"trades","cpy":"main-funnel"}.get(fun, fun)
-    wave = ("wave-1 niche" if fun in ("med","law","pros") and (day or "")<"2026-08-01" else
-            "wave-2 niche" if fun in ("med","law","pros") else what)
+    wave = ("wave-1 niche" if fun in FEATURED and (day or "")<"2026-08-01" else
+            "wave-2 niche" if fun in FEATURED else what)
     return f"{wave} ads launched {day[5:] if day else '?'}"
 ten = collections.defaultdict(list)
 for a in died: ten[a["days_at_death_min"]].append(a)

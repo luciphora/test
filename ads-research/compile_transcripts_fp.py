@@ -15,6 +15,8 @@ def main(target):
     ads = json.load(open(os.path.join(target, "ads.json")))
     tdir = os.path.join(target, "transcripts")
     os.makedirs(tdir, exist_ok=True)
+    for stale in os.listdir(tdir):  # an ad that died since last run would otherwise exist twice
+        os.remove(os.path.join(tdir, stale))
     # Filenames encode status and tenure, so a re-run after a refresh must drop
     # last week's files or an ad that died shows up twice.
     for old in os.listdir(tdir):
