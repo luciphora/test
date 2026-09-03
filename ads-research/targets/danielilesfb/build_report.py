@@ -4,6 +4,8 @@ import json, base64, os, html, collections, statistics
 
 ads = json.load(open("ads.json"))
 live = [a for a in ads if a.get("live") is True]
+SNAPS = ["2026-08-25", "2026-09-01", "2026-09-03"]
+SNAP, NOW = SNAPS[-2], SNAPS[-1]
 
 def b64(aid):
     p = f"thumbs_small/{aid}.jpg"
@@ -15,7 +17,7 @@ def esc(s): return html.escape(s or "")
 def card(a, show_days=True):
     img = b64(a["id"])
     days = (f'<span class="badge live">LIVE · {a["days_running"]}d</span>' if a.get("live") is True
-            else f'<span class="badge dead">killed wk of {SNAP[5:]} · at {a["days_at_death_min"]}d</span>' if a.get("died_between")
+            else f'<span class="badge dead">killed {a["died_between"][0][5:].replace("-","/")}–{a["died_between"][1][5:].replace("-","/")} · at {a["days_at_death_min"]}d</span>' if a.get("died_between")
             else '<span class="badge dead">stopped</span>')
     media = (f'<img loading="lazy" src="{img}" alt="">' if img
              else '<div class="noimg">no thumbnail</div>')
@@ -45,7 +47,7 @@ top = sorted(live, key=lambda a: -a["days_running"])[:12]
 niche_live = sorted([a for a in niche if a.get("live") is True],
                     key=lambda a: (a["funnel"], -a["days_running"]))
 niche_dead = sorted([a for a in niche if a.get("live") is not True and a.get("full_transcription")],
-                    key=lambda a: (not a.get("died_between"), -a.get("days_at_death_min", 0)))
+                    key=lambda a: (not a.get("died_between"), (a.get("died_between") or ["0"])[0] != SNAP, -a.get("days_at_death_min", 0)))
 
 hook_niche = collections.defaultdict(list)
 for a in niche:
@@ -89,8 +91,8 @@ tx_blocks = "".join(
     f'<p>{esc(a["full_transcription"])}</p></article>'
     for a in tx_ads)
 
-SNAP, NOW = "2026-08-25", "2026-09-01"
-died = [a for a in ads if a.get("died_between")]
+died_all = [a for a in ads if a.get("died_between")]
+died = [a for a in died_all if a["died_between"] == [SNAP, NOW]]
 new  = [a for a in ads if a.get("new_since")]
 ntx  = sum(1 for a in ads if a.get("full_transcription"))
 
@@ -129,11 +131,17 @@ w3_cpy=sum(1 for a in w3_all if a["funnel"]=="cpy")
 
 # deaths this week: by funnel and by real tenure-at-death
 death_funnel = ", ".join(f"{v} {k}" for k,v in sorted(collections.Counter(a["funnel"] for a in died).items(), key=lambda kv:-kv[1]))
-ten = collections.Counter(a["days_at_death_min"] for a in died)
-death_rows = "".join(f'<tr><td class="n big">{d}d</td><td class="n">{n}</td>'
-    f'<td>{"wave 2 (19 Aug) survivors" if d<=6 else "wave 1 niche ads at the 7-week mark" if d>=48 else "main-funnel ads"}</td></tr>'
-    for d,n in sorted(ten.items()))
-
+def _lbl(rows):
+    fun = collections.Counter(a["funnel"] for a in rows).most_common(1)[0][0]
+    day = collections.Counter(a.get("started_date") for a in rows).most_common(1)[0][0]
+    what = {"med":"medical","law":"legal","pros":"trades","cpy":"main-funnel"}.get(fun, fun)
+    wave = ("wave-1 niche" if fun in ("med","law","pros") and (day or "")<"2026-08-01" else
+            "wave-2 niche" if fun in ("med","law","pros") else what)
+    return f"{wave} ads launched {day[5:] if day else '?'}"
+ten = collections.defaultdict(list)
+for a in died: ten[a["days_at_death_min"]].append(a)
+death_rows = "".join(f'<tr><td class="n big">{d}d</td><td class="n">{len(r)}</td><td>{esc(_lbl(r))}</td></tr>'
+    for d,r in sorted(ten.items()))
 # active-count sparkline from analytics.csv
 import csv
 rows=sorted(csv.DictReader(open("analytics.csv")), key=lambda r:r["date"])
@@ -170,12 +178,12 @@ out = (f"<title>Viral Coach Teardown</title>\n<style>{CSS}</style>\n"
          .replace("{{FUNNEL_CARDS}}", funnel_cards).replace("{{WAVE_ROWS}}", wave_rows)
          .replace("{{DEATH_ROWS}}", death_rows).replace("{{DEATH_FUNNEL}}", death_funnel)
          .replace("{{SPARK}}", spark).replace("{{N_ADS}}", f"{len(ads):,}").replace("{{N_LIVE}}", str(len(live)))
-         .replace("{{N_TX}}", f"{ntx:,}").replace("{{N_DIED}}", str(len(died))).replace("{{N_NEW}}", str(len(new)))
+         .replace("{{N_TX}}", f"{ntx:,}").replace("{{N_DIED}}", str(len(died))).replace("{{N_DIED_ALL}}", str(len(died_all))).replace("{{N_NEW}}", str(len(new)))
          .replace("{{W3_N}}", str(len(w3_all))).replace("{{W3_CPY}}", str(w3_cpy))
          .replace("{{MED_P}}", str(pct(med_n,med_l))).replace("{{LAW_P}}", str(pct(law_n,law_l))).replace("{{PRO_P}}", str(pct(pro_n,pro_l)))
          .replace("{{MED_L}}", str(med_l)).replace("{{LAW_L}}", str(law_l)).replace("{{PRO_L}}", str(pro_l))
          .replace("{{W2_N}}", str(n_w2)).replace("{{W2_L}}", str(l_w2))
-         .replace("{{PEAK}}", peak["active"]).replace("{{PEAK_D}}", peak["date"][5:]).replace("{{NOW_ACT}}", rows[-1]["active"])
+         .replace("{{N_NEW_ALL}}", str(sum(1 for a in ads if a.get("new_since")))).replace("{{PEAK}}", peak["active"]).replace("{{PEAK_D}}", peak["date"][5:]).replace("{{NOW_ACT}}", rows[-1]["active"])
          .replace("{{WINNERS}}", "".join(card(a) for a in top))
          .replace("{{NICHE_LIVE}}", "".join(card(a) for a in niche_live))
          .replace("{{NICHE_DEAD}}", "".join(card(a) for a in niche_dead[:60]))

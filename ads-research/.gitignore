@@ -17,3 +17,7 @@ targets/*/report.html
 targets/*/shot_*.png
 targets/*/pages_*/
 targets/*/snapshots/
+
+# per-pull page dumps and snapshots
+targets/*/pages_*/
+targets/*/snapshots/

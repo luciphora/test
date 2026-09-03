@@ -1,7 +1,7 @@
 # Viral Coach (Daniel Iles) — ad teardown
 
-Page `265406025348448` · Viral Coach LLC · two snapshots: **25 Aug** and **1 Sep 2026** via Foreplay
-**2,048 unique ads · 211 live · 1,528 transcripts · 63 ads with a real stop window**
+Page `265406025348448` · Viral Coach LLC · three snapshots via Foreplay: **25 Aug · 1 Sep · 3 Sep 2026**
+**2,112 unique ads · 232 live · 1,589 transcripts · 110 ads with a real stop window**
 
 ---
 
@@ -10,117 +10,109 @@ Page `265406025348448` · Viral Coach LLC · two snapshots: **25 Aug** and **1 S
 > He launched niche-specific ads (med spas, chiropractors, etc.) in the last month or two.
 > Are they still running, and have they been successful?
 
-**A week ago: yes for medical, yes for legal, no for trades.**
-**Now: trades still no; medical and legal were culled hard at the 7-week mark; his new money
-went back to the general funnel.** The niche test is being wound down, not scaled.
+**Medical: half of the July launch is still running at eight weeks and has held for two
+snapshots. Legal: being churned — cut and relaunched the same day. Trades: dead since week seven.
+His new money — 85 ads in four days — is 95% on the general funnel.**
 
 ---
 
-## What changed between the two snapshots
+## The trajectory
 
-| | 25 Aug | 1 Sep | Δ |
+| | 25 Aug | 1 Sep | 3 Sep |
 |---|--:|--:|--:|
-| Live ads (all funnels) | 253 | 211 | −42 net (63 died, 23 new) |
-| Medical live | 53 (51%) | 30 (29%) | −23 |
-| Legal live | 14 (38%) | 8 (21%) | −7 |
-| Trades live | 4 (7%) | 4 (7%) | 0 |
-| Wave 2 (19 Aug) live | 3 of 56 | 2 of 57 | dead on arrival |
+| Live ads (all) | 253 | 211 | 232 |
+| Medical live | 53 (51%) | 30 (29%) | **29 (28%)** |
+| Legal live | 14 (38%) | 8 (21%) | **7 (17%)** |
+| Trades live | 4 (7%) | 4 (7%) | 4 (7%) |
+| Died since previous snapshot | — | 63 | 47 |
+| New since previous snapshot | — | 23 | 64 |
 
-Because both snapshots exist, the 63 ads that vanished have a **real tenure at death** — the only
-inactive ads in the library for which that's true (the rest report a bogus 1 day):
+Daily active count (Foreplay analytics): 222 peak (15–16 Aug) → 153 → 99 → **50 on 1 Sep** → 86.
+This measure and the per-ad live flag don't reconcile; every table here uses the per-ad flag.
 
-| Tenure at death | Ads | What they were |
-|--:|--:|---|
-| 5–6 d | 23 | wave-2 (19 Aug) survivors, switched off ~21 Aug |
-| 14 d | 1 | main funnel |
-| 36 d | 10 | main funnel |
-| 48–49 d | 29 | **wave-1 niche ads, cut together at exactly seven weeks** |
+## Tenure at death — the only real one in the library
 
-The 49-day cluster is a scheduled review, not attrition. He looked at seven weeks of data and cut
-roughly half the medical set, all four personal-injury ads, and a third of the attorneys.
+Historical inactive ads report a bogus 1 day. The 110 that died between snapshots have a genuine window:
 
-Daily active count (Foreplay analytics): peaked at 222 on 15–16 Aug, 153 on 25 Aug, **99 on 29–31 Aug**.
+| Window | Died | Clusters |
+|---|--:|---|
+| 25 Aug → 1 Sep | 63 | 23 × 5–6 d (wave-2 niche, killed ~21 Aug) · 10 × 36 d · **29 × 48–49 d (wave-1 niche, 7-week cull)** |
+| 1 Sep → 3 Sep | 47 | 12 × 12 d (19–20 Aug main-funnel batch) · 17 × 43 d (21 Jul main-funnel batch) · **10 × 55–56 d (wave-1 niche: 4 attorney, 2 chiro, 1 plastic, 1 med-gen, 1 crim-def)** |
 
-## Three waves, read together
+The 49-day and 56-day clusters are scheduled reviews, not attrition.
 
-| Segment | Wave 1 · 7–8 Jul | Live at 56 d | Wave 2 · 19 Aug | Wave 3 · 31 Aug |
+## Three waves
+
+| Segment | Wave 1 · 7–8 Jul | Live at 58 d | Wave 2 · 19 Aug | Wave 3 · 31 Aug–2 Sep |
 |---|--:|--:|--:|--:|
-| Medical | 57 | 29 (51%) | 46 → 2 live | **0 new** |
-| Legal | 26 | 8 (31%) | 10 → 0 live | 1 new |
+| Medical | 57 | 27 (47%) | 46 → 2 live | **0 new** |
+| Legal | 26 | 3 (12%) | 10 → 0 live | 5 new |
 | Trades | 51 | 4 (8%) | — | 0 new |
-| General funnel | — | — | — | **18 new** |
+| General funnel | — | — | — | **81 new** |
 
-A week ago the 19 Aug re-fund looked like a verdict *for* medical and legal. With another snapshot
-it reads as: wave 2 was killed within 48 hours, wave-1 survivors were culled at seven weeks, and
-wave 3 went to the general offer. **Test → re-test → retreat.**
+Wave 2 died in 48 hours. Wave-1 survivors were culled at seven weeks. Wave 3 went general.
+Medical has had no new ad since 19 Aug, but also no further cut of note: **a maintained position.**
 
-## Wave 1 by vertical, at 56 days (all launched same week)
+## Wave 1 by vertical, at 58 days
 
-| Vertical | Ads | Live | Survival | Killed this week |
+| Vertical | Ads | Live | Survival | 1–3 Sep |
 |---|--:|--:|--:|--:|
-| Plastic surgeon | 10 | 6 | 60% | −4 |
-| Dentist | 15 | 8 | 53% | −6 |
-| Chiropractor | 12 | 6 | 50% | −3 |
-| Attorney | 15 | 6 | 40% | −3 |
-| Med spa | 12 | 4 | 33% | **−8** (was 100%) |
+| Dentist | 15 | 8 | 53% | 0 |
+| Chiropractor | 12 | 6 | 50% | −2 |
+| Plastic surgeon | 10 | 5 | 50% | −1 |
+| Med spa | 12 | 6 | 50% | 0 |
 | Contractor | 12 | 2 | 16% | 0 |
+| **Attorney** | 15 | **2** | **13%** | **−4** (was 60% → 40% → 13%) |
 | Plumber | 8 | 1 | 12% | 0 |
 | Home services | 10 | 1 | 10% | 0 |
-| Personal injury attorney | 4 | 0 | **0%** | **−4** (was 100%) |
+| Personal injury / crim-def / med-gen | 6 | 0 | 0% | −2 |
 | Roofer | 6 | 0 | 0% | 0 |
 
-Licensed practices still sit above trades, but the gap closed from a cliff to a slope. The two
-verticals at 100% last week took the heaviest cuts.
+The four medical verticals converged at 50–53% and didn't move this window — that looks like a floor.
+A week ago the line separated licensed practices from trades; today it separates **medical from everything else**.
 
 ## Why it isn't the creative
 
-Template system: one hook formula, re-shot per vertical with only the noun swapped. Same words,
-same structure, same offer — so survival differences are about the audience, not the writing.
+Template system: one hook formula, re-shot per vertical with only the noun swapped. Survival
+differences are about the audience, not the writing.
 
-> "If you're a **dentist** and the only way you're getting patients is word of mouth…" — live, 56 d
-> "If you're a **plumber** struggling to get clients, try my team for seven days…" — dead
-
-## Hook survival inside the niche cohort, now
+## Hook survival inside the niche cohort
 
 | Hook family | Ads | Live | Survival |
 |---|--:|--:|--:|
-| Authority — *"#1 way to grow right now is social media"* | 27 | 11 | 40% |
-| Channel callout — *"relying on Google SEO"* | 12 | 4 | 33% |
-| Status-quo callout — *"only getting patients by word of mouth"* | 15 | 5 | 33% |
-| Case study | 7 | 2 | 28% |
-| Hypothetical scale — *"what if 15M people saw your business"* | 25 | 5 | 20% |
-| Risk reversal — *"try my team for seven days"* | 17 | 3 | 17% |
+| Channel callout — *"relying on Google SEO"* | 12 | 5 | 41% |
+| Authority — *"#1 way to grow right now"* | 29 | 12 | 41% |
+| Status-quo callout | 15 | 4 | 26% |
+| Risk reversal — *"try my team for 7 days"* | 19 | 4 | 21% |
+| Hypothetical scale — *"what if 15M saw you"* | 25 | 5 | 20% |
 | Failed-attempt callout | 12 | 2 | 16% |
-| Guarantee — *"1M views or you don't pay"* | 26 | 2 | **7%** |
+| Case study | 7 | 1 | 14% |
+| Guarantee — *"1M views or you don't pay"* | 26 | **1** | **3%** |
 
-**Guarantee is niche-fragile, not dead.** Worst family inside the niches — yet his two longest-running
-ads ever (407 d, 341 d) are guarantee headlines, and wave 3 leads with it again on the general funnel.
-The promise lands with a broad B2B audience and falls flat when made to a dentist by name.
+**Guarantee is niche-fragile, not dead** — one survivor in 26 inside the niches, yet his longest-running
+ads (408 d, 342 d) are guarantee headlines and wave 3 leads with it on the general funnel.
 
-## The longest-running ads — untouched by the cull
+## Longest-running — untouched by every cull
 
-407 d `nico-vc` · 396 d / 389 d / 306 d `getting-started-fb1` · 341 d `cpy` · 294 d ×2 / 267 d `fb-10m`.
-All eight survived the week. Then a cliff to 89 days.
+408 d `nico-vc` · 397 / 390 / 307 d `getting-started-fb1` · 342 d `cpy` · 295 ×2 / 268 d `fb-10m`. Then a cliff to 90 d.
 
 ## How ads were selected
 
-No spend/impressions/conversions exist in the Ad Library for commercial ads. Two inference signals:
-**longevity** (he doesn't pay to keep losers live) and **where new money goes** (a segment skipped in a
-new wave is one he's stopped believing in). Everything here is ranked on those two.
+No spend/impressions/conversions exist for commercial ads. Two inference signals: **longevity** and
+**where new money goes**. Everything ranked on those two.
 
 ## Limits
 
 - Longevity says "not killed", not "profitable".
-- 98% of *historical* inactive ads report 1 day — an artifact. Only the 63 snapshot-to-snapshot deaths
-  have a real tenure, and they're what this report leans on.
-- **One week is one data point.** The retreat read rests on wave 2 dying, the 7-week cull, and wave 3
-  skipping the niches. A fourth wave into medical would change it. Re-pull in two weeks.
-- ASR garbles brand terms ("MedSpot", "Rufus"). Quotes are directional.
-- Coverage: everything live on either snapshot, plus everything started since 6 Jun 2026.
+- Only the 110 snapshot-to-snapshot deaths have real tenure.
+- Foreplay's daily active count and per-ad live flag disagree (86 vs 232 on 2–3 Sep); chart is shape only.
+- Nine days is a short series. "Medical held" rests on two consecutive ~50% readings. Re-pull in two weeks.
+- ASR garbles brand terms. Quotes are directional.
+- Coverage: everything live on any snapshot + everything started since 6 Jun 2026.
 
 ## What to take
 
-1. **Trades are a confirmed no** — killed by week 7, never re-funded, untouched by three waves.
-2. **Medical works but isn't a free lunch** — he kept half at eight weeks and didn't scale it.
-3. **In a niche, name the status quo; don't lead with the guarantee** (33–40% vs 7%).
-4. **Copy the cadence** — 48-hour kill on new batches, hard review at week 7, one script per vertical.
+1. **Trades: confirmed no.** Three waves, three snapshots, never re-funded.
+2. **Medical: a maintained position, not a jackpot.** Expect to cull half, then keep the rest running.
+3. **Legal: churn, not a bet.** He cuts and relaunches same-day.
+4. **In a niche, open with authority or a channel callout; save the guarantee for broad B2B.** 41% vs 3%.
