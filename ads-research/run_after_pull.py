@@ -19,11 +19,17 @@ def run(*cmd, cwd=None):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("target"); ap.add_argument("--pages", required=True)
+    ap.add_argument("target"); ap.add_argument("--pages", help="pages dir from a previous collect; omit when using --page-id")
+    ap.add_argument("--page-id", help="collect first via collect_foreplay.py (needs FOREPLAY_API_KEY), then process")
     ap.add_argument("--snap", help="date of the snapshot being refreshed (omit on first pull)")
     ap.add_argument("--now", default=datetime.date.today().isoformat())
     a = ap.parse_args(); here = os.path.dirname(os.path.abspath(__file__)); t = a.target
     py = sys.executable
+    if a.page_id:
+        a.pages = os.path.join(t, f"pages_{a.now.replace('-', '')[4:]}")
+        run(py, f"{here}/collect_foreplay.py", a.page_id, t, "--yes", "--date", a.now, *(["--since", a.snap] if a.snap else []))
+    elif not a.pages:
+        sys.exit("pass --pages <dir> (existing pull) or --page-id <id> (collect now)")
 
     if a.snap:
         snap = os.path.join(t, "snapshots", f"ads_{a.snap}.json")
