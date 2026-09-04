@@ -21,7 +21,7 @@ Meta publishes no spend or results for commercial ads. The only signals are **su
 
 6. **Write the verdict.** `brief.md` and `report_body.html` are prose; every figure is a `{{PLACEHOLDER}}` that `build_report.py` fills. Never type a number by hand. Open with what changed since the last snapshot, then with what the previous verdict got wrong. *Done when* every figure in the brief also appears in the built report.
 
-7. **Ship.** Publish `report.html` as an Artifact — same file path keeps the URL on refresh; `label` the version. Zip `transcripts/ all_transcripts.md transcripts_index.csv brief.md analytics.csv` and send it. Commit code, brief and taxonomy; data, media, transcripts and `report.html` stay gitignored. *Done when* Moe has the link and the zip and `git status` is clean.
+7. **Ship.** Publish `report.html` as an Artifact — same file path keeps the URL on refresh; `label` the version. **Share it before anyone else gets the link** — artifacts are private by default; if sharing needs Moe's click, the message says so. Zip `transcripts/ all_transcripts.md transcripts_index.csv brief.md analytics.csv` and send it. Commit code, brief and taxonomy; data, media, transcripts and `report.html` stay gitignored. Delivery routes per destination in [reference/delivery.md](reference/delivery.md). *Done when* the destination has been **read back** — the message, file or page seen where it landed, not a tool's `ok: true` — and `git status` is clean.
 
 ## Reading survival
 
@@ -33,4 +33,4 @@ Meta publishes no spend or results for commercial ads. The only signals are **su
 - **Foreplay's daily active count and its per-ad live flag disagree.** Chart the count for shape; tables use only the flag.
 - **One snapshot is a state, two is a delta, three is a trend.** Say which you have.
 
-Report structure, design tokens and the mistakes to check for: [reference/report.md](reference/report.md).
+Report structure, design tokens and the mistakes to check for: [reference/report.md](reference/report.md). Where things go and how to confirm they arrived: [reference/delivery.md](reference/delivery.md).
