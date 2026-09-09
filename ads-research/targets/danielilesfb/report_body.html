@@ -3,32 +3,31 @@
 <div class="wrap">
 
 <header class="top">
-  <p class="eyebrow"><span>Viral Coach LLC</span><span>page 265406025348448</span><span>snapshots 25 Aug · 1 Sep · 3 Sep 2026</span></p>
-  <h1>He tested three niches.<br>Medical held. The money went general.</h1>
-  <p class="deck">Three pulls of Daniel Iles's Meta ad library over nine days — <b>{{N_ADS}} unique ads, {{N_LIVE}} live,
-  {{N_TX}} transcripts</b> — to answer one question: the vertical-specific ads he launched in July, are they
-  still up, and did they work? Each snapshot has sharpened the answer.</p>
+  <p class="eyebrow"><span>Viral Coach LLC</span><span>page 265406025348448</span><span>snapshots 25 Aug · 1 Sep · 3 Sep · 9 Sep 2026</span></p>
+  <h1>He just switched off<br>his best ads.</h1>
+  <p class="deck">Four pulls of Daniel Iles's Meta ad library over fifteen days — <b>{{N_ADS}} unique ads, {{N_LIVE}} live,
+  {{N_TX}} transcripts</b>. The question was whether his July niche test worked. In the last six days he answered a
+  bigger one by killing <b>{{EVER_KILLED}} of the {{EVER_N}} ads that had run past six months</b>, including one at
+  {{EVER_MAX}} days, and all but stopping new creative.</p>
   <div class="verdict">
-    <div class="vpill yes"><b>{{MED_P}}%</b> medical live · 51% → 29% → {{MED_P}}%</div>
-    <div class="vpill no"><b>{{LAW_P}}%</b> legal live · 38% → 21% → {{LAW_P}}%</div>
-    <div class="vpill no"><b>{{PRO_P}}%</b> trades live · flat</div>
-    <div class="vpill yes"><b>{{N_NEW_ALL}}</b> new ads since 25 Aug · 96% general funnel</div>
+    <div class="vpill no"><b>{{N_DIED}}</b> ads killed in six days</div>
+    <div class="vpill no"><b>{{N_NEW}}</b> new ads · was {{VEL_FIRST}}/day, now {{VEL_LAST}}/day</div>
+    <div class="vpill no"><b>{{N_LIVE}}</b> live · was 232</div>
+    <div class="vpill no"><b>{{MAX_LIVE}}d</b> longest live · was {{EVER_MAX}}d</div>
   </div>
 </header>
 
 <section>
-  <p class="lede">What changed 1 Sep → 3 Sep</p>
-  <h2>A cull and a relaunch in forty-eight hours</h2>
+  <p class="lede">What changed 3 Sep → 9 Sep</p>
+  <h2>The backbone came down</h2>
   <div class="col">
-    <p>Between the last two snapshots he switched off <b>{{N_DIED}} ads</b> and launched <b>64 new ones</b> — sixty to the
-    general funnel, four to legal, none to medical or trades. That brings the run to {{N_DIED_ALL}} ads with a
-    <em>real</em> stop window across the three pulls, the only dead ads in this library for which tenure at death
-    is known. This window: {{DEATH_FUNNEL}}.</p>
+    <p>Between the last two snapshots he switched off <b>{{N_DIED}} ads</b> and launched <b>{{N_NEW}}</b>. That is
+    {{N_DIED_ALL}} ads with a <em>real</em> stop window across the four pulls — the only dead ads in this library whose
+    tenure at death is known. This window: {{DEATH_FUNNEL}}.</p>
   </div>
   <div class="note" style="padding-bottom:.6rem">
-    <p><b>Foreplay's daily active count</b> — peaked at {{PEAK}} on {{PEAK_D}}, dipped to 50 on 1 Sep, back to
-    {{NOW_ACT}} the next day. Three cuts are visible: the 19 Aug batch being switched off on the 21st, the 7-week
-    cull on 28–29 Aug, and the reset on 1 Sep.</p>
+    <p><b>Foreplay's daily active count</b> — peaked at {{PEAK}} on {{PEAK_D}}, now {{NOW_ACT}}. 7 Sep is omitted: the
+    collector returned zero active and zero inactive that day, which is a gap in the data, not an empty account.</p>
     {{SPARK}}
   </div>
   <div class="scroll"><table>
@@ -36,15 +35,55 @@
     <tbody>{{DEATH_ROWS}}</tbody>
   </table></div>
   <div class="col">
-    <p>Two of the three clusters are main-funnel housekeeping — the 19–20 Aug batch at 12 days and a 20–21 Jul batch
-    at 43 days. The third is the one that matters here: ten wave-1 niche ads cut at 55–56 days, and <b>four of the
-    six surviving attorney ads were among them</b>. Medical lost five. The trades lost nothing because there was
-    nothing left to lose.</p>
+    <p>Two clusters are routine: a 57-day group (the July niche cohort hitting an eight-week review) and a 72-day group
+    on the main funnel. The rest is not routine. Deaths land at 194, 216, 219, 235, 268, 307, 342, 390, 397 and
+    408 days — every one of them an ad that had survived every cull in this series until now.</p>
   </div>
 </section>
 
 <section>
-  <p class="lede">Where the four funnels stand now</p>
+  <p class="lede">The finding</p>
+  <h2>{{EVER_KILLED}} of {{EVER_N}} six-month ads, switched off at once</h2>
+  <div class="col">
+    <p>On 3 Sep, {{EVER_N}} ads had been running past 180 days. They were this library's control set — the copy he had
+    never needed to change, surviving the 19 Aug batch cull, the seven-week niche review and the 1 Sep reset without a
+    scratch. Six days later {{EVER_KILLED}} of them are off.</p>
+  </div>
+  <div class="scroll"><table>
+    <thead><tr><th>Tenure on 3 Sep</th><th>Funnel</th><th>Headline</th><th>Now</th></tr></thead>
+    <tbody>{{EVER_ROWS}}</tbody>
+  </table></div>
+  <div class="note">
+    <p><b>This is the one move survival analysis cannot read as performance.</b> An advertiser kills a losing ad; he
+    does not kill a 408-day winner because it stopped working — it demonstrably hadn't. Three readings fit: a deliberate
+    creative-generation refresh, a funnel consolidation (three landing pages went to zero live ads this week), or an
+    ad-account or billing change that took a whole cohort down with it. The Ad Library cannot separate them, and this
+    report does not pretend to. What it can say is that the evergreen set is gone and almost nothing replaced it.</p>
+  </div>
+</section>
+
+<section>
+  <p class="lede">New creative per day, by window</p>
+  <h2>He stopped shipping</h2>
+  <div class="col">
+    <p>Across the first three windows this was a high-velocity account: dozens of new ads a week, most killed within
+    a fortnight, a few surviving. In the latest window that stopped.</p>
+  </div>
+  <div class="scroll"><table>
+    <thead><tr><th>Window</th><th>Launched</th><th>Rate</th><th>Killed</th></tr></thead>
+    <tbody>{{VEL_ROWS}}</tbody>
+  </table></div>
+  <div class="col">
+    <p>{{VEL_FIRST}} new ads a day down to {{VEL_LAST}}, while deaths went the other way. An account testing hard
+    launches and kills in the same breath; this one is only killing. The {{N_NEW}} ads that did launch all went to the
+    main funnel, and one of them revives an offer he ran in July and dropped — <em>"sign with us this week, get an
+    entire month of service completely for free."</em> Reaching back for a retired offer is not what scaling looks
+    like.</p>
+  </div>
+</section>
+
+<section>
+  <p class="lede">Where the funnels stand now</p>
   <h2>Each niche got its own landing page</h2>
   <div class="col">
     <p>Iles routes every vertical to a dedicated subdomain, so the funnel URL <em>is</em> the segment label — no
@@ -56,22 +95,21 @@
 
 <section>
   <p class="lede">Three waves, three snapshots</p>
-  <h2>Launch, re-test, retreat — then hold</h2>
+  <h2>Launch, re-test, retreat, then clear the decks</h2>
   <div class="col">
-    <p>The 19 Aug re-fund of medical and legal was switched off within 48 hours ({{W2_L}} of {{W2_N}} still live).
-    The wave-1 survivors were culled at seven weeks. Since then he has launched 85 ads in four days and put
-    <b>81 of them on the general offer</b>. Medical hasn't had a new ad since 19 Aug — but it also hasn't been cut
-    further: the surviving set has sat at roughly half of wave 1 for both of the last two snapshots.</p>
+    <p>The 19 Aug re-fund of medical and legal died within 48 hours. The wave-1 survivors were culled at seven
+    weeks, then again at eight — medical went {{MED_L}} live, from 29 a week ago. Legal is down to {{LAW_L}}, trades to
+    {{PRO_L}}. Three funnels that were live on 3 Sep now have none at all.</p>
   </div>
   <div class="scroll"><table>
     <thead><tr><th>Segment</th><th>Wave 1 · 7–8 Jul</th><th>Live at 58 days</th><th>Wave 2 · 19 Aug</th><th>Wave 3 · 31 Aug–2 Sep</th></tr></thead>
     <tbody>{{WAVE_ROWS}}</tbody>
   </table></div>
   <div class="note">
-    <p><b>Reading it.</b> Medical is the one niche that produced a set worth keeping — {{MED_L}} ads at eight weeks,
-    stable across two snapshots, seven times the trades' {{PRO_L}}. He isn't scaling it, but he isn't killing it
-    either; that's a maintained position, not an experiment. Legal is being <em>churned</em>: cut four, launch
-    four, same day. Trades were the first verdict and it hasn't moved.</p>
+    <p><b>Last week's verdict was wrong, and this is how.</b> On 3 Sep medical had held at ~50% across two
+    consecutive snapshots and I called it a maintained position. The eight-week review cut it in half again — all 17
+    medical deaths this window landed at exactly 57 days. Two readings at one level are not a floor; they are two
+    readings. The trades verdict is the one that has held all series: killed early, never re-funded, still {{PRO_L}}.</p>
   </div>
 </section>
 
@@ -87,9 +125,10 @@
     <tbody>{{VERT_ROWS}}</tbody>
   </table></div>
   <div class="col">
-    <p>The four medical verticals have converged at 50–53% and didn't move this window — that looks like a
-    floor. Attorney fell from 40% to 13% and now sits with the trades. A week ago the line separated licensed
-    practices from trades; today it separates <em>medical</em> from everything else.</p>
+    <p>Every vertical is now under 35%. Med spa and dentist lead on what is left; attorney, contractor, roofer and
+    both specialist legal verticals are at zero. The medical-versus-everything-else line I drew last week survived
+    one week: medical is still top, but at a third of the cohort rather than half, and the gap to the trades has
+    narrowed to a few ads either way.</p>
   </div>
 </section>
 
@@ -209,8 +248,12 @@
       <li><b>Two measures of "live" disagree.</b> Foreplay's daily active count (the chart) and its per-ad live
         flag (every table) don't reconcile — the chart reads 86 on 2 Sep while the flag returns {{N_LIVE}}. The
         chart is used for shape only; every number in a table comes from the per-ad flag.</li>
-      <li><b>Nine days is still a short series.</b> The "medical held" reading rests on two consecutive snapshots
-        at ~50%. A cull on the next pull would reopen it. Re-pull in two weeks.</li>
+      <li><b>A verdict from two snapshots is fragile — this series has now proved it.</b> "Medical held" rested on
+        two readings at ~50%; the next pull halved it. Treat any level confirmed fewer than three times as provisional.</li>
+      <li><b>The mass cull has at least three explanations</b> and the Ad Library separates none of them: a creative
+        refresh, a funnel consolidation, or an ad-account change. Do not report it as a performance signal.</li>
+      <li><b>7 Sep is missing from the activity chart</b> — the collector returned 0 active and 0 inactive, a gap
+        rather than a real zero. It is dropped rather than plotted.</li>
       <li><b>Transcripts are machine ASR</b> and garble brand terms — "MedSpot" for med spa, "Rufus" for roofers.
         Quotes are directionally right, not verbatim.</li>
       <li><b>Coverage:</b> every ad live on any snapshot regardless of age, plus every ad started since 6 June
@@ -224,19 +267,20 @@
   <h2>What to do with it</h2>
   <div class="col">
     <ul class="tight">
-      <li><b>Trades are a confirmed no.</b> Killed by week seven, never re-funded, untouched by three waves and
-        three snapshots.</li>
-      <li><b>Medical is a maintained position, not a jackpot.</b> Half of wave 1 survives at eight weeks and has
-        held for two snapshots. Expect to cull half your creative, then keep what's left running.</li>
-      <li><b>Legal is a churn, not a bet.</b> He cuts and relaunches it in the same day. If you go there, plan on
-        continuous creative turnover rather than evergreen ads.</li>
-      <li><b>In a niche, open with authority or a channel callout; save the guarantee for broad B2B.</b>
-        41% vs 3% inside the niches; 400+ days outside them.</li>
+      <li><b>Don't copy this library right now.</b> Whatever is happening — refresh, consolidation or account
+        change — the live set is a sixth of what it was and his proven creative is switched off. Wait for the next
+        pull before treating anything here as a working playbook.</li>
+      <li><b>Trades remain the one durable no.</b> Killed by week seven, never re-funded, unchanged across four
+        snapshots. That is a verdict confirmed enough times to trust.</li>
+      <li><b>Expect a scheduled review, not gradual attrition.</b> His deaths cluster on exact tenures — 12, 43,
+        49, 57, 72 days. If you run a book this size, put the review on the calendar and cut in batches.</li>
+      <li><b>Watch what he relaunches, not what he kills.</b> The single most informative ad this window is the
+        revived free-month offer: it tells you which lever he reaches for when he wants volume.</li>
     </ul>
   </div>
 </section>
 
-<footer>Meta Ad Library data via Foreplay · {{N_ADS}} ads · snapshots 25 Aug, 1 Sep and 3 Sep 2026 · No spend
+<footer>Meta Ad Library data via Foreplay · {{N_ADS}} ads · snapshots 25 Aug, 1 Sep, 3 Sep and 9 Sep 2026 · No spend
 or conversion data exists for commercial ads; every performance claim here is inference from longevity and
 where new money went.</footer>
 

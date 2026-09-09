@@ -29,6 +29,7 @@ HOOKS = [
     ("Channel callout",      r"relying on (google )?seo|missing (out on )?the biggest|static image ads"),
     ("Failed-attempt callout", r"tried social media and (felt|it didn'?t)|posts (that you made )?(just )?(don'?t|never)|haven'?t logged in"),
     ("Risk reversal / free trial", r"try my (social media )?team for seven days|seven days and if|test social media .{0,30}without|guaranteed you (a |1 )?million views"),
+    ("Free-month offer",       r"best deal any social media agency|entire month of service completely for free|sign with us this week"),
     ("Guarantee (views or free)", r"we'?ll get you (a |1 )?million views|or you don'?t pay|views.{0,12}it'?s free|or you didn'?t pay"),
     ("Hypothetical scale",   r"let me ask you a (really )?crazy question|crazy thought|what if 15 million"),
     ("Case study",           r"^(we got|we had|this is|here'?s (what|how) we helped|here'?s what \d|our client|this got (him|her))"),

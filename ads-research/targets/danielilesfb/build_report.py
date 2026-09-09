@@ -9,6 +9,34 @@ _s=_iu.spec_from_file_location("t","taxonomy.py"); _t=_iu.module_from_spec(_s); 
 FEATURED = _t.FEATURED_FUNNELS
 SNAPS = json.load(open("snapshots.json"))
 SNAP, NOW = SNAPS[-2], SNAPS[-1]
+import datetime
+# --- 9 Sep additions: the evergreen cull and the velocity collapse -------------
+import csv as _csv, collections as _c
+_prev = {a["id"]: a for a in json.load(open("snapshots/ads_%s.json" % SNAP))} if os.path.exists("snapshots/ads_%s.json" % SNAP) else {}
+_ever = [a for a in _prev.values() if a.get("live") is True and a.get("days_running", 0) >= 180]
+_ever_killed = [a for a in _ever if (next((x for x in ads if x["id"] == a["id"]), {}) or {}).get("died_between") == [SNAP, NOW]]
+EVER_N, EVER_KILLED = len(_ever), len(_ever_killed)
+EVER_MAX = max((a["days_running"] for a in _ever), default=0)
+_esc = lambda t: html.escape(t or '')
+
+def _ever_state(a):
+    return ('<b style="color:var(--dead)">killed</b>' if a in _ever_killed
+            else '<b style="color:var(--live)">still live</b>')
+_ever_rows = "".join(
+    '<tr><td class="n big">{d}d</td><td><code>{f}</code></td><td>{h}</td><td>{s}</td></tr>'.format(
+        d=a["days_running"], f=_esc(a["funnel"]), h=_esc(a.get("headline") or "—"), s=_ever_state(a))
+    for a in sorted(_ever, key=lambda a: -a["days_running"]))
+_vel = []
+for lo, hi in zip(SNAPS, SNAPS[1:]):
+    days = (datetime.date.fromisoformat(hi) - datetime.date.fromisoformat(lo)).days
+    n = sum(1 for a in ads if lo < (a.get("started_date") or "") <= hi)
+    d = sum(1 for a in ads if a.get("died_between") == [lo, hi])
+    _vel.append((lo, hi, n, d, n / days if days else 0))
+_vel_rows = "".join(
+    f'<tr><td>{lo[5:]} → {hi[5:]}</td><td class="n">{n}</td><td class="n">{v:.1f}/day</td>'
+    f'<td class="n" style="color:var(--dead)">{d}</td></tr>' for lo, hi, n, d, v in _vel)
+VEL_FIRST, VEL_LAST = f"{_vel[0][4]:.1f}", f"{_vel[-1][4]:.1f}"
+
 
 def b64(aid):
     p = f"thumbs_small/{aid}.jpg"
@@ -96,7 +124,8 @@ tx_blocks = "".join(
 
 died_all = [a for a in ads if a.get("died_between")]
 died = [a for a in died_all if a["died_between"] == [SNAP, NOW]]
-new  = [a for a in ads if a.get("new_since")]
+new  = [a for a in ads if a.get("new_since") == SNAP]          # this window only
+new_all = [a for a in ads if a.get("new_since")]                # every window
 ntx  = sum(1 for a in ads if a.get("full_transcription"))
 
 def cnt(rows): return len(rows), sum(1 for x in rows if x.get("live") is True)
@@ -186,7 +215,7 @@ out = (f"<title>Viral Coach Teardown</title>\n<style>{CSS}</style>\n"
          .replace("{{MED_P}}", str(pct(med_n,med_l))).replace("{{LAW_P}}", str(pct(law_n,law_l))).replace("{{PRO_P}}", str(pct(pro_n,pro_l)))
          .replace("{{MED_L}}", str(med_l)).replace("{{LAW_L}}", str(law_l)).replace("{{PRO_L}}", str(pro_l))
          .replace("{{W2_N}}", str(n_w2)).replace("{{W2_L}}", str(l_w2))
-         .replace("{{N_NEW_ALL}}", str(sum(1 for a in ads if a.get("new_since")))).replace("{{PEAK}}", peak["active"]).replace("{{PEAK_D}}", peak["date"][5:]).replace("{{NOW_ACT}}", rows[-1]["active"])
+         .replace("{{N_NEW_ALL}}", str(len(new_all))).replace("{{EVER_ROWS}}", _ever_rows).replace("{{VEL_ROWS}}", _vel_rows).replace("{{EVER_N}}", str(EVER_N)).replace("{{EVER_KILLED}}", str(EVER_KILLED)).replace("{{EVER_MAX}}", str(EVER_MAX)).replace("{{VEL_FIRST}}", VEL_FIRST).replace("{{VEL_LAST}}", VEL_LAST).replace("{{MAX_LIVE}}", str(max((a["days_running"] for a in live), default=0))).replace("{{PEAK}}", peak["active"]).replace("{{PEAK_D}}", peak["date"][5:]).replace("{{NOW_ACT}}", rows[-1]["active"])
          .replace("{{WINNERS}}", "".join(card(a) for a in top))
          .replace("{{NICHE_LIVE}}", "".join(card(a) for a in niche_live))
          .replace("{{NICHE_DEAD}}", "".join(card(a) for a in niche_dead[:60]))
