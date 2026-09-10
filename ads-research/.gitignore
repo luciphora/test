@@ -1,25 +1,20 @@
-# Captured ad creatives are third-party material — keep them out of the repo.
-targets/*/shots/
-targets/*/ads.json
-targets/*/ads.csv
-targets/*/analysis.md
-targets/*/raw.json
-targets/*/creatives/
 
+# Captured ad creatives are third-party material — keep them out of the repo.
 # Foreplay pulls: third-party ad data + creatives, large and not ours to redistribute
+# per-pull page dumps and snapshots
+targets/*/ads.csv
+targets/*/ads.json
+targets/*/all_transcripts.md
+targets/*/analysis.md
+targets/*/creatives/
 targets/*/pages/
+targets/*/pages_*/
+targets/*/raw.json
+targets/*/report.html
+targets/*/shot_*.png
+targets/*/shots/
+targets/*/snapshots/
 targets/*/thumbs/
 targets/*/thumbs_small/
 targets/*/transcripts/
-targets/*/all_transcripts.md
 targets/*/transcripts_index.csv
-targets/*/report.html
-targets/*/shot_*.png
-targets/*/pages_*/
-targets/*/snapshots/
-
-# per-pull page dumps and snapshots
-targets/*/pages_*/
-targets/*/snapshots/
-targets/*/pages_*/
-targets/*/snapshots/
