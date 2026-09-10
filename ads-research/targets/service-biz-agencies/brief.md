@@ -89,7 +89,7 @@ Conditional entry. Only speaks to people already in pain, which is why it surviv
 
 ## Where this cohort differs from Iles
 
-- **He sells a guarantee; they sell a mechanism.** 56 of 194 transcripts here are automation or
+- **He sells a guarantee; they sell a mechanism.** 35 of 194 transcripts classify as automation or
   walkthrough demos. Iles's library leads with "1M views or you don't pay" — a promise. Only one ad
   in this entire cohort uses "or we work for free," and it's at 55 days.
 - **They demo the product on camera.** Screen-recorded funnel walkthroughs, AI voice agents answering
