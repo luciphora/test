@@ -17,10 +17,6 @@ def main(target):
     os.makedirs(tdir, exist_ok=True)
     for stale in os.listdir(tdir):  # an ad that died since last run would otherwise exist twice
         os.remove(os.path.join(tdir, stale))
-    # Filenames encode status and tenure, so a re-run after a refresh must drop
-    # last week's files or an ad that died shows up twice.
-    for old in os.listdir(tdir):
-        if old.endswith(".txt"): os.remove(os.path.join(tdir, old))
     have = [a for a in ads if a.get("full_transcription")]
     have.sort(key=lambda a: (a.get("live") is not True, -a["days_running"]))
 
@@ -57,7 +53,7 @@ def main(target):
 
     live_n = sum(1 for a in have if a.get("live") is True)
     open(os.path.join(target, "all_transcripts.md"), "w").write(
-        "# Viral Coach — every transcript\n\n"
+        f"# {os.path.basename(os.path.normpath(target))} — every transcript\n\n"
         f"{len(have)} ads with usable audio, of {len(ads)} scraped. "
         f"Live ads first ({live_n}), longest-running at the top; stopped ads after.\n\n"
         "Day counts are shown for live ads only — Foreplay does not record a real "
