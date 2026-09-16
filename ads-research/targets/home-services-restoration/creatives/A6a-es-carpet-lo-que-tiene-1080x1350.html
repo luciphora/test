@@ -1,0 +1,84 @@
+<!doctype html><html lang="es"><head>
+<meta charset="utf-8">
+<meta name="size" content="1080x1350">
+<title>A6a · ES · Alfombra · Lo que tiene / Lo que necesita</title>
+<link rel="stylesheet" href="fonts/embedded.css">
+<link rel="stylesheet" href="brand.css">
+<style>
+  /* Layout lifted from Stanley Steemer's longest-running live static (462d):
+     wordmark, two-column card floated over a photo, numbered symptoms left,
+     benefit + offer chip right. Copy is Certified Safe's own. */
+  .ad{background:#0E1A12}
+  .scrim{background:linear-gradient(180deg,rgba(14,26,18,.60) 0%,rgba(14,26,18,.18) 34%,rgba(14,26,18,.20) 58%,rgba(14,26,18,.80) 100%)}
+  .top{position:relative;z-index:2;padding:46px 60px 0;display:flex;justify-content:center}
+  .mark{font-size:36px}
+  .card{position:relative;z-index:2;margin:34px 54px 0;background:var(--amber);
+        border-radius:22px;display:grid;grid-template-columns:1fr 1fr}
+  .card>div{padding:42px 36px 40px}
+  .card .l{border-right:2px solid rgba(14,26,18,.20)}
+  .hd{font-size:62px;text-align:center;color:var(--ink);margin-bottom:34px}
+  .sym{margin-bottom:34px}
+  .sym:last-child{margin-bottom:0}
+  .sym .num{width:62px;height:62px;font-size:29px;margin-bottom:15px;color:var(--ink)}
+  .sym p{font-size:30px;color:var(--ink);max-width:14ch}
+  .r{display:flex;flex-direction:column;justify-content:flex-start}
+  .promise{font-family:Archivo,sans-serif;font-weight:800;font-size:38px;line-height:1.1;
+           letter-spacing:-.02em;color:var(--ink)}
+  .promise em{font-style:normal;display:block;font-weight:900}
+  .offer{margin-top:38px}
+  .offer .cap{font-size:25px;padding:14px 0}
+  .offer .fig{font-size:118px;padding:14px 0 4px}
+  .offer .what{font-size:21px;padding:0 18px 12px}
+  .offer .fine{font-size:15px;padding:0 14px 16px}
+  .foot{position:relative;z-index:2;margin-top:auto;padding:0 54px 54px;
+        display:flex;flex-direction:column;align-items:center;gap:18px}
+  .trust{color:var(--paper);font-size:23px}
+  .cta{background:var(--paper);color:var(--forest-deep);font-family:Archivo,sans-serif;
+       font-weight:900;font-size:31px;letter-spacing:-.01em;padding:22px 52px;border-radius:999px}
+  /* es: longer strings than the English original */
+  .hd{font-size:49px;margin-bottom:34px;line-height:1.02;white-space:nowrap}
+  .sym p{font-size:30px;max-width:17ch}
+  .promise{font-size:36px}
+  .offer .cap{font-size:22px}
+  .offer .what{font-size:19px}
+  .offer .fine{font-size:14px}
+  .trust{font-size:21px;gap:1em}
+  .cta{font-size:29px;padding:22px 44px}
+</style></head><body>
+<div class="ad">
+  <img class="photo" src="img/carpet-cleaning-living-room.jpg" alt="">
+  <div class="scrim"></div>
+
+  <div class="top">
+    <div class="mark on-dark"><svg class="shield" viewBox="0 0 24 28" fill="none"><path d="M12 1 2 5v9c0 6.1 4.2 11.3 10 13 5.8-1.7 10-6.9 10-13V5L12 1Z" fill="currentColor"/><path d="m7.4 14.2 3.1 3.1 6.1-6.6" stroke="#0E1A12" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Certified Safe</div>
+  </div>
+
+  <div class="card">
+    <div class="l">
+      <div class="hd display">Lo que tiene</div>
+      <div class="sym"><div class="num">1</div><p>Caminos marcados que la aspiradora no levanta</p></div>
+      <div class="sym"><div class="num">2</div><p>Un olor que vuelve cada día de lluvia</p></div>
+      <div class="sym"><div class="num">3</div><p>Visitas en camino y sin tiempo</p></div>
+    </div>
+    <div class="r">
+      <div class="hd display">Lo que necesita</div>
+      <div class="promise">Una limpieza a fondo.<em>Un precio fijo.</em></div>
+      <div class="offer">
+        <div class="cap">Dos habitaciones</div>
+        <div class="fig"><span class="cur">$</span>129<span class="cents">99</span></div>
+        <div class="what">Extracción con agua caliente<br>+ desodorizante</div>
+        <div class="fine">Precio cerrado · sin cargos sorpresa</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="trust">
+      <span>Con licencia y seguro en MA</span><i class="dot"></i>
+      <span>Respuesta el mismo día</span><i class="dot"></i>
+      <span>Le atendemos en español</span>
+    </div>
+    <div class="cta">Reciba su precio fijo</div>
+  </div>
+</div>
+</body></html>

@@ -7,6 +7,15 @@ targets/*/ads.json
 targets/*/all_transcripts.md
 targets/*/analysis.md
 targets/*/creatives/
+# ...except the ad source we author ourselves. The rule above was written for captured
+# competitor media (see targets/audreyyadamsfit/creatives/); our own HTML/CSS is not that.
+# Generated renders (out/), the client's photos (img/) and the embedded webfonts (fonts/)
+# stay out — they are build output and third-party material.
+!targets/home-services-restoration/creatives/
+targets/home-services-restoration/creatives/*
+!targets/home-services-restoration/creatives/*.html
+!targets/home-services-restoration/creatives/*.css
+!targets/home-services-restoration/creatives/*.inc
 targets/*/pages/
 targets/*/pages_*/
 targets/*/raw.json

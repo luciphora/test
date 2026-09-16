@@ -1,0 +1,90 @@
+<!doctype html><html><head>
+<meta charset="utf-8">
+<meta name="size" content="1080x1350">
+<title>A2 · Air duct · Struggle / Solution</title>
+<link rel="stylesheet" href="fonts/embedded.css">
+<link rel="stylesheet" href="brand.css">
+<style>
+  /* Stanley Steemer's live split-panel: amber label chip over each half,
+     icon+label symptoms on the dark side. Their side-two is a technician photo;
+     Certified Safe has no duct photography yet, so side two carries the promise
+     in type rather than borrowing an image that isn't theirs. */
+  .ad{display:grid;grid-template-rows:auto 1fr auto;background:var(--forest-deep)}
+  .top{padding:44px 56px 30px;display:flex;justify-content:center}
+  .mark{font-size:34px}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .side{position:relative;padding:0 42px 52px;display:flex;flex-direction:column}
+  .stack{flex:1;display:flex;flex-direction:column}
+  .l .stack{justify-content:space-between;padding:6px 0 4px}
+  .r .stack{justify-content:center}
+  .l{background:var(--forest-deep)}
+  .r{background:var(--forest);border-left:2px solid rgba(255,255,255,.10)}
+  .chip{font-size:30px;padding:17px 0;margin:0 -42px 40px}
+  .item{display:flex;flex-direction:column;align-items:center;text-align:center;
+        color:var(--paper)}
+  .item svg{width:112px;height:112px;margin-bottom:22px}
+  .item p{font-family:Archivo,sans-serif;font-weight:700;font-size:34px;line-height:1.14;
+          letter-spacing:-.015em;max-width:12ch}
+  .big{font-family:Archivo,sans-serif;font-weight:900;font-size:74px;line-height:.95;
+       letter-spacing:-.035em;color:var(--white);text-align:center;margin-bottom:26px}
+  .big span{color:var(--amber)}
+  .body{font-family:Inter,sans-serif;font-weight:500;font-size:28px;line-height:1.45;
+        color:#CFE0D4;text-align:center;max-width:19ch;margin:0 auto}
+  .rule{height:2px;background:rgba(246,244,238,.18);margin:40px 34px 34px}
+  .seal{text-align:center}
+  .seal .lab{font-family:Inter,sans-serif;font-weight:700;font-size:18px;letter-spacing:.14em;
+             text-transform:uppercase;color:#8FB39C;margin-bottom:10px}
+  .seal .val{font-family:Archivo,sans-serif;font-weight:900;font-size:40px;color:var(--amber);
+             letter-spacing:-.02em;line-height:1.05}
+  .foot{background:var(--paper);padding:34px 56px;display:flex;align-items:center;
+        justify-content:space-between;gap:26px}
+  .foot .t{font-family:Archivo,sans-serif;font-weight:800;font-size:29px;color:var(--forest);
+           letter-spacing:-.01em;line-height:1.2}
+  .foot .t em{font-style:normal;color:var(--ink);display:block;font-weight:900}
+  .cta{background:var(--forest);color:var(--paper);font-family:Archivo,sans-serif;font-weight:900;
+       font-size:29px;padding:21px 40px;border-radius:999px;white-space:nowrap}
+</style></head><body>
+<div class="ad">
+  <div class="top">
+    <div class="mark on-dark"><svg class="shield" viewBox="0 0 24 28" fill="none"><path d="M12 1 2 5v9c0 6.1 4.2 11.3 10 13 5.8-1.7 10-6.9 10-13V5L12 1Z" fill="currentColor"/><path d="m7.4 14.2 3.1 3.1 6.1-6.6" stroke="#152A1D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Certified Safe</div>
+  </div>
+
+  <div class="split">
+    <div class="side l">
+      <div class="chip">What it's costing</div>
+      <div class="stack">
+      <div class="item">
+        <svg viewBox="0 0 48 48" fill="none" stroke="#F6F4EE" stroke-width="3" stroke-linecap="round"><circle cx="15" cy="16" r="5"/><circle cx="31" cy="25" r="6.5"/><circle cx="18" cy="35" r="4"/></svg>
+        <p>Dust back an hour after you clean</p>
+      </div>
+      <div class="item">
+        <svg viewBox="0 0 48 48" fill="none" stroke="#F6F4EE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="4.5"/><path d="M24 19.5c3-6 9-7 10-4s-3 6-10 8.5M28.5 24c6 3 7 9 4 10s-6-3-8.5-10M24 28.5c-3 6-9 7-10 4s3-6 10-8.5M19.5 24c-6-3-7-9-4-10s6 3 8.5 10"/></svg>
+        <p>A system working harder than it should</p>
+      </div>
+      <div class="item">
+        <svg viewBox="0 0 48 48" fill="none" stroke="#F6F4EE" stroke-width="3" stroke-linecap="round"><path d="M9 30h16M13 21h22M9 39h26"/><path d="M33 34l5 5 5-9"/></svg>
+        <p>A bill that climbs every winter</p>
+      </div>
+      </div>
+    </div>
+
+    <div class="side r">
+      <div class="chip">What fixes it</div>
+      <div class="stack">
+      <div class="big">Clean ducts,<br><span>less strain.</span></div>
+      <div class="body">A full-system extraction pulls out what's restricting the airflow, so the furnace isn't fighting the ductwork to heat the same house.</div>
+      <div class="rule"></div>
+      <div class="seal">
+        <div class="lab">Every job</div>
+        <div class="val">Fixed quote<br>before we start</div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="t">Greater Boston · Essex · Suffolk<em>Merrimack Valley</em></div>
+    <div class="cta">Book an inspection</div>
+  </div>
+</div>
+</body></html>
