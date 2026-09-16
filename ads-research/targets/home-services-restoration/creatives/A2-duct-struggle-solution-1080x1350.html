@@ -43,6 +43,24 @@
   .foot .t em{font-style:normal;color:var(--ink);display:block;font-weight:900}
   .cta{background:var(--forest);color:var(--paper);font-family:Archivo,sans-serif;font-weight:900;
        font-size:29px;padding:21px 40px;border-radius:999px;white-space:nowrap}
+
+  /* 1:1 — 270px less than the feed cut. It comes out of the icon step, the chip
+     and the panel padding; the three symptoms and the promise stay the same size
+     relative to each other, so the split still reads as one comparison. */
+  :root[data-ar="1x1"] .top{padding:32px 56px 22px}
+  :root[data-ar="1x1"] .mark{font-size:31px}
+  :root[data-ar="1x1"] .side{padding:0 40px 34px}
+  :root[data-ar="1x1"] .chip{font-size:27px;padding:14px 0;margin:0 -40px 28px} /* -40 must track .side padding */
+  :root[data-ar="1x1"] .item svg{width:78px;height:78px;margin-bottom:15px}
+  :root[data-ar="1x1"] .item p{font-size:30px;max-width:13ch}
+  :root[data-ar="1x1"] .big{font-size:60px;margin-bottom:18px}
+  :root[data-ar="1x1"] .body{font-size:24px;max-width:21ch}
+  :root[data-ar="1x1"] .rule{margin:26px 34px 22px}
+  :root[data-ar="1x1"] .seal .lab{font-size:16px;margin-bottom:7px}
+  :root[data-ar="1x1"] .seal .val{font-size:33px}
+  :root[data-ar="1x1"] .foot{padding:24px 56px}
+  :root[data-ar="1x1"] .foot .t{font-size:25px}
+  :root[data-ar="1x1"] .cta{font-size:25px;padding:17px 32px}
 </style></head><body>
 <div class="ad">
   <div class="top">
