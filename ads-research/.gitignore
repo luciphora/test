@@ -5,6 +5,7 @@
 targets/*/ads.csv
 targets/*/ads.json
 targets/*/all_transcripts.md
+targets/*/winning_scripts.md
 targets/*/analysis.md
 targets/*/creatives/
 # ...except the ad source we author ourselves. The rule above was written for captured
