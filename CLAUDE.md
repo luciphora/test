@@ -155,3 +155,11 @@ Two-pass ffmpeg loudnorm to `master.lufs` / `master.true_peak_dbtp` on each pre-
 ## Later: lifting this into the `audio-production-pack` skill
 
 Keep the pipeline code pack-agnostic from the start: no BYMOE strings in `scripts/` — everything project-specific lives in the pack file and `config/`. The **pack format contract** the chunker depends on: H1 track sections, chunk headings shaped `## <ID> — <Name> | m:ss–m:ss`, fenced ```text blocks as the only spoken content, and per-track settings sections. When this project ships and holds up, the skill is: `scripts/` + the Pipeline and Decisions sections of this file as SKILL.md steps (each stage's *Done when* is already the completion criterion), with the BYMOE pack as the worked example. Model-invoked, description keyed on: turning a scripted audio production pack (hypnosis, meditation, incantation, narration) into finished masters via ElevenLabs.
+
+---
+
+## Delivery — applies to every skill in this repo
+
+- A send is done when it is **read back** at the destination, not when the tool says `ok`. After a cancel, reject or error, read the destination anyway before reporting — cancelled calls have landed.
+- Artifacts are private by default: **share before the link goes to anyone else**, and say so if sharing needs Moe's click.
+- Slack goes through **Composio**, never the Slack MCP connector. Binary files are staged in the Composio sandbox first; text can go direct. Route details: `.claude/skills/ad-teardown/reference/delivery.md`.

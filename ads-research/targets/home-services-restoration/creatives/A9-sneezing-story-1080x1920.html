@@ -1,0 +1,69 @@
+<!doctype html><html><head>
+<meta charset="utf-8">
+<meta name="size" content="1080x1920">
+<title>A9 · Carpet · Sneezing story</title>
+<link rel="stylesheet" href="fonts/embedded.css">
+<link rel="stylesheet" href="brand.css">
+<style>
+  /* Stanley Steemer's story unit: saturated ground, hard black headline top-left,
+     wordmark top-right, the technician cut out and bleeding off the bottom, a white
+     offer card split by a rule, and a pill CTA under it. Their hook is the allergy
+     angle — "If You're Sneezing, It's Not Clean Enough." Same structure, Certified
+     Safe's ground, Jamel, and his real offer instead of a promo code he doesn't have.
+     brand.css holds the 9:16 content inside Instagram's safe band automatically. */
+  .ad{background:var(--amber)}
+  .inner{position:relative;height:100%;display:flex;flex-direction:column;
+         padding:0 58px}
+
+  .head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;
+        padding-top:10px;position:relative;z-index:2}
+  h1{font-family:Archivo,sans-serif;font-weight:900;font-size:78px;line-height:.95;
+     letter-spacing:-.042em;color:var(--ink);max-width:11ch}
+  .mark{font-size:25px;color:var(--ink);flex:0 0 auto;padding-top:8px}
+  .mark .shield path[stroke]{stroke:var(--amber)}
+
+  /* he sits behind the offer card, bleeding off the bottom, as theirs does */
+  .hero{position:absolute;left:50%;bottom:-340px;transform:translateX(-46%);
+        height:1210px;width:auto;z-index:1;
+        filter:drop-shadow(0 -10px 44px rgba(14,26,18,.24))}
+
+  .close{margin-top:auto;position:relative;z-index:2;padding-bottom:12px}
+  .offer{background:var(--white);border-radius:18px;display:flex;align-items:stretch;
+         box-shadow:0 20px 54px rgba(14,26,18,.30);overflow:hidden;margin-bottom:22px}
+  .offer .fig{flex:0 0 auto;padding:30px 34px;display:flex;align-items:center;
+              font-family:Archivo,sans-serif;font-weight:900;font-size:88px;line-height:1;
+              letter-spacing:-.05em;color:var(--ink)}
+  .offer .fig .cur{font-size:.44em;vertical-align:.5em;margin-right:.04em}
+  .offer .fig .cents{font-size:.36em;vertical-align:1.05em;margin-left:.03em}
+  .offer .what{flex:1;border-left:3px solid rgba(14,26,18,.14);padding:30px 30px;
+               display:flex;flex-direction:column;justify-content:center}
+  .offer .what b{font-family:Archivo,sans-serif;font-weight:900;font-size:40px;
+                 letter-spacing:-.025em;color:var(--ink);line-height:1.04}
+  .offer .what span{font-family:Inter,sans-serif;font-weight:600;font-size:22px;
+                    letter-spacing:.09em;text-transform:uppercase;color:#6B7A70;margin-top:8px}
+  .cta{display:block;background:var(--forest);color:var(--paper);text-align:center;
+       font-family:Archivo,sans-serif;font-weight:900;font-size:36px;letter-spacing:-.01em;
+       padding:28px 20px;border-radius:999px;box-shadow:0 14px 34px rgba(14,26,18,.26)}
+  .fine{font-family:Inter,sans-serif;font-weight:600;font-size:20px;letter-spacing:.05em;
+        text-transform:uppercase;color:rgba(14,26,18,.62);text-align:center;margin-top:16px;line-height:1.5}
+</style></head><body>
+<div class="ad">
+  <div class="inner">
+    <div class="head">
+      <h1>If You're Still Sneezing, It's Still In The Carpet.</h1>
+      <div class="mark on-light"><svg class="shield" viewBox="0 0 24 28" fill="none"><path d="M12 1 2 5v9c0 6.1 4.2 11.3 10 13 5.8-1.7 10-6.9 10-13V5L12 1Z" fill="currentColor"/><path d="m7.4 14.2 3.1 3.1 6.1-6.6" stroke="#F2A71B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Certified Safe</div>
+    </div>
+
+    <img class="hero" src="img/jamel-cutout.png" alt="">
+
+    <div class="close">
+      <div class="offer">
+        <div class="fig"><span class="cur">$</span>129<span class="cents">99</span></div>
+        <div class="what"><b>Two rooms,<br>fully quoted</b><span>Extraction + deodorizer</span></div>
+      </div>
+      <div class="cta">Book your deep clean</div>
+      <div class="fine">Licensed &amp; insured MA · 10 years · Hablamos Español<br>100% satisfaction guarantee</div>
+    </div>
+  </div>
+</div>
+</body></html>

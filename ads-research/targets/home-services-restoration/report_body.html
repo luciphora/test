@@ -1,0 +1,221 @@
+<header class="top">
+  <p class="kicker">Competitor scan for Certified Safe · Greater Boston · {{SNAP}}</p>
+  <h1>Carpet and ducts sell on Meta. Mold and water damage do not.</h1>
+  <p class="deck">{{N_ADS}} ads from {{N_BRANDS}} advertisers across duct cleaning, carpet cleaning, water
+  damage and mold. {{N_TX}} transcripts. The split is not close, and it is the most likely reason a
+  campaign covering all of them underperforms.</p>
+  <ul class="pills">
+    <li><b>{{PCT_DC_LIVE}}%</b><span>duct &amp; carpet ads still live</span></li>
+    <li><b>{{PCT_REST_LIVE}}%</b><span>restoration ads still live</span></li>
+    <li><b>{{N_MOLD_LIVE}}</b><span>live mold ads, anywhere</span></li>
+    <li><b>{{PCT_DC_BOOK}}%</b><span>duct/carpet ads reach a booking page</span></li>
+  </ul>
+</header>
+
+<section>
+  <h2>Read this first: what the data cannot tell you</h2>
+  <p>Meta publishes no spend, impressions or conversions for commercial ads. Two signals survive:
+  <b>how long an ad has stayed live</b>, and <b>where the advertiser is putting new money</b>. Longevity
+  means an ad was <em>not killed</em> — never that it was profitable.</p>
+  <p class="warn"><b>Dead-ad tenure is censored.</b> Foreplay reports roughly one day for most inactive
+  ads regardless of the truth. So every day-figure here comes from <b>live ads only</b>; dead ads count
+  toward totals and nothing else. One snapshot: a state, not a trend.</p>
+  <p class="warn"><b>Your own ads are not in this.</b> Certified Safe is not indexed by Foreplay — a
+  domain lookup and a name search both returned nothing — so this says what the category does, not what
+  you are doing differently. Send a Meta Ad Library link for your page and the comparison becomes direct.</p>
+  <p class="warn"><b>Local Boston rivals are effectively invisible here.</b> A search for Boston
+  restoration advertisers returned a seed company, a dog bakery and hair-restoration clinics. The
+  advertisers below are national or out-of-state operators running the same plays at larger scale. Treat
+  them as the playbook, not as the people bidding against you on Route 1.</p>
+</section>
+
+<section>
+  <h2>Three businesses, not one</h2>
+  <p>Certified Safe straddles two of these, which is exactly the problem. A duct or carpet clean is a
+  <em>scheduled, discountable</em> job — the buyer is browsing. Water damage and mold are
+  <em>emergencies</em> — the buyer is searching, not scrolling. The third column is not a competitor for
+  the job at all, but it is what your mold prospects are actually shown in the feed.</p>
+  <table>
+    <thead><tr><th>Segment</th><th class="n">Ads</th><th class="n">Live</th><th></th><th class="n">Live rate</th><th class="n">Deepest</th></tr></thead>
+    <tbody>{{SEG_ROWS}}</tbody>
+  </table>
+  <p>{{N_DC}} duct-and-carpet ads, {{N_DC_LIVE}} still running. {{N_REST}} restoration ads,
+  <b>{{N_REST_LIVE}}</b> still running. The deepest live restoration ad in the entire corpus is
+  <b>{{REST_DEEPEST}} days old</b>. The deepest live duct/carpet ad is <b>{{DC_DEEPEST}} days</b>.</p>
+</section>
+
+<section class="flag">
+  <h2>The answer to "which vertical is worth the money"</h2>
+  <p>You asked to look past carpet cleaning toward the higher-ticket work. The data says the opposite of
+  what we both expected, and it says it clearly.</p>
+  <table>
+    <thead><tr><th>Service the ad sells</th><th class="n">Ads</th><th class="n">Live</th><th></th><th class="n">Live rate</th><th class="n">Deepest</th></tr></thead>
+    <tbody>{{VERT_ROWS}}</tbody>
+  </table>
+  <p class="warn">The DTC product row is a <b>contrast set pulled live-only</b>, so it has no comparable
+  live rate and none is shown. Chimney rests on a single ad — too thin to conclude anything beyond
+  "essentially nobody advertises it".</p>
+  <p><b>Mold: {{N_MOLD}} ads in the whole corpus, {{N_MOLD_LIVE}} of them live.</b> Not a low number — zero.
+  Water damage: {{N_WATER}} ads, {{N_WATER_LIVE}} live, and the deepest of those has run
+  {{WATER_DEEPEST}} days. Against that, carpet runs at {{PCT_CARPET_LIVE}}% live across {{N_CARPET}} ads
+  and air duct at {{PCT_DUCT_LIVE}}% across {{N_DUCT}}.</p>
+  <p>This is not a gap in the research. It is the market structure: <b>emergency services are bought at
+  the moment of panic, through search and referral, not from a feed.</b> The firms that do advertise
+  restoration on Meta are mostly not selling to homeowners at all — see the referral-partner theme below.
+  Meanwhile the mold conversation in the feed is owned by DTC gadgets: {{N_PROD}} live ads from two
+  product brands selling $20–35 ionizers and sprays against "mold spores", which is the price anchor your
+  remediation prospect meets first.</p>
+</section>
+
+<section>
+  <h2>Where the money actually lands</h2>
+  <p>The sharpest operational difference between the two segments is not the creative. It is whether the
+  click reaches a page that can take a booking.</p>
+  <div class="pair">
+    <div>
+      <h3>Duct &amp; carpet</h3>
+      <table>
+        <thead><tr><th>Funnel</th><th class="n">Ads</th><th></th><th class="n">Share</th></tr></thead>
+        <tbody>{{FUN_DC}}</tbody>
+      </table>
+      <table>
+        <thead><tr><th>CTA</th><th class="n">Ads</th><th class="n">Share</th></tr></thead>
+        <tbody>{{CTA_DC}}</tbody>
+      </table>
+    </div>
+    <div>
+      <h3>Restoration</h3>
+      <table>
+        <thead><tr><th>Funnel</th><th class="n">Ads</th><th></th><th class="n">Share</th></tr></thead>
+        <tbody>{{FUN_REST}}</tbody>
+      </table>
+      <table>
+        <thead><tr><th>CTA</th><th class="n">Ads</th><th class="n">Share</th></tr></thead>
+        <tbody>{{CTA_REST}}</tbody>
+      </table>
+    </div>
+  </div>
+  <p><b>{{DC_BOOK}} of {{N_DC}} duct/carpet ads ({{PCT_DC_BOOK}}%) land on a quote or booking page.
+  {{R_BOOK}} of {{N_REST}} restoration ads do ({{PCT_R_BOOK}}%).</b> Restoration ads overwhelmingly point
+  at a homepage. Stanley Steemer sends every ad to <code>/cleaning-quote-pricing</code>; Zerorez to a
+  city-scoped <code>/schedule-service-online</code>. Nobody in restoration has built the equivalent.</p>
+</section>
+
+<section>
+  <h2>The offer, dismantled</h2>
+  <p>Unlike most local-service categories, the biggest number in a duct or carpet ad <em>is the price</em>
+  — not a saving, not a bonus value. Classifying every dollar figure by the words in front of it:</p>
+  <table>
+    <thead><tr><th>Figure in copy</th><th>Usually means</th><th class="n">Mentions</th><th></th></tr></thead>
+    <tbody>{{PRICE_ROWS}}</tbody>
+  </table>
+  <p class="warn"><b>$99 is the number the category argues with.</b> {{N_ANTI}} of its mentions are not
+  quotes at all — they are premium operators naming the coupon price as the thing they are <em>not</em>:
+  <em>"real service — not a $99 cheap sweep"</em>, <em>"this is not a $99 blow-and-go clean"</em>. That is
+  the opening for a licensed operator with upfront pricing: you do not have to beat $99, you have to make it the wrong
+  question.</p>
+  <p>The ladder itself is tight and public: <b>$99 / $119 / $129 / $149 / $159 / $199 / $249</b>. Those are entry
+  prices for a first job, usually gated — {{N_FIRST}} ads say "first-time customers only". The job of the
+  number is to buy the appointment, not the margin.</p>
+  <h3>What the body copy carries that the voiceover doesn't</h3>
+  <table>
+    <thead><tr><th>Theme</th><th class="n">Ads</th><th></th><th class="n">Share</th></tr></thead>
+    <tbody>{{THEME_ROWS}}</tbody>
+  </table>
+  <p>Three of these transfer directly to Certified Safe:</p>
+  <ul>
+    <li><b>Guarantee ({{N_GUAR}} ads)</b> — "the most thorough cleaning or it's free" carries the five
+    longest-running live ads in the corpus. It is doing the work that a discount usually does, without
+    cutting the price.</li>
+    <li><b>Cost reframe ({{N_COST}} ads)</b> — the strongest duct angle is not health, it is the energy
+    bill. <em>"Clogged, dusty vents aren't just making you sneeze — they're costing you money."</em> Your
+    site leads on 99.7% particulate reduction; the market leads on the bill.</li>
+    <li><b>Replace vs restore ({{N_REPL}} ads)</b> — "before you replace, let us reset" anchors a $149
+    clean against a four-figure replacement. It is the only move in the corpus that raises perceived
+    value instead of lowering price.</li>
+  </ul>
+  <p><b>Referral partner ({{N_REF}} ads)</b> is the restoration answer. 1-800 WATER DAMAGE runs almost no
+  consumer ads — it advertises <em>to plumbers, property managers and insurance adjusters</em>, asking for
+  the referral rather than the job. For mold and water damage in Boston that is a far more plausible use
+  of Meta than chasing homeowners mid-emergency.</p>
+</section>
+
+<section>
+  <h2>What the winners say in the first three seconds</h2>
+  <table>
+    <thead><tr><th>Spoken hook</th><th class="n">Ads</th><th></th><th class="n">Live</th></tr></thead>
+    <tbody>{{HOOK_ROWS}}</tbody>
+  </table>
+  <p class="warn">Read the <b>Ads</b> column as what the market bets on, not the <b>Live</b> column as
+  proof. {{N_CLASS}} of the {{N_TX}} transcripts classify into a family ({{PCT_CLASS}}% of those with real
+  speech; {{N_JUNK}} more transcribe to nothing but "you" or an emoji).</p>
+  <p>The most-repeated opener is <b>{{TOP_HOOK}}</b> at {{TOP_HOOK_N}} — that is Stanley Steemer's sonic
+  jingle, a brand asset you cannot borrow. The borrowable ones sit just below it: <b>Dirt reveal</b>
+  (point a camera at the filth and say nothing clever), <b>Symptom list</b> ("dust everywhere, dryer not
+  working right, allergies"), and <b>Last-time question</b> ("when was the last time your system had a
+  proper cleaning?"). All three work because they let the viewer self-diagnose before any offer appears.</p>
+  <blockquote>Clogged, dusty vents aren't just making you sneeze — they're costing you money. When dust
+  buildup constricts your ducts, your HVAC system has to work twice as hard. It's preventative
+  maintenance that pays for itself.<cite>Stanley Steemer · live · duct cleaning, sold on the energy bill</cite></blockquote>
+</section>
+
+<section>
+  <h2>Timing</h2>
+  <p>Launch month across every service ad in the corpus. You are reading this in September.</p>
+  <table>
+    <thead><tr><th>Month launched</th><th class="n">Ads</th><th></th></tr></thead>
+    <tbody>{{SEASON_ROWS}}</tbody>
+  </table>
+  <p class="warn">This is launch date across several years pooled, not a seasonal index for one year, and
+  it is skewed by whichever advertisers happened to run big waves. Treat it as a hint about when the
+  category leans in, not as a media plan. Only {{N_SEASON}} ads name a season explicitly.</p>
+</section>
+
+<section>
+  <h2>Who is actually spending</h2>
+  <table>
+    <thead><tr><th>Advertiser</th><th class="n">Segment</th><th class="n">Ads</th><th class="n">Live</th><th class="n">Deepest live</th></tr></thead>
+    <tbody>{{ADV_ROWS}}</tbody>
+  </table>
+</section>
+
+<section>
+  <h2>The creative</h2>
+  <p>Longest-running live service ads first, then the deepest of the rest. Click a still for the video.</p>
+  <div class="gallery">{{TOP}}</div>
+</section>
+
+<section>
+  <h2>Every transcript</h2>
+  <p>{{N_TX}} transcripts, live first. Search filters as you type.</p>
+  <div class="txbar"><input id="q" type="search" placeholder="Search transcripts…" aria-label="Search transcripts">
+    <span id="count">{{TX_COUNT}} of {{TX_COUNT}}</span></div>
+  <div id="txwrap">{{TX_BLOCKS}}</div>
+</section>
+
+<section>
+  <h2>What I'd do with this</h2>
+  <ol class="takeaways">
+    <li><b>Split the campaign by buying mode, not by service list.</b> Duct, carpet and dryer vent are one
+    campaign with a gated entry price and a booking page. Mold and water damage are not a Meta
+    prospecting problem and should stop competing for that budget.</li>
+    <li><b>Build the booking page.</b> {{PCT_DC_BOOK}}% of the segment that works lands on a quote or
+    scheduling page; {{PCT_R_BOOK}}% of the segment that doesn't. That is the single clearest structural
+    difference in the whole scan.</li>
+    <li><b>Lead ducts on the energy bill, not the particulate count.</b> {{N_COST}} ads make the cost
+    argument and the deepest live duct ads are among them.</li>
+    <li><b>Put a guarantee where your discount is.</b> {{N_GUAR}} ads carry one, including every one of
+    the five longest-running live ads in the corpus.</li>
+    <li><b>For mold and water damage, advertise to referrers.</b> {{N_REF}} ads already do — plumbers,
+    property managers, adjusters. In a Boston radius that is a countable, reachable audience; panicking
+    homeowners are not.</li>
+  </ol>
+</section>
+
+<footer>
+  <p>Sources: per-page Meta ad-library pulls via Foreplay, {{SNAP}}. {{N_ADS}} unique ads,
+  {{N_BRANDS}} advertisers, {{N_TX}} transcripts (ASR — brand terms garble). One snapshot: a state, not a
+  trend. Day-figures from live ads only. No spend or conversion data exists in any ad library. Certified
+  Safe's own ads are not included. One advertiser (Renew Carpet Cleaning) is Irish and is flagged in the
+  advertiser table; it is excluded from no figure but should not be read as a US price comparison.</p>
+</footer>

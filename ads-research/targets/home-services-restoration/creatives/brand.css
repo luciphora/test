@@ -1,0 +1,78 @@
+/* Certified Safe — ad creative system.
+   Colours sampled from their own og-image (deep forest green, not the teal it reads as
+   at thumbnail size). Amber is the offer-chip accent: it is the only warm colour in the
+   system, so the eye lands on the price the way it lands on Stanley Steemer's yellow. */
+:root{
+  --ink:#0E1A12;          /* near-black green, body copy on light */
+  --forest:#1F3C2A;       /* brand primary */
+  --forest-deep:#152A1D;  /* panel bg */
+  --forest-line:#2F5740;  /* hairlines on dark */
+  --paper:#F6F4EE;        /* warm off-white, softer than #fff on a feed */
+  --amber:#F2A71B;        /* offer accent */
+  --amber-deep:#C7840B;
+  --white:#FFFFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%}
+body{
+  font-family:Inter,system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:geometricPrecision;
+}
+.ad{position:relative;width:100%;height:100%;overflow:hidden;display:flex;flex-direction:column}
+.display{font-family:Archivo,Impact,sans-serif;font-weight:900;letter-spacing:-.03em;line-height:.94;text-wrap:balance}
+.sub{font-family:Archivo,sans-serif;font-weight:700;letter-spacing:-.01em;line-height:1.1}
+
+/* wordmark ------------------------------------------------------------- */
+.mark{display:flex;align-items:center;gap:.5em;font-family:Archivo,sans-serif;font-weight:800;
+  letter-spacing:.02em;text-transform:uppercase}
+.mark .shield{width:1.15em;height:1.15em;flex:0 0 auto}
+.mark.on-dark{color:var(--white)}
+.mark.on-light{color:var(--forest)}
+
+/* label chip (the "The Struggle / The Solution" device) ------------------ */
+.chip{display:block;text-align:center;background:var(--amber);color:var(--ink);
+  font-family:Archivo,sans-serif;font-weight:800;letter-spacing:-.01em}
+
+/* offer block ----------------------------------------------------------- */
+.offer{background:var(--white);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.28);
+  text-align:center;overflow:hidden}
+.offer .cap{font-family:Archivo,sans-serif;font-weight:800;color:var(--ink);
+  border-bottom:2px solid var(--ink)}
+.offer .fig{font-family:Archivo,sans-serif;font-weight:900;letter-spacing:-.045em;
+  color:var(--ink);display:flex;align-items:baseline;justify-content:center;gap:.12em}
+.offer .fig .cur{font-size:.48em;transform:translateY(-.22em)}
+.offer .fig .cents{font-size:.4em;transform:translateY(-.55em)}
+.offer .what{font-family:Inter,sans-serif;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink);line-height:1.25}
+.offer .fine{font-family:Inter,sans-serif;font-weight:500;letter-spacing:.06em;
+  text-transform:uppercase;color:#6B7A70}
+
+/* numbered symptom list -------------------------------------------------- */
+.sym{display:flex;flex-direction:column;align-items:center;text-align:center}
+.sym .num{border:.09em solid currentColor;border-radius:50%;display:grid;place-items:center;
+  font-family:Archivo,sans-serif;font-weight:800}
+.sym p{font-family:Archivo,sans-serif;font-weight:700;line-height:1.14;letter-spacing:-.01em}
+
+/* trust strip ------------------------------------------------------------ */
+.trust{display:flex;align-items:center;justify-content:center;gap:1.4em;
+  font-family:Inter,sans-serif;font-weight:600;letter-spacing:.02em}
+.trust span{display:flex;align-items:center;gap:.35em;white-space:nowrap}
+.dot{width:.3em;height:.3em;border-radius:50%;background:currentColor;opacity:.45}
+
+/* photo ------------------------------------------------------------------ */
+.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.scrim{position:absolute;inset:0}
+
+/* placement cuts ---------------------------------------------------------
+   One file per creative, three ratios. The renderer stamps data-ar on :root
+   before the screenshot; copy never differs between cuts, only spacing.
+
+   9:16 story/reel: Instagram's own chrome covers roughly the top 250px and,
+   on Reels, up to 340px at the bottom. That leaves a live band of 1330px —
+   within 20px of the 4:5 canvas — so the story cut is the feed composition
+   held in the band, with the ground (or, where there is one, the photograph)
+   bleeding past it to the edges. */
+:root[data-ar="9x16"] .ad{padding-top:250px;padding-bottom:340px}
