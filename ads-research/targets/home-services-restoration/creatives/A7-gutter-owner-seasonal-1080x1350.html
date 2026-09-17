@@ -26,13 +26,8 @@
         color:#CFE0D4;max-width:34ch;margin-bottom:32px}
   .lede b{color:var(--white);font-weight:600}
 
-  .proof{flex:1;min-height:210px;margin-bottom:26px;border:3px dashed rgba(242,167,27,.55);
-         border-radius:16px;display:flex;flex-direction:column;align-items:center;
-         justify-content:center;gap:10px;padding:20px;text-align:center}
-  .proof .l{font-family:Archivo,sans-serif;font-weight:900;font-size:26px;letter-spacing:.02em;
-            color:var(--amber)}
-  .proof .s{font-family:Inter,sans-serif;font-weight:500;font-size:21px;line-height:1.4;
-            color:#8FB39C;max-width:36ch}
+  .proof{flex:1 1 0;min-height:0;margin-bottom:26px;border-radius:16px;width:100%;
+         object-fit:cover;display:block;min-width:0}
   .does{display:flex;flex-direction:column;gap:15px}
   .d{display:flex;align-items:center;gap:15px}
   .d svg{flex:0 0 auto;width:26px;height:26px}
@@ -49,6 +44,7 @@
   .price .fig{font-family:Archivo,sans-serif;font-weight:900;font-size:62px;line-height:1;
               letter-spacing:-.04em;color:var(--ink)}
   .price .fig .cur{font-size:.5em;vertical-align:.34em;margin-right:.04em}
+  .price .fig .cents{font-size:.4em;vertical-align:.86em;margin-left:.03em}
   .who{flex:1;display:flex;align-items:center;gap:18px;padding:18px 22px;min-width:0}
   .who .shot{flex:0 0 auto;width:92px;height:92px;border-radius:50%;
              border:3px solid var(--amber);object-fit:cover;object-position:50% 50%;
@@ -72,7 +68,7 @@
   :root[data-ar="1x1"] .body{padding:30px 56px 0}
   :root[data-ar="1x1"] h1{font-size:62px;margin-bottom:18px}
   :root[data-ar="1x1"] .lede{font-size:25px;margin-bottom:24px;max-width:40ch}
-  :root[data-ar="1x1"] .proof{min-height:150px;margin-bottom:20px}
+  :root[data-ar="1x1"] .proof{margin-bottom:20px}
   :root[data-ar="1x1"] .proof .l{font-size:23px}
   :root[data-ar="1x1"] .proof .s{font-size:19px}
   :root[data-ar="1x1"] .does{gap:12px}
@@ -97,11 +93,7 @@
     <p class="lede">They back up, they freeze, and they come back in spring as rotted fascia
     and water inside the wall. <b>Clearing them in October is the cheap version.</b></p>
 
-    <div class="proof">
-      <div class="l">Photo goes here</div>
-      <div class="s">One shot of what comes out of a gutter — a handful of wet, packed
-      leaf mulch on the ground or in the bag. This is the ad's proof.</div>
-    </div>
+    <img class="proof" src="img/gutter-debris.png" alt="">
 
     <div class="does">
       <div class="d"><svg viewBox="0 0 24 24" fill="none" stroke="#F2A71B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5.2L20 6.4"/></svg><p>Cleared by hand, not blown around</p></div>
@@ -112,7 +104,7 @@
     <div class="close">
       <div class="price">
         <div class="cap">From</div>
-        <div class="fig"><span class="cur">$</span>{PRICE}</div>
+        <div class="fig"><span class="cur">$</span>149<span class="cents">99</span></div>
       </div>
       <div class="who">
         <img class="shot" src="img/jamel-head.jpg" alt="">
