@@ -1,5 +1,13 @@
 # Viral Coach (Daniel Iles) — live-set refresh, 17 Sep 2026
 
+> **Superseded by a second pass the same day.** This page was written from ONE live pull
+> returning 225 ads. Three further pulls that day returned 159, 134 and 225 — a different
+> partial subset each time. The union is **286**, and pull four added only one ad, so it has
+> converged. Every figure below that cites 225 is a single-pull reading; the corrected
+> numbers are in the artifact and in `ads.json`, which now holds the union plus 250
+> transcripts (was 96). The finding this page establishes — that absence from a pull is not
+> evidence of death — is unchanged, and is what the second pass confirms.
+
 Page `265406025348448`. Previous snapshot: 9 Sep 2026. This pass pulled the live set
 only (225 ads, 1 credit each) — not the full history — because the question was which
 ads are still running.
