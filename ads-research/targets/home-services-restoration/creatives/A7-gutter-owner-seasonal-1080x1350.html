@@ -51,10 +51,8 @@
   .price .fig .cur{font-size:.5em;vertical-align:.34em;margin-right:.04em}
   .who{flex:1;display:flex;align-items:center;gap:18px;padding:18px 22px;min-width:0}
   .who .shot{flex:0 0 auto;width:92px;height:92px;border-radius:50%;
-             border:3px dashed rgba(242,167,27,.75);display:grid;place-items:center;
-             font-family:Inter,sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;
-             text-transform:uppercase;color:rgba(242,167,27,.85);text-align:center;
-             line-height:1.25}
+             border:3px solid var(--amber);object-fit:cover;object-position:50% 50%;
+             background:var(--forest)}
   .who .n{font-family:Archivo,sans-serif;font-weight:900;font-size:31px;letter-spacing:-.02em;
           color:var(--white);line-height:1.1;margin-bottom:5px}
   .who .r{font-family:Inter,sans-serif;font-weight:500;font-size:21px;line-height:1.3;
@@ -117,7 +115,7 @@
         <div class="fig"><span class="cur">$</span>{PRICE}</div>
       </div>
       <div class="who">
-        <div class="shot">Photo<br>of Jamel</div>
+        <img class="shot" src="img/jamel-head.jpg" alt="">
         <div>
           <div class="n">Jamel Troncoso</div>
           <div class="r">Owner · 10 years across Greater Boston</div>
