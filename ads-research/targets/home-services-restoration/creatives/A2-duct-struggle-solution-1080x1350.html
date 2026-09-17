@@ -16,9 +16,12 @@
   .side{position:relative;padding:0 42px 52px;display:flex;flex-direction:column}
   .stack{flex:1;display:flex;flex-direction:column}
   .l .stack{justify-content:space-between;padding:6px 0 4px}
-  .r .stack{justify-content:center}
+  .r .stack{justify-content:flex-start}
   .l{background:var(--forest-deep)}
-  .r{background:var(--forest);border-left:2px solid rgba(255,255,255,.10)}
+    .r{background:var(--forest);border-left:2px solid rgba(255,255,255,.10);padding-bottom:0}
+  .jamel{display:block;width:calc(100% + 84px);margin:14px -42px 0;flex:1 1 0;min-height:0;
+         object-fit:cover;object-position:top center;
+         filter:drop-shadow(0 -6px 26px rgba(0,0,0,.30))}
   .chip{font-size:30px;padding:17px 0;margin:0 -42px 40px}
   .item{display:flex;flex-direction:column;align-items:center;text-align:center;
         color:var(--paper)}
@@ -50,16 +53,18 @@
   :root[data-ar="1x1"] .top{padding:32px 56px 22px}
   :root[data-ar="1x1"] .mark{font-size:31px}
   :root[data-ar="1x1"] .side{padding:0 40px 34px}
-  :root[data-ar="1x1"] .chip{font-size:27px;padding:14px 0;margin:0 -40px 28px} /* -40 must track .side padding */
+  :root[data-ar="1x1"] .chip{font-size:27px;padding:14px 0;margin:0 -40px 22px} /* -40 must track .side padding */
+  :root[data-ar="1x1"] .jamel{width:calc(100% + 80px);margin-left:-40px;margin-right:-40px}
+  :root[data-ar="1x1"] .seal .val{font-size:29px}
   :root[data-ar="1x1"] .item svg{width:78px;height:78px;margin-bottom:15px}
   :root[data-ar="1x1"] .item p{font-size:30px;max-width:13ch}
-  :root[data-ar="1x1"] .big{font-size:60px;margin-bottom:18px}
+  :root[data-ar="1x1"] .big{font-size:52px;margin-bottom:14px}
   :root[data-ar="1x1"] .body{font-size:24px;max-width:21ch}
   :root[data-ar="1x1"] .rule{margin:26px 34px 22px}
   :root[data-ar="1x1"] .seal .lab{font-size:16px;margin-bottom:7px}
   :root[data-ar="1x1"] .seal .val{font-size:33px}
   :root[data-ar="1x1"] .foot{padding:24px 56px}
-  :root[data-ar="1x1"] .foot .t{font-size:25px}
+  :root[data-ar="1x1"] .foot .t{font-size:19px}
   :root[data-ar="1x1"] .cta{font-size:25px;padding:17px 32px}
 </style></head><body>
 <div class="ad">
@@ -90,12 +95,11 @@
       <div class="chip">What fixes it</div>
       <div class="stack">
       <div class="big">Clean ducts,<br><span>less strain.</span></div>
-      <div class="body">A full-system extraction pulls out what's restricting the airflow, so the furnace isn't fighting the ductwork to heat the same house.</div>
-      <div class="rule"></div>
       <div class="seal">
         <div class="lab">Every job</div>
         <div class="val">Fixed quote<br>before we start</div>
       </div>
+      <img class="jamel" src="img/jamel-cutout.png" alt="">
       </div>
     </div>
   </div>
