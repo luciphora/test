@@ -4,7 +4,8 @@
 One file per ad so a reader can be sent a single transcript without the other
 1,500; the combined markdown is for skimming. Live ads come first and are
 ordered by tenure, because tenure is the only survival signal the Ad Library
-gives us.
+gives us — and only for ads the live query returns. An ad missing from that query
+is unconfirmed, not dead: the live pull comes back partial on some days.
 """
 import json, os, sys, csv, re
 
@@ -22,9 +23,9 @@ def main(target):
 
     rows, combined = [], []
     for a in have:
-        status = "LIVE" if a.get("live") is True else "stopped"
+        status = "LIVE" if a.get("live") is True else "NOT LIVE"
         days = f"{a['days_running']}d" if a.get("live") is True else "n/a"
-        name = f"{'live' if a.get('live') is True else 'dead'}-{a['days_running']:04d}d-{a['id']}.txt"
+        name = f"{'live' if a.get('live') is True else 'notlive'}-{a['days_running']:04d}d-{a['id']}.txt"
         header = (f"Ad {a['id']}  ({a['ad_id']})\n"
                   f"Status      : {status}\n"
                   f"Running     : {days}   started {a['started_date']}\n"
@@ -55,9 +56,12 @@ def main(target):
     open(os.path.join(target, "all_transcripts.md"), "w").write(
         f"# {os.path.basename(os.path.normpath(target))} — every transcript\n\n"
         f"{len(have)} ads with usable audio, of {len(ads)} scraped. "
-        f"Live ads first ({live_n}), longest-running at the top; stopped ads after.\n\n"
+        f"Live ads first ({live_n}), longest-running at the top; the rest after.\n\n"
         "Day counts are shown for live ads only — Foreplay does not record a real "
-        "stop date for inactive ads, so their tenure is unknown.\n\n" + "\n".join(combined))
+        "stop date for inactive ads, so their tenure is unknown.\n\n"
+        "**LIVE means the live-set query returned this ad, and is reliable. NOT LIVE "
+        "means it did not, which is weaker: the live pull is partial on some days, so "
+        "absence is not proof the ad stopped.**\n\n" + "\n".join(combined))
     print(f"{len(have)} transcripts -> {tdir}/  ({live_n} live)")
     print(f"index -> {target}/transcripts_index.csv")
     print(f"combined -> {target}/all_transcripts.md")

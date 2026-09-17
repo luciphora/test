@@ -3,6 +3,25 @@
 Page `265406025348448` · Viral Coach LLC · four snapshots via Foreplay: **25 Aug · 1 Sep · 3 Sep · 9 Sep 2026**
 **2,116 unique ads · 79 live · 1,593 transcripts · 266 ads with a real stop window**
 
+> ## ⚠️ The Headline below is wrong — refuted 17 Sep 2026
+>
+> A fresh live-set pull on 17 Sep returns **225 live ads**, and **100 of the 266 ads this
+> brief counts as dead are running right now**. The four longest-running ads in the
+> account (422d, 411d, 356d, 321d) never stopped.
+>
+> He did not switch anything off. **Our 9 Sep pull was partial** — brand analytics for
+> that date report 0 active ads, the only zero in the window, and the pull that this
+> brief rests on was taken on it. The "157 ads died in six days" finding is an artifact
+> of that empty pull, not advertiser behaviour.
+>
+> What is actually true: he is launching harder than at any point we have measured —
+> 109 new ads this month — and he has moved his volume from the "or you don't pay"
+> guarantee to a proof number, "Our avg clients get 15.5m views", now on 197 of 225
+> live ads. The guarantee is still running, at about a tenth of the volume.
+>
+> See `refresh_0917.md`. The counts in the line above, and every death-based finding
+> below, should be read as unreliable until the history is re-pulled.
+
 ---
 
 ## Headline
