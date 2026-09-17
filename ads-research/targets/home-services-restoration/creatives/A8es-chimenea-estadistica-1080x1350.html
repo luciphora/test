@@ -44,7 +44,19 @@
   .d span{font-family:Inter,sans-serif;font-weight:500;font-size:25px;line-height:1.3;
           color:#CFE0D4}
 
-  .who{display:flex;align-items:center;gap:16px;margin-top:22px}
+    .close{display:flex;align-items:stretch;margin-top:22px;
+          border:2px solid rgba(246,244,238,.18);border-radius:16px;overflow:hidden}
+  .price{flex:0 0 auto;background:var(--amber);padding:18px 24px;text-align:center;
+         display:flex;flex-direction:column;justify-content:center}
+  .price .cap{font-family:Inter,sans-serif;font-weight:700;font-size:15px;letter-spacing:.13em;
+              text-transform:uppercase;color:rgba(14,26,18,.62)}
+  .price .fig{font-family:Archivo,sans-serif;font-weight:900;font-size:50px;line-height:1.04;
+              letter-spacing:-.04em;color:var(--ink)}
+  .price .fig .cur{font-size:.5em;vertical-align:.36em;margin-right:.04em}
+  .price .fig .cents{font-size:.4em;vertical-align:.9em;margin-left:.03em}
+  .price .u{font-family:Inter,sans-serif;font-weight:700;font-size:15px;letter-spacing:.09em;
+            text-transform:uppercase;color:rgba(14,26,18,.70)}
+  .who{flex:1;display:flex;align-items:center;gap:14px;padding:14px 20px;min-width:0}
   .who img{flex:0 0 auto;width:84px;height:84px;border-radius:50%;object-fit:cover;
            border:3px solid var(--amber)}
   .who .n{font-family:Archivo,sans-serif;font-weight:900;font-size:29px;letter-spacing:-.02em;
@@ -71,7 +83,9 @@
   :root[data-ar="1x1"] .does{gap:13px;padding:18px 0}
   :root[data-ar="1x1"] .d b{font-size:23px;min-width:4.4em}
   :root[data-ar="1x1"] .d span{font-size:21px}
-  :root[data-ar="1x1"] .who{margin-top:18px}
+  :root[data-ar="1x1"] .close{margin-top:18px}
+  :root[data-ar="1x1"] .price{padding:13px 18px}
+  :root[data-ar="1x1"] .price .fig{font-size:42px}
   :root[data-ar="1x1"] .who img{width:70px;height:70px}
   :root[data-ar="1x1"] .who .n{font-size:26px}
   :root[data-ar="1x1"] .who .r{font-size:18px}
@@ -113,11 +127,18 @@
       <div class="d"><b>Reparación</b><span>También hacemos el arreglo, no solo el informe</span></div>
     </div>
 
-    <div class="who">
+    <div class="close">
+      <div class="price">
+        <div class="cap">Desde</div>
+        <div class="fig"><span class="cur">$</span>99<span class="cents">99</span></div>
+        <div class="u">primer conducto</div>
+      </div>
+      <div class="who">
       <img src="img/jamel-head.jpg" alt="">
       <div>
         <div class="n">Jamel Troncoso</div>
         <div class="r">Dueño · 10 años en Greater Boston</div>
+      </div>
       </div>
     </div>
   </div>
