@@ -13,7 +13,7 @@
   .top{position:relative;z-index:2;padding:46px 60px 0;display:flex;justify-content:center}
   .mark{font-size:36px}
   .card{position:relative;z-index:2;margin:34px 54px 0;background:var(--amber);
-        border-radius:22px;display:grid;grid-template-columns:1fr 1fr}
+        border-radius:22px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
   .card>div{padding:42px 36px 40px}
   .card .l{border-right:2px solid rgba(14,26,18,.20)}
   .hd{font-size:62px;text-align:center;color:var(--ink);margin-bottom:34px}
@@ -21,7 +21,7 @@
   .sym:last-child{margin-bottom:0}
   .sym .num{width:62px;height:62px;font-size:29px;margin-bottom:15px;color:var(--ink)}
   .sym p{font-size:30px;color:var(--ink);max-width:14ch}
-  .r{display:flex;flex-direction:column;justify-content:flex-start}
+.r{display:flex;flex-direction:column;justify-content:flex-start}
   .promise{font-family:Archivo,sans-serif;font-weight:800;font-size:38px;line-height:1.1;
            letter-spacing:-.02em;color:var(--ink)}
   .promise em{font-style:normal;display:block;font-weight:900}
@@ -32,6 +32,14 @@
   .offer .fine{font-size:14px;letter-spacing:.03em;padding:0 10px 16px}
   .foot{position:relative;z-index:2;margin-top:auto;padding:0 54px 54px;
         display:flex;flex-direction:column;align-items:center;gap:18px}
+  .by{display:flex;align-items:center;gap:16px;background:rgba(14,26,18,.55);
+      border:2px solid rgba(246,244,238,.22);border-radius:999px;padding:12px 26px 12px 12px;
+      backdrop-filter:blur(3px)}
+  .by img{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:0 0 auto;
+          border:2px solid var(--amber)}
+  .by .n{font-family:Archivo,sans-serif;font-weight:900;font-size:27px;letter-spacing:-.02em;
+         color:var(--white);line-height:1.1}
+  .by .r2{font-family:Inter,sans-serif;font-weight:500;font-size:19px;color:#CFE0D4;margin-top:2px}
   .trust{color:var(--paper);font-size:20px;gap:1em}
   .cta{background:var(--paper);color:var(--forest-deep);font-family:Archivo,sans-serif;
        font-weight:900;font-size:31px;letter-spacing:-.01em;padding:22px 52px;border-radius:999px}
@@ -68,6 +76,13 @@
   </div>
 
   <div class="foot">
+    <div class="by">
+      <img src="img/jamel-head.jpg" alt="">
+      <div>
+        <div class="n">Jamel Troncoso</div>
+        <div class="r2">Owner · Greater Boston</div>
+      </div>
+    </div>
     <div class="trust">
       <span>Licensed &amp; insured MA</span><i class="dot"></i>
       <span>10 years in business</span><i class="dot"></i>

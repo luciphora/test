@@ -32,6 +32,14 @@
   .offer .fine{font-size:15px;padding:0 14px 16px}
   .foot{position:relative;z-index:2;margin-top:auto;padding:0 54px 54px;
         display:flex;flex-direction:column;align-items:center;gap:18px}
+  .by{display:flex;align-items:center;gap:16px;background:rgba(14,26,18,.55);
+      border:2px solid rgba(246,244,238,.22);border-radius:999px;padding:12px 26px 12px 12px;
+      backdrop-filter:blur(3px)}
+  .by img{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:0 0 auto;
+          border:2px solid var(--amber)}
+  .by .n{font-family:Archivo,sans-serif;font-weight:900;font-size:27px;letter-spacing:-.02em;
+         color:var(--white);line-height:1.1}
+  .by .r2{font-family:Inter,sans-serif;font-weight:500;font-size:19px;color:#CFE0D4;margin-top:2px}
   .trust{color:var(--paper);font-size:23px}
   .cta{background:var(--paper);color:var(--forest-deep);font-family:Archivo,sans-serif;
        font-weight:900;font-size:31px;letter-spacing:-.01em;padding:22px 52px;border-radius:999px}
@@ -43,6 +51,14 @@
   .offer .what{font-size:19px}
   .offer .fine{font-size:13px;letter-spacing:.02em;padding-left:8px;padding-right:8px}
   .trust{font-size:19px;gap:.8em}
+  /* es + byline is the tightest combination in the set; 1:1 gives the byline back some room */
+  :root[data-ar="1x1"] .by{padding:8px 20px 8px 8px;gap:12px}
+  :root[data-ar="1x1"] .by img{width:56px;height:56px}
+  :root[data-ar="1x1"] .by .n{font-size:23px}
+  :root[data-ar="1x1"] .by .r2{font-size:17px}
+  :root[data-ar="1x1"] .foot{gap:13px;padding-bottom:40px}
+  :root[data-ar="1x1"] .trust{font-size:17px}
+  :root[data-ar="1x1"] .cta{font-size:26px;padding:18px 38px}
   .cta{font-size:29px;padding:22px 44px}
 
   /* 9:16: the same scrim, its stops remapped so the shape designed for the
@@ -77,6 +93,13 @@
   </div>
 
   <div class="foot">
+    <div class="by">
+      <img src="img/jamel-head.jpg" alt="">
+      <div>
+        <div class="n">Jamel Troncoso</div>
+        <div class="r2">Dueño · Greater Boston</div>
+      </div>
+    </div>
     <div class="trust">
       <span>Con licencia y seguro en MA</span><i class="dot"></i>
       <span>10 años</span><i class="dot"></i>
