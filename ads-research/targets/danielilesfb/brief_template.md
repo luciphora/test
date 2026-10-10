@@ -22,11 +22,11 @@ owners. His ads sell one promise two ways: "Our avg clients get 15.5m views" in 
 3. **Build from the same five moves.** Reframe, risk reversal, how it works, proof, "click the link below". Most ads
    use two or three ({{EL_23_PCT}}%); {{EL_ALL5}} use all five.
 4. **Swap the niche noun, keep the script.** Since 17 Sep, {{NICHE_SWAP_ADS}} new ads open "If you're a …" with a
-   trade dropped in. The move has lasted: his {{NICHE73_N}} niche-template ads for {{NICHE73_VERTS}} are live at
-   {{NICHE73_NOW_MIN}}–{{NICHE73_NOW_MAX}} days.
+   trade dropped in. The move has lasted: {{NICHE_IF_N}} older ads opening "If you're a …" for {{NICHE_IF_NOUNS}}
+   are live at {{NICHE_IF_MIN}}–{{NICHE_IF_MAX}} days.
 5. **He fills batches with re-uploads; that is habit, not proof.** {{SAME_REC}} of {{NEW_TX}} transcribed new ads
-   re-use about {{SAME_REC_SRC}} earlier recordings, {{SAME_REC_SRC_YOUNG}} of {{SAME_REC_SRC_ADS}} sources under 30
-   days old on 17 Sep and {{SAME_REC_SRC_LIVE}} still live. Only {{SCRIPTS_FRESH}} scripts are new.
+   re-use about {{SAME_REC_SRC}} earlier recordings, all {{SAME_REC_SRC_ADS}} sources under 30 days old on
+   17 Sep and {{SAME_REC_SRC_LIVE}} still live. Only {{SCRIPTS_FRESH}} scripts are new.
 6. **Where the new volume went: client case studies.** {{TOPLAUNCH_N}} ads since 29 Sep, all re-uploads of
    {{CS_STORIES}} client stories; {{CS_SRC_LIVE}} of the {{CS_SRC_N}} originals still show live. Volume, not a proven
    winner.
@@ -38,7 +38,7 @@ running; it says nothing about spend or results.
 
 ## The hooks that last: his {{LONGEST_N}} longest-running live ads with a script
 
-{{LONGEST_TIE}} tie at {{LONGEST_MIN}} days, so all are shown. {{LONGEST_UNSEEN17}} were missing from the 17 Sep pulls (age counts from launch).
+{{LONGEST_TIE}} tie at {{LONGEST_MIN}} days, so all are shown. {{LONGEST_UNSEEN17}} were missing from the 17 Sep pulls (age counts from launch). Not shown: {{LONGEST_CARDTX}} DCO ads whose scripts sit on their cards ({{MD_CARDTX_OPENERS}}) and {{LONGEST_SILENT}} clips with no speech.
 
 | Live | Hook family | Opening line |
 |--:|---|---|
@@ -64,7 +64,7 @@ Median length {{VDUR_MED}}s (middle half {{VDUR_Q1}}–{{VDUR_Q3}}s). Talking he
 
 ## What he is testing now: the scripts behind the most new ads since 29 Sep
 
-One row per script, niche versions included. {{BET_MULTI}} scripts went up more than once. All under two weeks old.
+One row per script, niche versions included. {{BET_MULTI}} scripts went up more than once. The ads are under two weeks old, but {{BET_REUSED_ROWS}} of these {{BET_ROWS_N}} rows re-use a script that ran by 17 Sep.
 
 | Ads | Live | Launched | Hook family | Opening line |
 |--:|--:|---|---|---|

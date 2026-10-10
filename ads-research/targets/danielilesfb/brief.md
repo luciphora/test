@@ -22,11 +22,11 @@ owners. His ads sell one promise two ways: "Our avg clients get 15.5m views" in 
 3. **Build from the same five moves.** Reframe, risk reversal, how it works, proof, "click the link below". Most ads
    use two or three (53%); 11 use all five.
 4. **Swap the niche noun, keep the script.** Since 17 Sep, 20 new ads open "If you're a …" with a
-   trade dropped in. The move has lasted: his 7 niche-template ads for attorney, contractor, home services, plastic surgeon, plumber are live at
-   94–96 days.
+   trade dropped in. The move has lasted: 5 older ads opening "If you're a …" for plastic surgeon, contractor, plumber, home service provider
+   are live at 94–95 days.
 5. **He fills batches with re-uploads; that is habit, not proof.** 95 of 161 transcribed new ads
-   re-use about 72 earlier recordings, 74 of 75 sources under 30
-   days old on 17 Sep and 7 still live. Only 15 scripts are new.
+   re-use about 72 earlier recordings, all 75 sources under 30 days old on
+   17 Sep and 7 still live. Only 15 scripts are new.
 6. **Where the new volume went: client case studies.** 25 ads since 29 Sep, all re-uploads of
    19 client stories; 3 of the 19 originals still show live. Volume, not a proven
    winner.
@@ -38,7 +38,7 @@ running; it says nothing about spend or results.
 
 ## The hooks that last: his 13 longest-running live ads with a script
 
-5 tie at 128 days, so all are shown. 4 were missing from the 17 Sep pulls (age counts from launch).
+5 tie at 128 days, so all are shown. 4 were missing from the 17 Sep pulls (age counts from launch). Not shown: 2 DCO ads whose scripts sit on their cards (333 days, "Here's what it means when you keep seeing the same ads again on social media…"; 306 days, "If you spend just two hours a month making content, you could have new way of…") and 2 clips with no speech.
 
 | Live | Hook family | Opening line |
 |--:|---|---|
@@ -97,7 +97,7 @@ Median length 68s (middle half 49–103s). Talking head, burned-in captions, Lea
 
 ## What he is testing now: the scripts behind the most new ads since 29 Sep
 
-One row per script, niche versions included. 35 scripts went up more than once. All under two weeks old.
+One row per script, niche versions included. 35 scripts went up more than once. The ads are under two weeks old, but 7 of these 8 rows re-use a script that ran by 17 Sep.
 
 | Ads | Live | Launched | Hook family | Opening line |
 |--:|--:|---|---|---|

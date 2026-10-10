@@ -474,6 +474,8 @@ V["SAME_REC_FLAG"] = sum(a["status_1010"] == "flagged_inactive" for a in A_ads)
 src_ads = {a["_src"]["id"]: a["_src"] for a in A_ads}.values()
 V["SAME_REC_SRC_ADS"] = len(src_ads)
 V["SAME_REC_SRC_YOUNG"] = sum(x["id"] in young_ids for x in src_ads)
+_age17 = lambda x: (datetime.date.fromisoformat(S17) - datetime.date.fromisoformat(x["started_date"])).days
+V["SAME_REC_SRC_U30"] = sum(_age17(x) < 30 for x in src_ads)
 V["SAME_REC_SRC_LIVE"] = sum(bool(x["live"]) for x in src_ads)
 pp = [a for a in A_ads if a.get("publisher_platform") and a["_src"].get("publisher_platform")]
 V["A_PP_N"] = len(pp)
@@ -643,6 +645,13 @@ V["NICHE73_29"] = sum(S29 in a["seen_live"] for a in niche73)
 V["NICHE73_NOW_MIN"] = min((a["days_running"] for a in niche73 if a["live"]), default=0)
 V["NICHE73_NOW_MAX"] = max((a["days_running"] for a in niche73 if a["live"]), default=0)
 V["NICHE73_VERTS"] = ", ".join(sorted({a["vertical"].lower() for a in niche73 if a["live"]}))
+# the ones among them that open on the "If you're a ..." template itself
+_nif = [(a, re.match(r"\s*if you(?:'re| are) an? ([a-z ]{3,30}?)(?:,| and| struggling)", (a.get("full_transcription") or "").lower()))
+        for a in niche73 if a["live"]]
+_nif = [(a, m.group(1)) for a, m in _nif if m]
+V["NICHE_IF_N"] = len(_nif)
+V["NICHE_IF_NOUNS"] = ", ".join(dict.fromkeys(n for _, n in _nif))
+V["NICHE_IF_MIN"], V["NICHE_IF_MAX"] = min(a["days_running"] for a, _ in _nif), max(a["days_running"] for a, _ in _nif)
 
 # launch volume the 17 Sep month table hid: the probes of the proven posters' launch days
 probe_155, probe_files = collections.Counter(), set()
@@ -840,6 +849,10 @@ V["AUDIT_HOLDS"] = sum(t == "Holds" for _, t, _ in AUDIT)
 V["AUDIT_UNSUP"] = sum(t == "Unsupported" for _, t, _ in AUDIT)
 
 # ---------------------------------------------------------------- the playbook: hooks, skeleton, bets
+def md(t):
+    return t.replace("|", "/").replace("\n", " ")
+
+
 def opener_txt(a, n=150):
     t = re.sub(r"\s+", " ", a.get("full_transcription") or "").strip()
     return t if len(t) <= n else t[:t.rfind(" ", 0, n)] + "…"
@@ -886,8 +899,17 @@ V["LONGEST_UNSEEN17"] = sum(not a.get("in_0917") for a in longest_tx)
 OFFER_HOOKS = {"Guarantee (views or free)", "Risk reversal / free trial", "Free-month offer"}
 V["LONGEST_OFFER"] = sum(a["hook"] in OFFER_HOOKS for a in longest_tx)
 V["LONGEST_NONOFFER"] = V["LONGEST_N"] - V["LONGEST_OFFER"] - sum(a["hook"] == "Unclassified" for a in longest_tx)
-V["LONGEST_NOSCRIPT"] = sum(1 for a in live if (a["days_running"] or 0) > V["LONGEST_MIN"]
-                            and len(words(a.get("full_transcription"))) < 20)
+_nos = [a for a in sorted(live, key=lambda a: -(a["days_running"] or 0))
+        if (a["days_running"] or 0) > V["LONGEST_MIN"] and len(words(a.get("full_transcription"))) < 20]
+V["LONGEST_NOSCRIPT"] = len(_nos)
+# DCO ads keep their script on the cards, not the ad; name them rather than drop them silently
+_card_tx = [(a, next((c["full_transcription"] for c in a.get("cards") or [] if isinstance(c, dict)
+                      and len(words(c.get("full_transcription"))) >= 20), None)) for a in _nos]
+_card_tx = [(a, t) for a, t in _card_tx if t]
+V["LONGEST_CARDTX"] = len(_card_tx)
+V["LONGEST_SILENT"] = V["LONGEST_NOSCRIPT"] - V["LONGEST_CARDTX"]
+B["LONGEST_CARDTX_OPENERS"] = "; ".join(f'{a["days_running"]} days, "{esc(opener_txt({"full_transcription": t}, 80))}"' for a, t in _card_tx)
+B["MD_CARDTX_OPENERS"] = "; ".join(f'{a["days_running"]} days, "{md(opener_txt({"full_transcription": t}, 80))}"' for a, t in _card_tx)
 
 # what he re-uploads most: clusters of the new batch, by size
 bets = sorted(clusters.values(), key=lambda g: (-len(g), -sum(x["live"] for x in g)))[:8]
@@ -912,6 +934,8 @@ B["BET_ROWS"] = "".join(
 V["BET_TOP_N"] = len(bets[0])
 V["BET_MULTI"] = sum(len(g) >= 2 for g in clusters.values())
 V["BET_NICHE_ROWS"] = sum(bool(niches(g)) for g in bets)
+V["BET_ROWS_N"] = len(bets)
+V["BET_REUSED_ROWS"] = sum(min(x["_tier"] for x in g) in "AB" for g in bets)
 # where the new volume went: case-study openers, all re-uploads of recent client stories
 cs = [a for a in NEW if a["hook"] == "Case study" and (a.get("started_date") or "") >= "2026-09-29"]
 assert len(cs) == V["TOPLAUNCH_N"] and V["TOPLAUNCH_FAM"] == "Case study", "bullet 6 describes the case-study re-uploads"
@@ -976,10 +1000,6 @@ V["NICHE_NOUNS"] = ", ".join(k for k, _ in noun_c.most_common(8))
 V["NICHE_SWAP_ADS"] = sum(noun_c.values())
 
 # the same tables for brief.md
-def md(t):
-    return t.replace("|", "/").replace("\n", " ")
-
-
 B["MD_LONGEST"] = "\n".join(f'| {a["days_running"]}d | {md(a["hook"])} | "{md(opener_txt(a, 140))}" |' for a in longest_tx)
 B["MD_HOOKS"] = "\n".join(f'| {md(f)} | {nlive} | {str(old) + "d" if old else "—"} | {launched or ""} | "{md(opener_txt(ex, 100))}" |'
                           for f, nlive, old, launched, ex in fam_stats)
@@ -996,6 +1016,7 @@ V["LG_446"], V["LG_435"] = seen17[0]["days_running"], seen17[1]["days_running"]
 assert not longest_tx[0].get("in_0917"), "bottom line says the oldest scripted ad was missing from the 17 Sep pulls"
 assert {a["hook"] for a in longest_tx if a["hook"] in OFFER_HOOKS} <= {"Guarantee (views or free)", "Risk reversal / free trial"}
 assert V["CS_REUP"] == V["TOPLAUNCH_N"], "bottom line says all case-study launches are re-uploads"
+assert V["SAME_REC_SRC_U30"] == V["SAME_REC_SRC_ADS"], "bottom line says every re-upload source was under 30 days old"
 assert V["NICHE73_LIVE"] == V["NICHE73_N"], "bottom line says every niche-template ad is live"
 # how often the new batch re-uses a script from an ad past 180 days on 17 Sep
 V["REUSE_PROVEN"] = sum(a["_tier"] in "AB" and (a["_src"].get("days_0917") or 0) >= 180 for a in NEW)
