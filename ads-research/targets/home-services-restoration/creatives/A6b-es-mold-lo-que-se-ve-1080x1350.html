@@ -1,0 +1,76 @@
+<!doctype html><html lang="es"><head>
+<meta charset="utf-8">
+<meta name="size" content="1080x1350">
+<title>A6b · ES · Moho · Advertencia de daño</title>
+<link rel="stylesheet" href="fonts/embedded.css">
+<link rel="stylesheet" href="brand.css">
+<style>
+  /* Mold is search-led, not feed-led: this one is built to be remembered and to book an
+     inspection, not to sell a price. The photo is Certified Safe's own job documentation —
+     the strongest asset they own — so it runs full-bleed and unretouched, with a single
+     technician's annotation pointing at something the viewer can actually see in it. */
+  .ad{background:var(--ink)}
+  .photo{object-position:center 46%}
+  .scrim{background:
+    linear-gradient(180deg,rgba(14,26,18,.78) 0%,rgba(14,26,18,.30) 15%,
+                    rgba(14,26,18,0) 30%,rgba(14,26,18,0) 52%,
+                    rgba(14,26,18,.66) 68%,rgba(14,26,18,.94) 83%,#0E1A12 100%)}
+  .screen{position:relative;height:100%;display:flex;flex-direction:column;
+          padding:46px 56px 50px}
+
+  .top{display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .mark{font-size:32px}
+  .tag{font-family:Inter,sans-serif;font-weight:700;font-size:18px;letter-spacing:.15em;
+       text-transform:uppercase;color:rgba(246,244,238,.80);
+       border:2px solid rgba(246,244,238,.38);border-radius:999px;padding:11px 20px}
+
+  /* --- headline block ---------------------------------------------------- */
+  .say{margin-top:auto}
+  .say h1{font-family:Archivo,sans-serif;font-weight:900;font-size:80px;line-height:.96;
+          letter-spacing:-.04em;color:var(--white);margin-bottom:22px;max-width:15ch}
+  .say h1 em{font-style:normal;color:var(--amber)}
+  .say p{font-family:Inter,sans-serif;font-weight:500;font-size:29px;line-height:1.4;
+         color:#D5E0D8;max-width:26ch;margin-bottom:34px}
+
+  .foot{display:flex;align-items:center;justify-content:space-between;gap:24px;
+        border-top:2px solid rgba(246,244,238,.20);padding-top:28px}
+  .foot .svc{font-family:Inter,sans-serif;font-weight:600;font-size:22px;line-height:1.45;
+             color:rgba(246,244,238,.78);letter-spacing:.02em}
+  .foot .svc b{display:block;font-family:Archivo,sans-serif;font-weight:900;font-size:25px;
+               letter-spacing:.01em;color:var(--white)}
+  .cta{background:var(--amber);color:var(--ink);font-family:Archivo,sans-serif;font-weight:900;
+       font-size:29px;padding:21px 40px;border-radius:999px;white-space:nowrap;
+       box-shadow:0 14px 36px rgba(0,0,0,.4)}
+  /* es: longer strings than the English original */
+  .say h1{font-size:73px;max-width:none}
+  .say p{font-size:27px;max-width:28ch}
+  .foot .svc{font-size:20px}
+  .foot .svc b{font-size:23px;white-space:nowrap}
+  .cta{font-size:27px;padding:20px 34px}
+
+  /* 9:16: the same scrim, its stops remapped so the shape designed for the
+     1350 composition lands on the safe band and holds flat past it. */
+  :root[data-ar="9x16"] .scrim{background:linear-gradient(180deg,rgba(14,26,18,.78) 0%,rgba(14,26,18,.78) 13.0%,rgba(14,26,18,.30) 23.4%,rgba(14,26,18,0) 33.8%,rgba(14,26,18,0) 49.0%,rgba(14,26,18,.66) 60.1%,rgba(14,26,18,.94) 70.5%,#0E1A12 82.3%,#0E1A12 100%)}
+</style></head><body>
+<div class="ad">
+  <img class="photo" src="img/mold-remediation-black-mold-wall.jpg" alt="">
+  <div class="scrim"></div>
+
+
+  <div class="screen">
+    <div class="top">
+      <div class="mark on-dark"><svg class="shield" viewBox="0 0 24 28" fill="none"><path d="M12 1 2 5v9c0 6.1 4.2 11.3 10 13 5.8-1.7 10-6.9 10-13V5L12 1Z" fill="currentColor"/><path d="m7.4 14.2 3.1 3.1 6.1-6.6" stroke="#152A1D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Certified Safe</div>
+      <div class="tag">De uno de nuestros trabajos</div>
+    </div>
+
+    <div class="say">
+      <h1>Lo que ve en la pared<br>es la parte que<br><em>se escapó.</em></h1>
+      <p>El moho sigue al agua. Si limpia la superficie sin encontrar lo que lo alimenta, vuelve en el mismo lugar — y casi siempre más grande.</p>
+      <div class="foot">
+        <div class="svc"><b>Remediación de moho · Daños por agua</b>10 años · Calificación 5 estrellas · Greater Boston a Merrimack Valley</div>
+        <div class="cta">Solicite una inspección</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

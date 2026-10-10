@@ -1,0 +1,104 @@
+<!doctype html><html><head>
+<meta charset="utf-8">
+<meta name="size" content="1080x1350">
+<title>A3 · Carpet · Lock-screen notification</title>
+<link rel="stylesheet" href="fonts/embedded.css">
+<link rel="stylesheet" href="brand.css">
+<style>
+  /* Stanley Steemer's live lock-screen ad: photo wallpaper, iOS clock, two stacked
+     notification cards — the first is the pattern interrupt, the second carries the
+     offer. The device chrome is the layout; the photo is their own work shot, blurred
+     and darkened the way iOS treats a wallpaper behind notifications. */
+  .ad{background:var(--ink)}
+  .photo{filter:blur(2px) saturate(.88) brightness(.74) contrast(1.06);transform:scale(1.08);
+         object-position:center 62%}
+  .scrim{background:linear-gradient(180deg,rgba(14,26,18,.56) 0%,rgba(14,26,18,.26) 26%,
+         rgba(14,26,18,.30) 58%,rgba(14,26,18,.88) 100%)}
+  .screen{position:relative;height:100%;display:flex;flex-direction:column;
+          padding:62px 54px 54px}
+
+  /* --- iOS clock ------------------------------------------------------- */
+  .clock{text-align:center;color:var(--white);margin-bottom:64px}
+  .clock .date{font-family:Inter,sans-serif;font-weight:600;font-size:29px;
+               letter-spacing:.01em;opacity:.92;margin-bottom:4px}
+  .clock .time{font-family:Inter,sans-serif;font-weight:400;font-size:148px;line-height:1;
+               letter-spacing:-.045em;text-shadow:0 4px 30px rgba(0,0,0,.3)}
+
+  /* --- notification cards ---------------------------------------------- */
+  .notes{display:flex;flex-direction:column;gap:22px}
+  .note{background:rgba(246,244,238,.94);border-radius:36px;padding:28px 32px 30px;
+        box-shadow:0 22px 60px rgba(0,0,0,.34)}
+  .note.offer-note{background:var(--white);border:3px solid var(--amber)}
+  .nhead{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+  .nhead .app{width:52px;height:52px;border-radius:13px;background:var(--forest);
+              display:grid;place-items:center;color:var(--paper);flex:0 0 auto}
+  .nhead .app svg{width:30px;height:35px}
+  .nhead .name{font-family:Inter,sans-serif;font-weight:700;font-size:21px;
+               letter-spacing:.11em;text-transform:uppercase;color:#5C6B61}
+  .nhead .when{margin-left:auto;font-family:Inter,sans-serif;font-weight:500;font-size:21px;
+               color:#8A978E}
+  .note h2{font-family:Archivo,sans-serif;font-weight:900;font-size:44px;line-height:1.06;
+           letter-spacing:-.03em;color:var(--ink);margin-bottom:11px}
+  .note p{font-family:Inter,sans-serif;font-weight:500;font-size:28px;line-height:1.36;
+          color:#3B4B41}
+  .offer-note h2{display:flex;align-items:baseline;gap:0;font-size:62px;letter-spacing:-.045em}
+  .offer-note h2 .cur{font-size:.46em;transform:translateY(-.34em);margin-right:.06em}
+  .offer-note h2 .cents{font-size:.38em;transform:translateY(-.76em);margin-left:.04em}
+  .offer-note h2 .rooms{font-size:.52em;font-weight:800;letter-spacing:-.02em;color:var(--forest);margin-left:.34em}
+  .offer-note .fine{font-family:Inter,sans-serif;font-weight:700;font-size:19px;
+                    letter-spacing:.13em;text-transform:uppercase;color:#6B7A70;margin-top:13px}
+
+  /* --- bottom bar ------------------------------------------------------- */
+  .bottom{margin-top:auto;padding-top:48px;display:flex;align-items:center;
+          justify-content:space-between;gap:24px}
+  .mark{font-size:30px}
+  .cta{background:var(--amber);color:var(--ink);font-family:Archivo,sans-serif;font-weight:900;
+       font-size:29px;padding:21px 40px;border-radius:999px;white-space:nowrap;
+       box-shadow:0 14px 36px rgba(0,0,0,.34)}
+  .area{font-family:Inter,sans-serif;font-weight:600;font-size:21px;letter-spacing:.02em;
+        color:rgba(246,244,238,.72);text-align:center;margin-top:26px}
+
+  /* 9:16: the same scrim, its stops remapped so the shape designed for the
+     1350 composition lands on the safe band and holds flat past it. */
+  :root[data-ar="9x16"] .scrim{background:linear-gradient(180deg,rgba(14,26,18,.56) 0%,rgba(14,26,18,.56) 13.0%,rgba(14,26,18,.26) 31.0%,rgba(14,26,18,.30) 53.2%,rgba(14,26,18,.88) 82.3%,rgba(14,26,18,.88) 100%)}
+</style></head><body>
+<div class="ad">
+  <img class="photo" src="img/upholstery-cleaning-sectional-sofa.jpg" alt="">
+  <div class="scrim"></div>
+
+  <div class="screen">
+    <div class="clock">
+      <div class="date">Saturday, October 3</div>
+      <div class="time">7:42</div>
+    </div>
+
+    <div class="notes">
+      <div class="note">
+        <div class="nhead">
+          <div class="app"><svg viewBox="0 0 24 28" fill="none"><path d="M12 1 2 5v9c0 6.1 4.2 11.3 10 13 5.8-1.7 10-6.9 10-13V5L12 1Z" fill="currentColor"/><path d="m7.4 14.2 3.1 3.1 6.1-6.6" stroke="#1F3C2A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="name">Certified Safe</div>
+          <div class="when">now</div>
+        </div>
+        <h2>The traffic lanes are what give it away.</h2>
+        <p>A year of shoes, paws and spills settles into the fibre. Vacuuming lifts the surface. It doesn't lift that.</p>
+      </div>
+
+      <div class="note offer-note">
+        <div class="nhead">
+          <div class="app"><svg viewBox="0 0 24 28" fill="none"><path d="M12 1 2 5v9c0 6.1 4.2 11.3 10 13 5.8-1.7 10-6.9 10-13V5L12 1Z" fill="currentColor"/><path d="m7.4 14.2 3.1 3.1 6.1-6.6" stroke="#1F3C2A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="name">Certified Safe</div>
+          <div class="when">now</div>
+        </div>
+        <h2><span class="cur">$</span>129<span class="cents">99</span><span class="rooms">· two rooms</span></h2>
+        <p>Hot-water extraction and deodorizer. Fixed quote before we start — no mystery line items.</p>
+        <div class="fine">10 years · 5-star rated · 100% satisfaction guarantee</div>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div class="mark on-dark"><svg class="shield" viewBox="0 0 24 28" fill="none"><path d="M12 1 2 5v9c0 6.1 4.2 11.3 10 13 5.8-1.7 10-6.9 10-13V5L12 1Z" fill="currentColor"/><path d="m7.4 14.2 3.1 3.1 6.1-6.6" stroke="#152A1D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Certified Safe</div>
+      <div class="cta">Book your slot</div>
+    </div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,1 @@
+<svg class="shield" viewBox="0 0 24 28" fill="none" aria-hidden="true"><path d="M12 1 2 5v9c0 6.1 4.2 11.3 10 13 5.8-1.7 10-6.9 10-13V5L12 1Z" fill="currentColor"/><path d="m7.4 14.2 3.1 3.1 6.1-6.6" stroke="#F6F4EE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>

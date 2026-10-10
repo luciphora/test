@@ -1,0 +1,200 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<div class="wrap">
+
+<header class="top">
+  <p class="eyebrow"><span>Market scan</span><span>agencies selling to service businesses</span><span>10 Sep 2026</span></p>
+  <h1>Nobody here<br>sells a guarantee.</h1>
+  <p class="deck">{{N_ADS}} live ads from {{N_BRANDS}} advertisers who sell <em>to</em> service businesses —
+  home services, med spas, roofing, financial advisors. {{N_TX}} transcripts. The longest-running ad has been
+  up {{MAX}} days. The pattern that separates this cohort from Daniel Iles's library is what they put in the
+  first ten seconds.</p>
+  <div class="verdict">
+    <div class="vpill yes"><b>{{MAX}}d</b> longest-running ad</div>
+    <div class="vpill yes"><b>{{N_60}}</b> ads past 60 days</div>
+    <div class="vpill no"><b>{{GUAR_MED}}d</b> median for guarantee hooks</div>
+    <div class="vpill yes"><b>{{AUTO_N}}</b> ads that demo the product on screen</div>
+  </div>
+</header>
+
+<section>
+  <p class="lede">Read this before any number below</p>
+  <h2>One snapshot, and a broken index</h2>
+  <div class="col">
+    <p>Two things bound what this can claim.</p>
+    <p><b>This is a single day.</b> The Iles teardown had four snapshots, so it could report what he killed and
+    when. Here there is only today — so everything ranks on <em>how long an ad has already been running</em>,
+    which is real, and nothing reports kill rates, which are invisible from one pull.</p>
+    <p><b>Only live ads were pulled.</b> Any survival percentage computed from this data reads 100% and means
+    nothing. Tenure is the metric.</p>
+  </div>
+  <div class="note">
+    <p><b>Foreplay's discovery index cannot be ranked, and this is worth knowing before you trust any tool that
+    uses it.</b> Sorting it by longest-running returns <code>running_duration: null</code> on every row. Filtering
+    it by a minimum duration returns ads that all report <em>exactly</em> the filter's floor, from an identical
+    start date — the constraint echoed back as data. Its "service business" niche tag returns zero brands, and
+    "business/professional" is a B2B-SaaS bucket holding Rocket Lawyer, Tines and Sticker Mule.</p>
+    <p>Every figure on this page comes from per-brand pulls instead, where tenure is genuine. Candidates were
+    found by text search, which works; ranking came after.</p>
+  </div>
+</section>
+
+<section>
+  <p class="lede">Nine advertisers, ranked by their deepest proven ad</p>
+  <h2>Two completely different operating models</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Advertiser</th><th>Live ads</th><th>Longest</th><th>Median tenure</th><th></th></tr></thead>
+    <tbody>{{ADV_ROWS}}</tbody>
+  </table></div>
+  <div class="col">
+    <p><b>High-volume testers.</b> Nonstop Automation and Home Service Accelerator run 127 and 97 live ads with
+    medians of 21 and 2 days. Almost everything they launch dies young; a few survive past 280 days. This is the
+    Iles model — buy information with volume.</p>
+    <p><b>Found-it-and-left-it.</b> Authentic Advisory Systems runs five ads with a <em>300-day median</em>. Mr Med
+    Spa runs 67 with a 45-day median. They are not testing; they are harvesting.</p>
+    <p>Copy the second group's ads. Copy the first group's process.</p>
+  </div>
+</section>
+
+<section>
+  <p class="lede">Where the {{N_ADS}} ads sit</p>
+  <h2>Most of this market is churn</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Tenure band</th><th>Ads</th><th>Share of the cohort</th></tr></thead>
+    <tbody>{{BAND_ROWS}}</tbody>
+  </table></div>
+  <div class="col">
+    <p>{{N_60}} ads of {{N_ADS}} have run past sixty days. Everything else is either too young to have proven
+    anything or on its way out. When you look at a competitor's ad library and see hundreds of ads, that is what
+    you are mostly looking at.</p>
+  </div>
+</section>
+
+<section>
+  <p class="lede">Hook families derived from these {{N_TX}} transcripts</p>
+  <h2>What the openers are worth</h2>
+  <div class="col">
+    <p>Ranked by median tenure, not by count — an opener used twice that survives 111 days tells you more than one
+    used fifty times that dies in a week. {{N_CLASS}} of {{N_TX}} transcripts classify; the rest are one-offs.</p>
+  </div>
+  <div class="scroll"><table>
+    <thead><tr><th>Hook family</th><th>Ads</th><th>Median tenure</th><th></th><th>Max</th></tr></thead>
+    <tbody>{{HOOK_ROWS}}</tbody>
+  </table></div>
+  <div class="note">
+    <p><b>Small numbers at the top — three ads is a hint, not a law.</b> The bottom of the table is the sturdier
+    finding: the <em>guarantee</em> hook has the lowest median tenure in this cohort at {{GUAR_MED}} days. In
+    Daniel Iles's library the same hook went to zero survivors out of twenty-six inside the medical niche. Two
+    unrelated corpora, same answer.</p>
+  </div>
+</section>
+
+<section>
+  <p class="lede">The four openers worth stealing</p>
+  <h2>Every one of them refuses the obvious pitch first</h2>
+  <div class="pair">
+    <div class="quote won">
+      <p>"Sacramento home service business owners, your lead problem <em>isn't what you think it is</em>. You
+      don't need more leads…"</p>
+      <p class="out">147 days · longest-running English opener in the set</p>
+    </div>
+    <div class="quote won">
+      <p>"There are <em>two types</em> of med spa owners. The ones who get new patients predictably and on-demand,
+      and those at the mercy of…"</p>
+      <p class="out">121 days · forces self-sorting in one sentence</p>
+    </div>
+    <div class="quote won">
+      <p>"Med spas, you <em>don't have to</em> run discount promos or limited-time specials to get new patients."</p>
+      <p class="out">121 days · attacks the tactic, not the person</p>
+    </div>
+    <div class="quote won">
+      <p>"<em>If you're having a slower month</em>, the first thing to check is…"</p>
+      <p class="out">72-day median across 10 ads · conditional entry</p>
+    </div>
+  </div>
+  <div class="col">
+    <p>Geo-naming, self-sorting, denying the expected offer, gating on a condition. None of them opens with a
+    promise. Every one of them makes the listener do a small piece of work — decide which type they are, admit
+    they're in a slow month — before anything is sold.</p>
+  </div>
+</section>
+
+<section>
+  <p class="lede">The structural difference from Iles</p>
+  <h2>They demo. He promises.</h2>
+  <div class="col">
+    <p>{{AUTO_N}} of {{N_TX}} transcripts here are screen-recorded product walkthroughs: a funnel being built, an
+    AI voice agent answering a live call, an Angi or Yelp integration firing. Daniel Iles has 2,116 ads in his
+    library and <em>not one</em> does this.</p>
+    <p>He carries belief with a guarantee — "one million views or you don't pay." This cohort carries it by
+    showing the machine working. Exactly one ad across all {{N_ADS}} uses a work-for-free promise, and it is
+    55 days old.</p>
+    <p>Both approaches sell to the same buyer. Only one of them has an opener family with a 7-day median.</p>
+  </div>
+</section>
+
+<section>
+  <p class="lede">The 18 deepest-proven ads with audio</p>
+  <h2>What's actually running</h2>
+  <div class="gal">{{TOP}}</div>
+</section>
+
+<section>
+  <p class="lede">Raw transcripts · search and filter</p>
+  <h2>Read the scripts</h2>
+  <div class="col">
+    <p>All {{TX_COUNT}} transcripts, longest-running first. Search hits the full text — pull every ad that says
+    "predictable" or "guarantee" and read them side by side.</p>
+  </div>
+  <div class="filters">
+    <input id="q" type="search" placeholder="Search transcript text…" aria-label="Search transcripts">
+    <select id="fs" aria-label="Filter by status"><option value="">All</option><option value="live">Live</option></select>
+    <select id="ff" aria-label="Filter by advertiser"><option value="">All advertisers</option></select>
+    <select id="fv" aria-label="Filter by vertical"><option value="">All verticals</option></select>
+    <span id="count"></span>
+  </div>
+  <div class="txlist" id="txlist">{{TX_BLOCKS}}</div>
+</section>
+
+<section>
+  <p class="lede">Limits</p>
+  <h2>What this can't tell you</h2>
+  <div class="col">
+    <ul class="tight">
+      <li><b>No spend or conversion data exists</b> for commercial ads anywhere in Meta's library. Tenure means
+        "not switched off", never "profitable".</li>
+      <li><b>One snapshot.</b> No kill rates, no stop dates, no trend. Re-pull in two weeks and the deltas become
+        real — that is when this gets genuinely useful.</li>
+      <li><b>Nine advertisers found by four text queries</b> is not the whole market. There is no working niche
+        filter to enumerate it properly.</li>
+      <li><b>The top hook rows rest on 2–4 ads.</b> Treat them as leads to test, not conclusions.</li>
+      <li><b>Four ads are in Malay</b> (Authentic Advisory Systems, Malaysian market). Their 300-day median is
+        real; the market isn't yours.</li>
+      <li><b>{{N_TX}} of {{N_ADS}} ads have transcripts.</b> The rest are static or have no audio on file.</li>
+      <li>ASR garbles terms — "vet spa" and "MedSpar" are both med spa. Read for structure, not wording.</li>
+    </ul>
+  </div>
+</section>
+
+<section style="border:0">
+  <p class="lede">If you take four things</p>
+  <h2>What to do</h2>
+  <div class="col">
+    <ul class="tight">
+      <li><b>Drop the guarantee from your opener.</b> Lowest median here, zero survivors in Iles's niche cohort.
+        Two corpora agree. Keep it as a closing line if you want it at all.</li>
+      <li><b>Open by denying the obvious.</b> "Your lead problem isn't what you think" — 147 days. "You don't have
+        to run discounts" — 121 days. Both refuse the expected pitch before making one.</li>
+      <li><b>Demo something.</b> Show the machine working. It buys belief more cheaply than a promise does, and
+        it's the one format Iles's entire library is missing.</li>
+      <li><b>Watch mrmedspa.com and authenticadvisorysystems.com.</b> Small books, high medians — they look like
+        they found a winner and stopped testing. Those are the ads to study.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>Meta Ad Library data via Foreplay · {{N_ADS}} live ads · {{N_BRANDS}} advertisers · single snapshot,
+10 Sep 2026 · No spend or conversion data exists for commercial ads; every claim here is inference from how long
+an ad has been running.</footer>
+
+</div>

@@ -1,0 +1,133 @@
+<!doctype html><html lang="es"><head>
+<meta charset="utf-8">
+<meta name="size" content="1080x1350">
+<title>A7es · Canaletas · Voz del dueño, temporada</title>
+<link rel="stylesheet" href="fonts/embedded.css">
+<link rel="stylesheet" href="brand.css">
+<style>
+  /* Framework from the live gutter ads, not the Stanley layouts — a different category
+     sells differently. Orillia Window Cleaning (DC94KahWV29n6qBCXvN1, live) and Paul Gray
+     Pressure Washing both open in the owner's own voice, by name, with years in the trade.
+     The shape is: who I am → what happens if you leave it → what we actually do → from
+     price → the season is closing. Copy is Certified Safe's own. */
+  .ad{background:var(--forest-deep)}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:20px;
+       padding:42px 56px 0}
+  .mark{font-size:30px}
+  .season{font-family:Inter,sans-serif;font-weight:700;font-size:18px;letter-spacing:.13em;
+          text-transform:uppercase;color:var(--ink);background:var(--amber);
+          border-radius:999px;padding:11px 20px;white-space:nowrap}
+
+  .body{flex:1;display:flex;flex-direction:column;padding:38px 56px 0}
+  h1{font-family:Archivo,sans-serif;font-weight:900;font-size:76px;line-height:.97;
+     letter-spacing:-.038em;color:var(--white);margin-bottom:22px}
+  h1 em{font-style:normal;color:var(--amber)}
+  .lede{font-family:Inter,sans-serif;font-weight:500;font-size:28px;line-height:1.42;
+        color:#CFE0D4;max-width:34ch;margin-bottom:32px}
+  .lede b{color:var(--white);font-weight:600}
+
+  .proof{flex:1 1 0;min-height:0;margin-bottom:26px;border-radius:16px;width:100%;
+         object-fit:cover;display:block;min-width:0}
+  .does{display:flex;flex-direction:column;gap:15px}
+  .d{display:flex;align-items:center;gap:15px}
+  .d svg{flex:0 0 auto;width:26px;height:26px}
+  .d p{font-family:Archivo,sans-serif;font-weight:700;font-size:28px;letter-spacing:-.01em;
+       color:var(--paper)}
+
+  /* price + owner sit together: the number and the man standing behind it */
+  .close{display:flex;align-items:stretch;gap:0;margin-top:34px;
+         border:2px solid rgba(246,244,238,.18);border-radius:18px;overflow:hidden}
+  .price{flex:0 0 auto;background:var(--amber);padding:24px 30px;text-align:center;
+         display:flex;flex-direction:column;justify-content:center}
+  .price .cap{font-family:Inter,sans-serif;font-weight:700;font-size:16px;letter-spacing:.14em;
+              text-transform:uppercase;color:rgba(14,26,18,.62);margin-bottom:2px}
+  .price .fig{font-family:Archivo,sans-serif;font-weight:900;font-size:62px;line-height:1;
+              letter-spacing:-.04em;color:var(--ink)}
+  .price .fig .cur{font-size:.5em;vertical-align:.34em;margin-right:.04em}
+  .price .fig .cents{font-size:.4em;vertical-align:.86em;margin-left:.03em}
+  .who{flex:1;display:flex;align-items:center;gap:18px;padding:18px 22px;min-width:0}
+  .who .shot{flex:0 0 auto;width:92px;height:92px;border-radius:50%;
+             border:3px solid var(--amber);object-fit:cover;object-position:50% 50%;
+             background:var(--forest)}
+  .who .n{font-family:Archivo,sans-serif;font-weight:900;font-size:31px;letter-spacing:-.02em;
+          color:var(--white);line-height:1.1;margin-bottom:5px}
+  .who .r{font-family:Inter,sans-serif;font-weight:500;font-size:21px;line-height:1.3;
+          color:#A8C0B0}
+
+  .foot{background:var(--paper);padding:26px 56px;display:flex;align-items:center;
+        justify-content:space-between;gap:22px;margin-top:30px;flex:0 0 auto}
+  .foot .t{font-family:Inter,sans-serif;font-weight:600;font-size:20px;line-height:1.45;
+           color:#46584D}
+  .foot .t b{display:block;font-family:Archivo,sans-serif;font-weight:900;font-size:23px;
+             color:var(--forest);letter-spacing:.01em}
+  .cta{background:var(--forest);color:var(--paper);font-family:Archivo,sans-serif;
+       font-weight:900;font-size:28px;padding:20px 36px;border-radius:999px;white-space:nowrap}
+
+  /* 1:1 — the lede and the method list give up the height */
+  :root[data-ar="1x1"] .top{padding:32px 56px 0}
+  :root[data-ar="1x1"] .body{padding:30px 56px 0}
+  :root[data-ar="1x1"] h1{font-size:62px;margin-bottom:18px}
+  :root[data-ar="1x1"] .lede{font-size:25px;margin-bottom:24px;max-width:40ch}
+  :root[data-ar="1x1"] .proof{margin-bottom:20px}
+  :root[data-ar="1x1"] .proof .l{font-size:23px}
+  :root[data-ar="1x1"] .proof .s{font-size:19px}
+  :root[data-ar="1x1"] .does{gap:12px}
+  :root[data-ar="1x1"] .d p{font-size:25px}
+  :root[data-ar="1x1"] .close{margin-top:24px}
+  :root[data-ar="1x1"] .price{padding:18px 26px}
+  :root[data-ar="1x1"] .price .fig{font-size:52px}
+  :root[data-ar="1x1"] .who .shot{width:78px;height:78px}
+  :root[data-ar="1x1"] .who .n{font-size:27px}
+  :root[data-ar="1x1"] .who .r{font-size:19px}
+  :root[data-ar="1x1"] .foot{margin-top:22px;padding:22px 56px}
+  :root[data-ar="1x1"] .cta{font-size:25px;padding:17px 30px}
+  /* es: longer than the English it replaces */
+  h1{font-size:72px}
+  .lede{font-size:27px;max-width:36ch}
+  .d p{font-size:26px}
+  .who .n{font-size:29px}
+  .who .r{font-size:19px}
+  .foot .t{font-size:18px}
+  .foot .t b{font-size:21px}
+  .cta{font-size:26px;padding:19px 30px}
+</style></head><body>
+<div class="ad">
+  <div class="top">
+    <div class="mark on-dark"><svg class="shield" viewBox="0 0 24 28" fill="none"><path d="M12 1 2 5v9c0 6.1 4.2 11.3 10 13 5.8-1.7 10-6.9 10-13V5L12 1Z" fill="currentColor"/><path d="m7.4 14.2 3.1 3.1 6.1-6.6" stroke="#152A1D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Certified Safe</div>
+    <div class="season">Reservando Oct y Nov</div>
+  </div>
+
+  <div class="body">
+    <h1>Una canaleta tapada <em>no para ahí.</em></h1>
+    <p class="lede">Se tapan, se congelan, y vuelven en primavera como madera podrida y agua
+    dentro de la pared. <b>Limpiarlas en octubre es la versión barata.</b></p>
+
+    <img class="proof" src="img/gutter-debris.png" alt="">
+
+    <div class="does">
+      <div class="d"><svg viewBox="0 0 24 24" fill="none" stroke="#F2A71B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5.2L20 6.4"/></svg><p>Limpieza a mano, no con sopladora</p></div>
+      <div class="d"><svg viewBox="0 0 24 24" fill="none" stroke="#F2A71B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5.2L20 6.4"/></svg><p>Bajantes destapadas y revisadas</p></div>
+      <div class="d"><svg viewBox="0 0 24 24" fill="none" stroke="#F2A71B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5.2L20 6.4"/></svg><p>Todo embolsado y retirado</p></div>
+    </div>
+
+    <div class="close">
+      <div class="price">
+        <div class="cap">Desde</div>
+        <div class="fig"><span class="cur">$</span>149<span class="cents">99</span></div>
+      </div>
+      <div class="who">
+        <img class="shot" src="img/jamel-head.jpg" alt="">
+        <div>
+          <div class="n">Jamel Troncoso</div>
+          <div class="r">Dueño · 10 años en Greater Boston</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="t"><b>Con licencia y seguro en MA · 5 estrellas</b>Garantía de satisfacción 100% · Le atendemos en español</div>
+    <div class="cta">Reciba su precio</div>
+  </div>
+</div>
+</body></html>

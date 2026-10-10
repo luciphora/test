@@ -1,0 +1,179 @@
+<header class="top">
+  <p class="kicker">Category scan · Meta ad libraries · 11 September 2026</p>
+  <h1>The whole category sells the same discount.</h1>
+  <p class="deck">{{N_ADS}} ads from {{N_BRANDS}} advertisers who sell ceramic coating. {{N_TX}} transcripts.
+  The winning offer is not a price — it is an anchor cut in half with a free adjacent service bolted on.
+  And almost nobody here retargets.</p>
+  <ul class="pills">
+    <li><b>{{SVC_MAX}}d</b><span>deepest live service ad</span></li>
+    <li><b>{{N_SVC_LIVE}}</b><span>live service ads</span></li>
+    <li><b>{{SVC_MED}}d</b><span>median live tenure</span></li>
+    <li><b>{{PCT_ONPLAT}}%</b><span>never leave Meta</span></li>
+  </ul>
+</header>
+
+<section>
+  <h2>Read this first: what the data cannot tell you</h2>
+  <p>Meta publishes no spend, impressions or conversions for commercial ads. Two signals survive:
+  <b>how long an ad has been live</b>, and <b>where the advertiser is putting new money</b>. Everything
+  below ranks on those. Longevity means an ad was <em>not killed</em> — it does not mean profitable.</p>
+  <p class="warn"><b>Dead-ad tenure is censored.</b> Foreplay reports roughly one day for almost every
+  inactive ad regardless of how long it really ran. That is a data artifact, not a stop date. So every
+  day-figure on this page is computed from <b>live ads only</b>; dead ads contribute to counts and
+  nothing else. This is a single snapshot — a state, not a trend. A second pull in two weeks would give
+  real kill dates for everything live today.</p>
+  <p class="warn"><b>The discovery index is not a ranking tool.</b> A text search for "ceramic coating"
+  returned TikTok organic clips with <code>running_duration: null</code>, duplicate records, and a
+  non-stick <em>cookware</em> ad. Searching "paint protection film" returned German film production
+  companies. Every number here comes from per-page pulls instead. The brand index also overstates
+  library size by roughly half — it claimed 1,389 ads for one advertiser that returned 195.</p>
+</section>
+
+<section>
+  <h2>Three businesses, not one market</h2>
+  <p>"Ceramic coating advertiser" covers three unrelated companies. Pooling them would average a local
+  shop selling a $995 appointment together with a DTC brand selling a $20&ndash;35 bottle and an Indian franchisor
+  selling a ₹20-lakh territory. Survival is only compared inside a segment on this page.</p>
+  <table>
+    <thead><tr><th>Segment</th><th class="n">Ads</th><th class="n">Live</th><th class="n">Median live</th><th class="n">Deepest</th></tr></thead>
+    <tbody>{{SEG_ROWS}}</tbody>
+  </table>
+  <p>The rest of this report is about the <b>service</b> segment — {{N_SVC}} ads — because that is the
+  business a coating shop is actually in. Product ({{N_PROD}}) and franchise ({{N_FRAN}}) appear only
+  where they contradict something.</p>
+</section>
+
+<section>
+  <h2>The offer, dismantled</h2>
+  <p>This is the part that transfers. The service segment converges on one structure, and it is not
+  "cheap ceramic coating".</p>
+  <h3>1. The biggest number in the ad is never the price</h3>
+  <p>{{N_50OFF}} of the {{N_ANYOFF}} service ads that name any discount use exactly <b>50% off</b>. Not
+  20, not 25. But the percentage is almost never said alone — it is converted into absolute dollars, and
+  when you classify every dollar figure by the words around it, the two most-repeated numbers in the
+  category are <b>a saving and the value of the free add-ons</b>. The actual price comes third.</p>
+  <table>
+    <thead><tr><th>Dollar figure in copy</th><th>Usually means</th><th class="n">Mentions</th><th></th></tr></thead>
+    <tbody>{{PRICE_ROWS}}</tbody>
+  </table>
+  <p class="warn">Role is inferred from the words immediately before each figure, so a minority of
+  mentions in each row are labelled otherwise — the column reports the dominant use, not a clean split.
+  Rows shaded green are the ones that really are a price.</p>
+  <h3>2. Never discount further — add a free adjacent service</h3>
+  <p>Once the price is halved it stays put. The extra value is always a <em>different service</em> with
+  its own stated dollar value, so the core price is never eroded.</p>
+  <table>
+    <thead><tr><th>Bonus</th><th class="n">Ads</th><th></th></tr></thead>
+    <tbody>{{BONUS_ROWS}}</tbody>
+  </table>
+  <h3>3. Gate the bonus behind the watch-time</h3>
+  <p>The most-copied line in the corpus reveals the bonus as a reward for finishing the video:
+  <em>"since you watched the end of this video, we're throwing in a free windshield ceramic coating."</em>
+  It does double duty — it lifts completion rate and it makes the bonus feel earned rather than
+  discounted.</p>
+  <blockquote>Austin car owners, we ran a deal so good that it sold out in just 48 hours, and this
+  summer we're bringing it back. Claim $1,300 savings on our paint correction and 10-year ceramic
+  coating bundle — regularly $2,295, for just $995.<cite>Huracán Nero · longest-running live service ad in the corpus</cite></blockquote>
+</section>
+
+<section>
+  <h2>Top of funnel: the city, in the first second</h2>
+  <p>Across all {{N_SVC}} service ads the largest hook family by a wide margin is <b>{{TOP_HOOK}}</b>,
+  and it is still the largest among the last 60 days' launches ({{TOP_HOOK_N}} of {{N_NEW60}} — the
+  breakdown is in the next section). The opener is a vocative: the city name, then the audience.
+  "Austin car owners." "Mount Joy car owners." "Charleston drivers." It is doing geo-qualification in
+  the creative rather than trusting the targeting.</p>
+  <table>
+    <thead><tr><th>Hook family</th><th class="n">Ads</th><th></th><th class="n">Live</th><th class="n">Median live</th></tr></thead>
+    <tbody>{{HOOK_ROWS}}</tbody>
+  </table>
+  <p class="warn"><b>Do not over-read this table.</b> Median live tenure is {{SVC_MED}} days across
+  nearly every family, and several rows rest on one or two live ads. Hook family does <em>not</em>
+  separate on survival in this corpus — the category churns creative far too fast for that. Read the
+  <b>Ads</b> column as what the market bets on, not the <b>Median</b> column as what wins.</p>
+</section>
+
+<section>
+  <h2>Where the new money goes</h2>
+  <p>{{N_NEW60_ON}} of the {{N_NEW60}} service ads launched in the last 60 days — {{PCT_NEW60_ON}}% —
+  never leave Meta. No landing page, no site. The click opens Messenger or an instant form.</p>
+  <table>
+    <thead><tr><th>Hook family, last 60 days</th><th class="n">Ads</th><th></th><th class="n">Share</th></tr></thead>
+    <tbody>{{NEW_ROWS}}</tbody>
+  </table>
+  <table>
+    <thead><tr><th>Funnel (all service ads)</th><th class="n">Ads</th><th></th><th class="n">Share</th></tr></thead>
+    <tbody>{{FUN_ROWS}}</tbody>
+  </table>
+  <p>Only {{N_CAPTURE}} service ads ({{PCT_CAPTURE}}%) point at a dedicated capture page — a host built
+  for one offer, like <code>promo.gritdetailingnc.com</code> or <code>quote.ceramicprodaytona.com</code>.
+  Every one of them is currently dead. That is not proof the approach fails; it is proof that nobody in
+  this corpus is currently funding it.</p>
+</section>
+
+<section class="flag">
+  <h2>Retargeting: the hole in the category</h2>
+  <p>You asked for retargeting examples. The honest answer is that there are almost none to show, and
+  the reason matters.</p>
+  <p><b>Ad libraries never publish audience targeting.</b> Nothing in the data says "this ad was shown to
+  a warm audience". So retargeting can only be inferred two ways, and I checked both:</p>
+  <ul>
+    <li><b>Format.</b> A dynamic product ad (<code>dpa</code>) is retargeting by construction. There are
+    <b>{{N_DPA}}</b> in the whole corpus — and <b>{{N_DPA_SVC}}</b> in the service segment.</li>
+    <li><b>Copy addressed to someone who already engaged</b> — "still thinking about it", "your quote",
+    "you came back". Every hit was a false positive. The phrase that kept matching,
+    <em>"since you watched the end of this video"</em>, is a bonus reveal aimed at a cold viewer, not a
+    warm-audience call-out.</li>
+  </ul>
+  <p>So: the ceramic-coating service category runs essentially <b>all cold, all on-platform, all
+  top-of-funnel</b>. The retargeting layer that a $995–$2,295 considered purchase would obviously
+  justify is simply not being run by the advertisers in this scan. Treat that as the opening, not as a
+  reason to skip it.</p>
+</section>
+
+<section>
+  <h2>Who is actually spending</h2>
+  <p>One advertiser dominates. Huracán Nero holds {{HN_ADS}} of the {{N_SVC}} service ads, {{HN_LIVE}}
+  of the {{N_SVC_LIVE}} live ones, and launched {{HN_NEW}} in the last 60 days. Read the category
+  medians with that in mind — they largely describe one Austin shop's testing cadence.</p>
+  <table>
+    <thead><tr><th>Advertiser</th><th class="n">Ads</th><th class="n">Live</th><th class="n">Deepest live</th><th class="n">New in 60d</th></tr></thead>
+    <tbody>{{ADV_ROWS}}</tbody>
+  </table>
+</section>
+
+<section>
+  <h2>The creative</h2>
+  <p>Longest-running live service ads first, then the deepest of the rest. Click a still for the video.</p>
+  <div class="gallery">{{TOP}}</div>
+</section>
+
+<section>
+  <h2>Every transcript</h2>
+  <p>{{N_TX}} transcripts, {{N_CLASS}} classified into a hook family ({{PCT_CLASS}}% of those with real
+  speech; {{N_JUNK}} more transcribe to nothing but "uh" or "thanks for watching"). Live first. Search
+  filters as you type.</p>
+  <div class="txbar"><input id="q" type="search" placeholder="Search transcripts…" aria-label="Search transcripts">
+    <span id="count">{{TX_COUNT}} of {{TX_COUNT}}</span></div>
+  <div id="txwrap">{{TX_BLOCKS}}</div>
+</section>
+
+<section>
+  <h2>What I'd take from this</h2>
+  <ol class="takeaways">
+    <li><b>Copy the offer architecture, not the price.</b> Anchor, halve, state the saving in dollars,
+    then add a free adjacent service with its own value. Never discount twice.</li>
+    <li><b>Put the city in the first line.</b> It is what {{TOP_HOOK_N}} of the last 60 days' launches do.</li>
+    <li><b>Gate the bonus behind watch-time.</b> One line, two jobs.</li>
+    <li><b>Build the retargeting layer nobody is running.</b> {{N_DPA_SVC}} dynamic ads in {{N_SVC}}
+    service ads is a category-wide blind spot on a four-figure considered purchase.</li>
+    <li><b>Test a capture page against the instant form.</b> {{PCT_ONPLAT}}% of the category stays on
+    Meta. That is consensus, and consensus is untested by definition.</li>
+  </ol>
+</section>
+
+<footer>
+  <p>Sources: per-page Meta ad-library pulls via Foreplay, 11 September 2026. {{N_ADS}} unique ads,
+  {{N_BRANDS}} advertisers, {{N_TX}} transcripts (ASR — brand terms garble). One snapshot: a state, not
+  a trend. Day-figures from live ads only. No spend or conversion data exists in any ad library.</p>
+</footer>
