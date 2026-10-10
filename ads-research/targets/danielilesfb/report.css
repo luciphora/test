@@ -186,7 +186,7 @@ td.ev{font-size:.82rem;color:var(--ink-3);line-height:1.45;min-width:16rem}
 .verdict-tag.refuted{background:var(--dead-bg);color:var(--dead)}
 .verdict-tag.overtaken{background:var(--mid-bg);color:var(--mid)}
 .verdict-tag.holds{background:var(--live-bg);color:var(--live)}
-.verdict-tag.untestable{background:var(--surface-2);color:var(--ink-3);border:1px solid var(--rule-2)}
+.verdict-tag.unsupported{background:var(--surface-2);color:var(--ink-3);border:1px solid var(--rule-2)}
 .cols2{display:grid;grid-template-columns:1fr;gap:14px;margin:1.2rem 0}
 @media(min-width:760px){.cols2{grid-template-columns:1fr 1fr}}
 .quote.lost{border-left-color:var(--dead)}

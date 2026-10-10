@@ -21,6 +21,10 @@ def norm(s, n=80):
     return re.sub(r"[^a-z0-9]+", " ", (s or "").lower()).strip()[:n]
 
 
+def is_guar(h):
+    return "don't pay" in h.lower() or "don’t pay" in h.lower()
+
+
 def pct(n, d):
     return round(100 * n / d) if d else 0
 
@@ -29,6 +33,10 @@ def bar(n, d, cls=""):
     w = min(100, 100 * n / d) if d else 0
     return (f'<div class="barrow"><div class="track"><i class="{cls}" style="width:{w:.1f}%"></i></div>'
             f'<var>{n}</var></div>')
+
+
+def day_of(a):
+    return datetime.datetime.utcfromtimestamp(a["started_running"] / 1000).strftime("%Y-%m-%d")
 
 
 def fmt_date(d):
@@ -134,9 +142,19 @@ def m17(m):
 
 
 months = sorted(set(m29) | set(m10) | {k for k in months17 if "–" not in k})
-B["MONTH_ROWS"] = "".join(
-    f'<tr><td class="big">{m}</td><td class="n">{m17(m)}</td><td class="n">{m29.get(m, 0)}</td>'
-    f'<td class="n"><b>{m10.get(m, 0)}</b></td></tr>' for m in months)
+sd29 = [day_of(a) for a in live29.values()]
+sd10 = [a["started_date"] or "" for a in live]
+mrows = ""
+for m in months:
+    if m == "2026-09":   # the 17 Sep flood and the 29-30 Sep relaunch share a month; keep them apart
+        for lab, lo, hi, c17 in (("2026-09 (1–17)", "2026-09-01", S17, m17(m)), ("2026-09 (18–30)", "2026-09-18", "2026-09-30", 0)):
+            mrows += (f'<tr><td class="big">{lab}</td><td class="n">{c17}</td><td class="n">{sum(lo <= d <= hi for d in sd29)}</td>'
+                      f'<td class="n"><b>{sum(lo <= d <= hi for d in sd10)}</b></td></tr>')
+            V["SEP1_10" if lo == "2026-09-01" else "SEP2_10"] = sum(lo <= d <= hi for d in sd10)
+        continue
+    mrows += (f'<tr><td class="big">{m}</td><td class="n">{m17(m)}</td><td class="n">{m29.get(m, 0)}</td>'
+              f'<td class="n"><b>{m10.get(m, 0)}</b></td></tr>')
+B["MONTH_ROWS"] = mrows
 V["SEP_17"], V["SEP_10"] = m17("2026-09"), m10.get("2026-09", 0)
 V["OCT_10"] = m10.get("2026-10", 0)
 V["JUN_17"], V["JUN_29"], V["JUN_10"] = m17("2026-06"), m29.get("2026-06", 0), m10.get("2026-06", 0)
@@ -173,9 +191,10 @@ for r in proven17:
         a = pick[0]; used.add(a["id"])
         st = ("live" if a["live"] else "dead" if a["status_1010"] == "flagged_inactive" else "grey")
         say = (f'live · {a["days_running"]}d' if a["live"] else "flagged inactive" if st == "dead" else "not returned")
-        how = ("same Foreplay id" if a.get("in_0917") and not a.get("was_id_0917") else
+        how = ("17 Sep id only; no record under any id in any later pull or probe" if a.get("baseline_only") else
+               "same Foreplay id" if a.get("in_0917") and not a.get("was_id_0917") else
                f're-keyed from <code>{a["was_id_0917"][:8]}…</code>, matched on {a["rekey_match"]}' if a.get("was_id_0917") else
-               "start date, format and funnel (no id on the 17 Sep page)")
+               "start date, format and funnel only (no id on the 17 Sep page)")
         if st in ("grey", "dead"):
             how += "; not in the age-sorted head"
         if st == "dead" and a.get("was_id_0917"):
@@ -195,14 +214,19 @@ B["PROVEN_ROWS"] = "".join(
     f'<td>{esc(r[1])}</td><td><code>{esc(r[3])}</code></td><td class="ev">{how}</td></tr>' for r, a, st, say, how in proven)
 V["PROVEN_LIVE"] = sum(st == "live" for _, _, st, _, _ in proven)
 V["PROVEN_OFF"] = sum(st in ("dead",) or (st == "grey" and say == "not returned") for _, _, st, say, _ in proven)
-V["PROVEN_FLAGGED"] = sum(st == "dead" for _, _, st, _, _ in proven)
+V["PROVEN_FLAGGED"] = sum(st == "dead" and not a.get("was_id_0917") for _, a, st, _, _ in proven)   # own-id flags only
 V["PROVEN_UNRES"] = sum(say == "unresolved" for _, _, _, say, _ in proven)
+V["PROVEN_MISSING"] = len(proven) - sum(st == "live" for _, _, st, _, _ in proven)
+V["REKEYED_N"] = sum(1 for a in ads if a.get("was_id_0917"))
 posters = [(r, a, st) for r, a, st, _, _ in proven if r[1].lower() == "image"]
 V["POSTERS_N"] = len(posters)
 V["POSTERS_OFF"] = sum(st != "live" for _, _, st in posters)
 V["POSTERS_FLAGGED"] = sum(st == "dead" for _, _, st in posters)
 V["POSTER_MIN"] = min(int(r[0]) for r, _, _ in posters)
 V["POSTER_MAX"] = max(int(r[0]) for r, _, _ in posters)
+yp29 = [a for a in live29.values() if (a.get("display_format") or "").upper() == "IMAGE"]
+V["YOUNG_POSTERS_29"] = len(yp29)
+V["YOUNG_POSTERS_10"] = sum(by_id.get(a["id"], {}).get("live", False) for a in yp29)
 guar = [(r, a, st) for r, a, st, _, _ in proven if r[1].lower() in ("video", "dco")]
 V["GUAR_PROVEN_N"] = len(guar)
 V["GUAR_PROVEN_LIVE"] = sum(st == "live" for _, _, st in guar)
@@ -239,17 +263,14 @@ V["YOUNG_N"], V["YOUNG_29"], V["YOUNG_10"] = FATE["under 30d"][0], FATE["under 3
 V["YOUNG_PCT_29"], V["YOUNG_PCT_10"] = pct(V["YOUNG_29"], V["YOUNG_N"]), pct(V["YOUNG_10"], V["YOUNG_N"])
 V["MID_N"] = len(mid); V["MID_10"] = sum(a["live"] for a in mid); V["MID_PCT"] = pct(V["MID_10"], V["MID_N"])
 V["MID_29"] = sum(S29 in a["seen_live"] for a in mid)
+V["MID_MISSED_29"] = sum(a["live"] and S29 not in a["seen_live"] for a in mid)
 V["YOUNG_GONE"] = V["YOUNG_N"] - V["YOUNG_10"]
 
 
-# How big was the cull? The 10 Oct newest-first pull stops at 29 Sep launches, so the
+# How far did the September cohort fall? The 10 Oct newest-first pull stops at 29 Sep launches, so the
 # September cohort is seen only through the two age-sorted pulls, which see old ads in
 # full and newer ones in part. Compare like with like inside those pulls, then give the
 # equal-catch scenario as a range rather than pretending 17 is a count.
-def day_of(a):
-    return datetime.datetime.utcfromtimestamp(a["started_running"] / 1000).strftime("%Y-%m-%d")
-
-
 def asc_union(date):
     out = {}
     for p in glob.glob(f"pages_{date}/live_longest*.json") + glob.glob(f"pages_{date}/live_oldest*.json"):
@@ -266,13 +287,21 @@ for date, tag in ((S29, "29"), (S10, "10")):
     V[f"ASC_EST_{tag}"] = sum(d < YW[0] for d in au.values())
     V[f"ASC_RATIO_{tag}"] = f'{V[f"ASC_YOUNG_{tag}"] / V[f"ASC_EST_{tag}"]:.2f}'
 au10 = asc_union(S10)
-recent_live = [a for a in live if (a.get("started_date") or "") >= "2026-09-29"]
-catch = sum(a["id"] in au10 for a in recent_live) / len(recent_live)
-young_window_live = [a for a in live if YW[0] <= (a.get("started_date") or "") <= YW[1]]
-V["YW_LIVE"] = len(young_window_live)
+oct_live = [a for a in live if (a.get("started_date") or "") >= "2026-10-01"]
+catch = sum(a["id"] in au10 for a in oct_live) / len(oct_live)
+V["CATCH_IN"], V["CATCH_OF"] = sum(a["id"] in au10 for a in oct_live), len(oct_live)
+late_sep = [a for a in live if "2026-09-29" <= (a.get("started_date") or "") <= "2026-09-30"]
+V["LATESEP_IN"], V["LATESEP_OF"] = sum(a["id"] in au10 for a in late_sep), len(late_sep)
 V["CATCH_PCT"] = round(100 * catch)
-V["YOUNG_EST"] = round(len(young_window_live) / catch)
+V["YOUNG_EST"] = round(V["YOUNG_10"] / catch)
 V["YOUNG_EST_PCT"] = pct(V["YOUNG_EST"], V["YOUNG_N"])
+for date, tag in ((S29, "29"), (S10, "10")):
+    au = asc_union(date)
+    V[f"ASC_SEPR_{tag}"] = f'{sum("2026-09-01" <= d <= S17 for d in au.values()) / sum(d < YW[0] for d in au.values()):.2f}'
+V["YOUNG_AUG"] = sum(a["started_date"] < "2026-09-01" for a in young)
+V["YOUNG_SEP"] = V["YOUNG_N"] - V["YOUNG_AUG"]
+V["YOUNG_10_AUG"] = sum(a["live"] and a["started_date"] < "2026-09-01" for a in young)
+V["YOUNG_10_SEP"] = V["YOUNG_10"] - V["YOUNG_10_AUG"]
 
 # ---------------------------------------------------------------- old ads the 17 Sep pulls never returned
 proven_ids = {a["id"] for a in proven_ads}
@@ -317,6 +346,9 @@ V["NEW_LIVE"] = sum(a["live"] for a in new)
 V["NEW_FLAG"] = sum(a["status_1010"] == "flagged_inactive" for a in new)
 V["NEW_FIRST"] = fmt_date(min(a["started_date"] for a in new))
 V["NEW_29"] = sum(a["started_date"] >= "2026-09-29" for a in new)
+_d = lambda x, y: (datetime.date.fromisoformat(y) - datetime.date.fromisoformat(x)).days
+V["GAP_DAYS"] = _d(S17, "2026-09-29")
+V["BATCH_DAYS"] = _d("2026-09-29", max(a["started_date"] for a in new)) + 1
 V["NEW_29_LIVE"] = sum(a["live"] for a in new if a["started_date"] >= "2026-09-29")
 by_day = collections.defaultdict(list)
 for a in new:
@@ -324,6 +356,12 @@ for a in new:
 peak_day = max(by_day, key=lambda d: len(by_day[d]))
 V["PEAK_DAY"], V["PEAK_DAY_N"] = fmt_date(peak_day), len(by_day[peak_day])
 V["PEAK_DAY_LIVE"] = sum(a["live"] for a in by_day[peak_day])
+newest10 = {a["id"] for a in load(f"pages_{S10}/live_newest.json")}
+top2 = sorted({a["started_date"] for a in live})[-2:]
+V["HEAD_N"] = sum(1 for a in live if a["started_date"] in top2)
+V["HEAD_IN"] = sum(1 for a in live if a["started_date"] in top2 and a["id"] in newest10)
+first29 = day_of(load(f"pages_{S29}/live_newest.json")[0])
+V["HEAD29_FIRST"] = fmt_date(first29)
 gap_days = [d for d in by_day if S17 < d < "2026-09-29"]
 V["GAP_LAUNCHES"] = sum(len(by_day[d]) for d in gap_days)
 mx = max(len(v) for v in by_day.values())
@@ -333,8 +371,13 @@ B["CAL_ROWS"] = "".join(
     f'<td>{bar(len(g), mx, "good")}</td></tr>' for d, g in sorted(by_day.items()))
 early = [a for d, g in by_day.items() if "2026-09-29" <= d <= "2026-09-30" for a in g]
 V["EARLY_N"], V["EARLY_FLAG"] = len(early), sum(a["status_1010"] == "flagged_inactive" for a in early)
+hist_ids = {a["id"] for a in hist}
+for tag, lo, hi in (("EARLYH", "2026-09-29", "2026-09-30"), ("PEAKH", peak_day, peak_day)):
+    lv = [a for a in live if lo <= (a.get("started_date") or "") <= hi]
+    V[f"{tag}_IN"], V[f"{tag}_OF"] = sum(a["id"] in hist_ids for a in lv), len(lv)
 pk = by_day[peak_day]
 V["PEAK_FLAG"] = sum(a["status_1010"] == "flagged_inactive" for a in pk)
+V["PEAK_AGE"] = _d(peak_day, S10)
 
 # ---------------------------------------------------------------- script reuse
 # Three tests, because a re-upload, a re-shoot and a niche swap differ: same opening
@@ -358,6 +401,9 @@ for a in ads:
         OLD.setdefault(norm(a["full_transcription"], 10 ** 6), a)
 old_txt = [(norm(t), set(words(t)), grams(words(t)), a) for t, a in OLD.items()]
 V["OLD_DISTINCT"] = len(old_txt)
+# calibration: how much do unrelated old scripts overlap? (sets the re-use thresholds' context)
+_pairs = sorted(jac(old_txt[i][1], old_txt[j][1]) for i in range(len(old_txt)) for j in range(i + 1, len(old_txt)))
+V["JAC_MED"], V["JAC_P99"] = f"{_pairs[len(_pairs) // 2]:.1f}", f"{_pairs[int(len(_pairs) * .99)]:.1f}"
 young_ids = {a["id"] for a in young}
 NEW = [a for a in new if len(words(a.get("full_transcription"))) >= 20]
 for a in NEW:
@@ -365,7 +411,9 @@ for a in NEW:
     a["_m1"] = any(norm(a["full_transcription"]) == o[0] for o in old_txt)
     best = max(old_txt, key=lambda o: jac(ws, o[1]))
     a["_jac"] = jac(ws, best[1])
-    a["_cont"] = max((len(g & o[2]) / len(g) if g else 0) for o in old_txt)
+    src = max(old_txt, key=lambda o: (len(g & o[2]) / len(g)) if g else 0)
+    a["_cont"] = (len(g & src[2]) / len(g)) if g else 0
+    a["_src"] = src[3]
     a["_tier"] = ("A" if a["_cont"] >= .5 else "B" if a["_m1"] or a["_jac"] >= .6 else "C" if a["_jac"] >= .45 else "D")
     a["_src_young"] = best[3]["id"] in young_ids
 V["NEW_TX"] = len(NEW)
@@ -401,6 +449,16 @@ fresh_ads = [a for a in NEW if a["_tier"] in "CD"]
 V["FRESH_ADS"] = len(fresh_ads)
 V["FRESH_D_ADS"] = sum(a["_tier"] == "D" for a in NEW)
 
+V["REUSE_AB_PCT"] = pct(V["REUSE_AB"], len(NEW))
+V["REWRITE_ADS"] = sum(a["_tier"] == "C" for a in NEW)
+A_ads = [a for a in NEW if a["_tier"] == "A"]
+V["SAME_REC_SRC"] = len({norm(a["_src"]["full_transcription"], 10 ** 6) for a in A_ads})
+V["SAME_REC_FLAG"] = sum(a["status_1010"] == "flagged_inactive" for a in A_ads)
+pp = [a for a in A_ads if a.get("publisher_platform") and a["_src"].get("publisher_platform")]
+V["A_PP_N"] = len(pp)
+V["A_PP_SAME"] = sum(set(a["publisher_platform"]) == set(a["_src"]["publisher_platform"]) for a in pp)
+V["FRESH_CLUSTERS"] = V["SCRIPTS_REWRITE"] + V["SCRIPTS_FRESH"]
+
 # the September ads that dropped out: did their scripts come back?
 new_txt = [(norm(a["full_transcription"]), set(words(a["full_transcription"]))) for a in NEW]
 gone = [a for a in young if not a["live"] and len(words(a.get("full_transcription"))) >= 20]
@@ -410,17 +468,21 @@ V["YOUNG_GONE_BACK_PCT"] = pct(len(back), len(gone))
 
 # what the fresh scripts say that the old ones did not
 PHR = {
-    "CLOSE_REVIEWS": r"(1,?000|thousand)\s*(plus|\+)?\s*(5|five)[- ]?star",
+    "CLOSE_REVIEWS": r"(1\s?000|thousa?e?nd)\s*(plus)?\s*(5|five)\s?star",   # norm() turns "1,000" into "1 000"
     "CLOSE_PG": r"performance guarantee",
     "CLOSE_NOINC": r"no (incentive|reason) (to|so) sell",
     "TRIAL": r"(seven|7)[ -]days?(?! a week)",
-    "BOOK": r"book a (free )?call",
 }
 old_texts = [t for t in OLD]
 fresh_texts = [norm(a["full_transcription"], 10 ** 6) for a in fresh_ads]
+fresh_cl = [g for g in clusters.values() if min(x["_tier"] for x in g) in "CD"]
 for k, rx in PHR.items():
     V[f"{k}_OLD"] = pct(sum(bool(re.search(rx, t)) for t in old_texts), len(old_texts))
-    V[f"{k}_FRESH"] = pct(sum(bool(re.search(rx, t)) for t in fresh_texts), len(fresh_texts))
+    V[f"{k}_FRESH"] = pct(sum(any(re.search(rx, norm(x["full_transcription"], 10 ** 6)) for x in g) for g in fresh_cl), len(fresh_cl))
+V["CLOSE_ALL3"] = sum(all(any(re.search(PHR[k], norm(x["full_transcription"], 10 ** 6)) for x in g)
+                          for k in ("CLOSE_REVIEWS", "CLOSE_PG", "CLOSE_NOINC")) for g in fresh_cl)
+fresh_age = [a["days_running"] for g in fresh_cl for a in g if a["live"]]
+V["FRESH_AGE_MIN"], V["FRESH_AGE_MAX"] = min(fresh_age), max(fresh_age)
 V["TRIAL_FRESH_N"] = sum(bool(re.search(PHR["TRIAL"], t)) for t in fresh_texts)
 
 # placements and length
@@ -431,6 +493,14 @@ V["WIDE_NEW_PCT"] = pct(V["WIDE_NEW"], len(new))
 V["WIDE_17_PCT"] = pct(sum(bool(WIDE & set(a.get("publisher_platform") or [])) for a in base_pp), len(base_pp))
 V["WIDE_FRESH"] = sum(bool(WIDE & set(a.get("publisher_platform") or [])) for a in fresh_ads)
 V["WIDE_REUP"] = sum(bool(WIDE & set(a.get("publisher_platform") or [])) for a in NEW if a["_tier"] == "A")
+# wide placements went with new recordings, not with a batch: compare same-day re-uploads
+wide = lambda a: bool(WIDE & set(a.get("publisher_platform") or []))
+newrec = [a for a in NEW if a["_tier"] in "BCD" and "2026-09-30" <= a["started_date"] <= "2026-10-07"]
+reup_same = [a for a in NEW if a["_tier"] == "A" and "2026-09-30" <= a["started_date"] <= "2026-10-07"]
+niche8 = [a for a in NEW if a["_tier"] in "BCD" and a["started_date"] == "2026-10-08"]
+V["WIDE_NEWREC"], V["NEWREC_N"] = sum(map(wide, newrec)), len(newrec)
+V["WIDE_REUP_SAME"], V["REUP_SAME_N"] = sum(map(wide, reup_same)), len(reup_same)
+V["WIDE_OCT8"], V["OCT8_N"] = sum(map(wide, niche8)), len(niche8)
 dn = sorted(a["video_duration"] for a in new if a.get("video_duration"))
 d17 = sorted(a["video_duration"] for a in in17 if a.get("video_duration"))
 V["VDUR_NEW"], V["VDUR_17"] = round(dn[len(dn) // 2]), round(d17[len(d17) // 2])
@@ -439,7 +509,6 @@ V["VDUR_NEW"], V["VDUR_17"] = round(dn[len(dn) // 2]), round(d17[len(d17) // 2])
 H155 = "Our avg clients get 15.5m views"
 heads10 = collections.Counter((a.get("headline") or "").strip() for a in live)
 V["H155_LIVE"], V["H155_PCT"] = heads10[H155], pct(heads10[H155], len(live))
-is_guar = lambda h: "don't pay" in h.lower() or "don’t pay" in h.lower()
 V["GUAR_LIVE"] = sum(v for k, v in heads10.items() if is_guar(k))
 V["GUAR_17"] = sum(v for k, v in heads17.items() if is_guar(k))
 V["H155_NEW"] = sum(1 for a in new if a["live"] and (a.get("headline") or "") == H155)
@@ -455,6 +524,10 @@ funs10 = collections.Counter(a["funnel"] for a in live)
 V["CPY_LIVE"], V["CPY_PCT"] = funs10["cpy"], pct(funs10["cpy"], len(live))
 V["MED_LIVE"], V["LAW_LIVE"], V["PROS_LIVE"] = funs10["med"], funs10["law"], funs10["pros"]
 V["MED_NEW"] = sum(1 for a in new if a["live"] and a["funnel"] == "med")
+V["MED_NEW_ALL"] = sum(1 for a in new if a["funnel"] == "med")
+top5 = sorted(live, key=lambda a: -(a["days_running"] or 0))[:5]
+V["GUAR_TOP5"] = sum(is_guar(a.get("headline") or "") for a in top5)
+V["H155_TOP12"] = sum("15.5m" in (a.get("headline") or "") for a in sorted(live, key=lambda a: -(a["days_running"] or 0))[:12])
 V["LAW_NEW"] = sum(1 for a in new if a["live"] and a["funnel"] == "law")
 V["PROS_NEW"] = sum(1 for a in new if a["live"] and a["funnel"] == "pros")
 fmt10 = collections.Counter((a.get("display_format") or "").upper() for a in live)
@@ -508,6 +581,22 @@ for f in ("guar", "155"):
     g = [a for a in aged if fam(a) == f]
     V[f"AGED_{f.upper()}_N"], V[f"AGED_{f.upper()}_LIVE"] = len(g), sum(a["live"] for a in g)
 V["AGED_155_PCT"] = pct(V["AGED_155_LIVE"], V["AGED_155_N"])
+mid_aged = [a for a in aged if (a.get("days_0917") or a.get("_days17") or 0) < 180]
+for f in ("guar", "155"):
+    g = [a for a in mid_aged if fam(a) == f]
+    V[f"MIDAGE_{f.upper()}_N"], V[f"MIDAGE_{f.upper()}_LIVE"] = len(g), sum(a["live"] for a in g)
+from math import comb
+
+
+def fisher(a, b, c, d):
+    """Two-sided Fisher exact p for [[a, b], [c, d]]."""
+    n1, n2, k = a + b, c + d, a + c
+    pk = lambda x: comb(n1, x) * comb(n2, k - x) / comb(n1 + n2, k)
+    p0 = pk(a)
+    return sum(pk(x) for x in range(max(0, k - n2), min(k, n1) + 1) if pk(x) <= p0 + 1e-12)
+
+
+V["GUAR_P"] = f'{fisher(V["AGED_GUAR_LIVE"], V["AGED_GUAR_N"] - V["AGED_GUAR_LIVE"], V["AGED_155_LIVE"], V["AGED_155_N"] - V["AGED_155_LIVE"]):.1f}'
 pg = [(r, a, st) for r, a, st, _, _ in proven if fam({"headline": r[2]}) == "guar"]
 p155 = [(r, a, st) for r, a, st, _, _ in proven if "15.5m" in r[2]]
 V["PROVEN_GUAR_N"], V["PROVEN_GUAR_LIVE"] = len(pg), sum(st == "live" for *_, st in pg)
@@ -534,14 +623,17 @@ V["NICHE73_NOW_MIN"] = min((a["days_running"] for a in niche73 if a["live"]), de
 V["NICHE73_NOW_MAX"] = max((a["days_running"] for a in niche73 if a["live"]), default=0)
 
 # launch volume the 17 Sep month table hid: the probes of the proven posters' launch days
-probe_155 = collections.Counter()
+probe_155, probe_files = collections.Counter(), set()
 for pth in glob.glob(f"pages_{S10}/probe_*.json"):
     for a in load(pth):
         d = day_of(a)
         if "15.5m" in (a.get("headline") or "") and d < "2026-03-01":
             probe_155[a["id"]] = d
+            probe_files.add(pth)
 V["PROBE_155_N"] = len(probe_155)
 V["PROBE_155_DAYS"] = len(set(probe_155.values()))
+V["PROBE_155_FILES"] = len(probe_files)
+V["PROBE_155_CAPPED"] = sum(bool(json.load(open(p))["metadata"].get("cursor")) for p in probe_files)
 V["SEP_LIVE_17"] = m17("2026-09"); V["AUG_LIVE_17"] = m17("2026-08")
 V["JANFEB_LIVE_17"] = m17("2026-01") + m17("2026-02")
 V["ACT_0909"] = act.get("2026-09-09")
@@ -666,51 +758,56 @@ else:
 tag = lambda t: f'<span class="verdict-tag {t.lower()}">{t}</span>'
 olix = by_id.get("olixEmcDbZ5hTpuKeECD")
 AUDIT = [
-    ('"Pull D added a single new ad, so the union has effectively converged" at ' + str(union17) + ".",
-     "Refuted",
-     f'Pull D was oldest-first, close to pull A\'s longest-running sort, so it mostly repeated it. {V["RETURN_N"]} live ads '
-     f'started before June sit in the fixed head of every age-sorted pull since, and none is in the {union17}. On 10 Oct the '
-     f'two age-sorted pulls share no September-started ad.'),
+    ('"The fourth pull added a single new ad, so the union has effectively converged" at ' + str(union17) + ".",
+     "Unsupported",
+     f'The fourth pull (oldest-first) largely repeated the first (longest-running), so it could not show convergence. '
+     f' {V["RETURN_N"]} ads started before June, none in the {union17}, have led every '
+     f'age-sorted pull since. They were probably paused or not yet flagged live on 17 Sep; which, the data cannot say.'),
     (f'"{V["MAX_17"]} days, the longest-running ad in the account."',
      "Overtaken",
      f'An ad started {V["MAX_LIVE_START"]} is live at {V["MAX_LIVE"]} days and heads every age-sorted pull on 29 Sep and '
      f'10 Oct. It was in no 17 Sep pull; it was most likely switched back on or newly indexed.'),
     ('"Not one ad launched in March, April or May 2026 is still running… whatever ran that spring is gone."',
-     "Refuted",
-     f'{V["RETURN_APR"]} ads started in April are live in every age-sorted pull on 29 Sep and 10 Oct. Absence was read as '
-     f'death, the error that page warned against.'),
+     "Overtaken",
+     f'No spring ad was in the 17 Sep data, but {V["RETURN_APR"]} April ads have led every age-sorted pull since 29 Sep, '
+     f'most likely switched back on. The count may have been right on the day; reading absence as "gone" was not.'),
     (f'"Six of the fifteen proven ads are static images… Anyone concluding \'only video lasts\' has not counted it."',
      "Overtaken",
      f'All {V["POSTERS_N"]} posters are absent from the head of every age-sorted pull since; {V["POSTERS_FLAGGED"]} carry '
-     f'an inactive flag under their own 17 Sep ids. The oldest live image today is '
-     f'{max((a["days_running"] for a in live if (a.get("display_format") or "").upper() == "IMAGE"), default=0)} days.'),
+     f'an inactive flag under their own 17 Sep ids. They went with the 15.5m video from the same Jan–Feb launches, and '
+     f'{V["YOUNG_POSTERS_10"]} of the {V["YOUNG_POSTERS_29"]} younger posters live on 29 Sep are still live, so this was '
+     f'a cohort, not a format.'),
     ('"The guarantee is what endures: the three oldest ads, 423, 412 and 405 days."',
      "Refuted",
      'The 405-day ad, "Effortless Social Media Success", is a client case study with no guarantee in it. The pattern '
-     f'itself holds and has strengthened: {V["PROVEN_GUAR_LIVE"]} of {V["PROVEN_GUAR_N"]} proven guarantee videos are '
-     f'live, and {V["AGED_GUAR_LIVE"]} of {V["AGED_GUAR_N"]} guarantee ads past 30 days.'),
+     f'still fits: {V["PROVEN_GUAR_LIVE"]} of {V["PROVEN_GUAR_N"]} proven guarantee videos are live, and '
+     f'{V["AGED_GUAR_LIVE"]} of {V["AGED_GUAR_N"]} guarantee ads past 30 days, against {V["AGED_155_LIVE"]} of '
+     f'{V["AGED_155_N"]} on the 15.5m headline. Too few ads to call it a rule (p≈{V["GUAR_P"]}).'),
     (f'"{V["SEP_LIVE_17"]} launches in the first seventeen days of September alone, against {V["AUG_LIVE_17"]} in all of August."',
      "Refuted",
-     'Those were ads still live by start month, which shrinks older months by construction. Probes of six January and '
-     f'February launch days alone return {V["PROBE_155_N"]} ads on the 15.5m headline, where that page\'s month table '
-     f'showed {V["JANFEB_LIVE_17"]} for the two months.'),
+     f'Those were ads still live by start month, which shrinks older months by construction. {V["PROBE_155_FILES"]} small '
+     f'probes of January and February return at least {V["PROBE_155_N"]} ads on the 15.5m headline ({V["PROBE_155_CAPPED"]} '
+     f'stopped at a page limit), where that page\'s month table showed {V["JANFEB_LIVE_17"]} for the two months.'),
     ('"The September flood proves nothing yet."',
      "Holds",
-     f'{V["YOUNG_29"]} of the {V["YOUNG_N"]} followable ads were still live on 29 Sep. By 10 Oct at least {V["YOUNG_10"]} '
-     f'are, and the pulls cannot see that cohort well enough to say more. Its scripts are back in new ads either way.'),
+     f'It was not left running long enough to be judged. {V["YOUNG_29"]} of the {V["YOUNG_N"]} under-30-day ads that can '
+     f'be followed were live on 29 Sep; on 10 Oct at least {V["YOUNG_10"]} are, and the pulls cannot see the cohort well '
+     f'enough to say more. Most of its scripts are back in new ads.'),
     ('"The 9 September pull returned zero ads; brand analytics read 0 that day."',
      "Refuted",
-     f'The 9 Sep brief itself counted live ads from that pull, and Foreplay\'s analytics now read {V["ACT_0909"]} for 9 Sep. '
-     f'It was partial, not empty. The rule drawn from it (live is trustworthy, absence is not) holds.'),
+     f'Refuted for the pull: the 9 Sep brief was built on live ads from it, so it was partial, not empty. The analytics '
+     f'figure was right when quoted; Foreplay has since revised 9 Sep to {V["ACT_0909"]}. The rule drawn from it (live is '
+     f'trustworthy, absence is not) holds.'),
     ('"Niche template ads cluster at 71–73 days and are still running."',
      "Holds",
      f'All {V["NICHE73_N"]} are live at {V["NICHE73_NOW_MIN"]}–{V["NICHE73_NOW_MAX"]} days, though only {V["NICHE73_29"]} '
      f'showed up on 29 Sep: a clean case of absence not meaning death.'),
     (f'"One headline on {V["H155_17_PCT"]}% of the live set."',
      "Holds",
-     f'Now {V["H155_PCT"]}% ({V["H155_LIVE"]} of {V["N_LIVE"]}), and {V["H155_NEW_PCT"]}% of the live ads launched since.'),
+     f'{V["H155_PCT"]}% of the 10 Oct set ({V["H155_LIVE"]} of {V["N_LIVE"]}) and {V["H155_NEW_PCT"]}% of the live ads '
+     f'launched since. Single pulls on one day differ by more than the snapshots do, so this is not a measured rise.'),
     ('"Has been paid for every day for nearly eleven months"; the guarantee ads "convert coldest traffic".',
-     "Untestable",
+     "Unsupported",
      'The Ad Library shows no spend, delivery or conversions, and a live ad\'s tenure is just today minus its start date. '
      'Ads with old start dates have dropped out and come back. "Not killed" is all longevity says.'),
 ]
@@ -718,6 +815,7 @@ B["AUDIT_ROWS"] = "".join(f'<tr><td>{esc(c)}</td><td>{tag(t)}</td><td class="ev"
 V["AUDIT_REFUTED"] = sum(t == "Refuted" for _, t, _ in AUDIT)
 V["AUDIT_OVERTAKEN"] = sum(t == "Overtaken" for _, t, _ in AUDIT)
 V["AUDIT_HOLDS"] = sum(t == "Holds" for _, t, _ in AUDIT)
+V["AUDIT_UNSUP"] = sum(t == "Unsupported" for _, t, _ in AUDIT)
 
 # ---------------------------------------------------------------- assemble
 assert all("hook" in a for a in ads), "run analyze_survival.py on ads.json after build_dataset.py"

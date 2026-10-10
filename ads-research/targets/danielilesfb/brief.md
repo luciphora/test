@@ -5,27 +5,32 @@ Built by `build_report.py` from `ads.json`; every figure below is filled in from
 Published page: https://claude.ai/artifact/AdPyGPLyravCHHzVs2YU4K
 
 > Supersedes the 9 Sep brief ("He switched off his best ads", refuted 17 Sep) and the 17 Sep refresh
-> (`refresh_0917.md`). Three snapshots now, so this is a trend, not a state.
+> (`refresh_0917.md`).
 
 ## Verdict
 
-**Same scripts, new ads. The guarantee held; the posters went.**
+**Same scripts, new ads. The guarantee videos held; the winter posters went.**
 
 - Since 29 Sep he has launched **at least 251 ads**, 140 on 7 Oct, after twelve days with
   2 launches on record.
-- Of the 161 new ads with a transcript, **110 (68%) repeat a script that ran before 17 Sep**,
-  95 as the same recording. The 161 hold 102 distinct scripts: 81 re-used,
-  6 rewrites, **15 new**.
+- Of the 161 new ads with a transcript, **131 (81%) re-use a script that ran by 17 Sep**;
+  95 look like the same recording uploaded again (about 75 recordings). The 161 hold
+  102 distinct scripts: 81 re-used, 6 rewrites, **15 new**.
+  The re-used material is nearly all from ads under 30 days old on 17 Sep, not from his long-running ones.
 - Of the 15 ads past 180 days on 17 Sep, **6 are live**: all 4 guarantee videos
-  and 2 DCO ads. **All 6 static posters are gone** (209–250 days on
-  17 Sep), with the 15.5m video beside them and the 405-day case study. 1 is unresolved.
-- "Our avg clients get 15.5m views" is on 275 of 312 live ads (88%, was 83%).
+  and 2 DCO ads (matched by start date). **All 6 January–February posters are gone**
+  (209–250 days on 17 Sep), with the 15.5m video launched alongside them and the 405-day case
+  study. It is a cohort, not a format: 7 of the 7 younger posters live on 29 Sep are
+  still live.
+  1 is unresolved.
+- No new offer: "Our avg clients get 15.5m views" is on 92% of the live new ads and 88% of the
+  live set (83% on 17 Sep; single pulls differ by more than that, so it is not a measured rise).
 
 ## Live set
 
 | | 17 Sep | 29 Sep | 10 Oct |
 |---|--:|--:|--:|
-| Live union (a floor) | 286 | 205 | 312 |
+| Live union (a floor; pull sizes differ, so not a trend) | 286 | 205 | 312 |
 | Distinct live pulls | 4 | 3 | 3 |
 | Foreplay daily active count (shape only) | 180 | 132 | 135 |
 
@@ -34,46 +39,53 @@ Published page: https://claude.ai/artifact/AdPyGPLyravCHHzVs2YU4K
 
 ## What the 17 Sep verdict got wrong
 
-5 claims refuted, 2 overtaken, 3 hold. The main ones:
+3 claims refuted, 3 overtaken, 2 unsupported, 3 hold.
+The main ones:
 
-- **"The union has converged" at 286.** 6 pre-June ads, live in the fixed head of every age-sorted
-  pull since, were not in it.
-- **"423 days is the longest."** One ad is live at 509 days; it was in no 17 Sep pull.
-- **"Nothing from March–May is still running."** 4 April ads are live. Absence was read as death.
-- **"Statics last."** All 6 proven posters are gone.
-- **"The guarantee endures: 423, 412 and 405 days."** The 405-day ad has no guarantee in it. The pattern holds anyway:
-  10 of 10 guarantee ads past 30 days are live, against 53 of
-  66 on the 15.5m headline.
-- **"177 launches in September vs 25 in August."** Those were survivors by start month, not
-  launches. Probes of six Jan–Feb days alone return 130 15.5m ads.
+- **"The union has converged" at 286.** Unsupported: the fourth pull largely repeated the first, so it could
+  not show that. 6 pre-June ads not in it have led every age-sorted pull since (most likely paused or not yet
+  flagged on 17 Sep).
+- **"423 days is the longest."** Overtaken: one ad is live at 509 days; it was in no 17 Sep pull.
+- **"Nothing from March–May is still running; that spring is gone."** Overtaken: 4 April ads are live,
+  most likely switched back on. Reading absence as "gone" was the error.
+- **"Statics last."** Overtaken: all 6 proven posters went, but with their launch cohort; younger posters
+  are fine.
+- **"The guarantee endures: 423, 412 and 405 days."** Refuted: the 405-day ad has no guarantee in it. The guarantee is
+  on 4 of the 5 oldest live ads, but between 30 and 179 days guarantee and 15.5m ads survive alike
+  (6 of 6 against 53 of 59).
+- **"177 launches in September vs 25 in August."** Refuted: those were survivors by start
+  month, not launches. 4 small probes of Jan–Feb alone return at least 130 15.5m ads.
 
 ## The re-shipment
 
-- Re-used scripts trace almost entirely to the ads under 30 days old on 17 Sep (129 of 131).
-- Of the 168 September ads the 10 Oct pulls no longer return, 105 (62%)
-  have their script running again in a new ad.
-- No new offer. The fresh scripts share a close: "performance guarantee" (77% of fresh vs
-  2% of old), "1,000+ five-star reviews" (57% vs 3%),
-  "no incentive to sell you" (40% vs 0%). The seven-day trial is gone
-  (0% vs 7%).
-- Fresh scripts are shot with one recurring presenter on a studio set; the September creator roster returns only as
-  re-uploads. 23 of 30 fresh-script ads run on Audience Network, WhatsApp or Threads, against
-  1 of 95 re-uploads. Median length 73s, from 66s.
+- Of the 169 under-30-day ads the 10 Oct pulls no longer return, 168 have a usable transcript and
+  105 of those (62%) have their script back in an ad launched since.
+- No new offer. Of the 21 new or reworked scripts, 76% promise a "performance guarantee"
+  (2% of old scripts), 67% cite "1,000+ five-star reviews" (3%),
+  38% say "no incentive to sell you" (0%). The seven-day trial (7% of
+  old scripts) is in none of them. They are days old, so the close has no survival record yet.
+- Every new or reworked script uses one recurring male presenter on a studio set; among transcribed new ads, other
+  creators appear only in re-uploads. Newly shot ads launched 30 Sep–7 Oct went wider (Audience Network, WhatsApp or
+  Threads: 39 of 42) than same-day re-uploads (0 of 70), which copy
+  their originals' placements. Median length 73s, from 66s.
 
-## The September cohort
+## The 17 Sep under-30-day cohort
 
-131 of 186 followable under-30-day ads were live on 29 Sep; at least 17 are on 10 Oct. The
-10 Oct pulls barely reach that cohort, so the true figure sits between 17 and roughly 40 (equal-catch
-scenario). Inside the age-sorted pulls, September ads per older ad fell from 0.62 to 0.22.
-Nothing creative separates survivors from the rest, and most scripts came back as new ads: a structural swap, not a
-creative cull.
+186 ads launched 19 Aug–17 Sep. 131 were returned live on 29 Sep; at least 17 on 10 Oct. The
+10 Oct pulls barely reach that cohort. Inside the age-sorted pulls, under-30-day ads per older ad fell from
+0.62 to 0.22, so it most likely shrank; the size is unknown (17 to about
+43 under two catch-rate scenarios). Nothing creative separates the ads still returned, and the data cannot
+tell whether the re-uploads replaced the originals or run beside them.
 
 ## Takeaways
 
-1. Build the long-running layer on the guarantee: it is the offer with the best survival record here.
-2. Re-ship proven recordings as new ads before writing new ones; he put 95 back up and wrote 15.
-3. Steal the close: reviews, a performance guarantee, no incentive to sell.
-4. Don't read a static poster as evergreen. Six ran past 200 days and went in one window.
+1. Keep a few guarantee videos in the long-running layer: his 4 oldest are all live. It is not shown
+   to outlast the 15.5m headline, so test it.
+2. Recycle recent recordings before shooting new ones, and watch whether it works: he re-uploaded about
+   75 recordings as 95 ads and wrote 15 new scripts; 21 re-uploads
+   are already flagged inactive.
+3. Note the close he standardised on (performance guarantee, reviews, no incentive to sell). Untested so far.
+4. Don't read 200+ days as permanent: seven January–February ads went in one window.
 
 ## Limits
 
