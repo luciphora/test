@@ -33,7 +33,7 @@ def main(target):
     feat_f = featured_funnels(target)
     big, small = os.path.join(target, "thumbs"), os.path.join(target, "thumbs_small")
     os.makedirs(big, exist_ok=True); os.makedirs(small, exist_ok=True)
-    feat = [a for a in ads if a.get("funnel") in feat_f or a.get("new_since") or a.get("died_between")
+    feat = [a for a in ads if a.get("funnel") in feat_f or a.get("new_since") or a.get("died_between") or a.get("feature")
             or (a.get("live") is True and a.get("days_running", 0) >= 60)]
     todo_img, todo_vid, none = [], [], []
     for a in feat:
