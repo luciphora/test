@@ -834,8 +834,118 @@ V["AUDIT_OVERTAKEN"] = sum(t == "Overtaken" for _, t, _ in AUDIT)
 V["AUDIT_HOLDS"] = sum(t == "Holds" for _, t, _ in AUDIT)
 V["AUDIT_UNSUP"] = sum(t == "Unsupported" for _, t, _ in AUDIT)
 
+# ---------------------------------------------------------------- the playbook: hooks, skeleton, bets
+def opener_txt(a, n=150):
+    t = re.sub(r"\s+", " ", a.get("full_transcription") or "").strip()
+    return t if len(t) <= n else t[:t.rfind(" ", 0, n)] + "…"
+
+
+pool = [a for a in ads if (a["live"] or a.get("new_since")) and len(words(a.get("full_transcription"))) >= 20]
+V["HOOK_POOL"] = len(pool)
+V["HOOK_CLASSIFIED"] = sum(a["hook"] != "Unclassified" for a in pool)
+V["HOOK_CLASSIFIED_PCT"] = pct(V["HOOK_CLASSIFIED"], V["HOOK_POOL"])
+fams = collections.defaultdict(list)
+for a in pool:
+    if a["hook"] != "Unclassified":
+        fams[a["hook"]].append(a)
+hook_rows, fam_stats = "", []
+for f, g in fams.items():
+    lv = [a for a in g if a["live"]]
+    oldest = max(lv, key=lambda a: a["days_running"] or 0) if lv else None
+    launched = sum((a.get("started_date") or "") >= "2026-09-29" for a in g)
+    fam_stats.append((f, len(lv), (oldest["days_running"] if oldest else 0), launched, oldest or g[0]))
+fam_stats.sort(key=lambda r: (-r[2], -r[1]))
+for f, nlive, old, launched, ex in fam_stats:
+    hook_rows += (f'<tr><td><b>{esc(f)}</b></td><td class="n">{nlive}</td><td class="n">{old or "—"}{"d" if old else ""}</td>'
+                  f'<td class="n">{launched or ""}</td><td class="ev">"{esc(opener_txt(ex, 120))}"</td></tr>')
+B["HOOK_ROWS"] = hook_rows
+V["HOOK_FAMILIES"] = len(fam_stats)
+top_launch = max(fam_stats, key=lambda r: r[3])
+V["TOPLAUNCH_FAM"], V["TOPLAUNCH_N"] = esc(top_launch[0]), top_launch[3]
+V["TOPLAUNCH_FAM_LC"] = V["TOPLAUNCH_FAM"].lower()
+
+longest_tx = sorted([a for a in live if len(words(a.get("full_transcription"))) >= 20], key=lambda a: -(a["days_running"] or 0))[:10]
+B["LONGEST_ROWS"] = "".join(
+    f'<tr><td class="big">{a["days_running"]}d</td><td>{esc(a["hook"])}</td>'
+    f'<td class="ev">"{esc(opener_txt(a, 170))}" <a href="{esc(a.get("foreplay_url") or "#")}" target="_blank" rel="noopener">foreplay</a></td></tr>'
+    for a in longest_tx)
+V["LONGEST_N"] = len(longest_tx)
+V["LONGEST_FIRST_DAYS"] = longest_tx[0]["days_running"]
+V["DISARM_DAYS"] = by_id["lO2SU1SYXTBeE9IRHpon"]["days_running"]
+gd = [a["days_running"] for r, a, st, _, _ in proven if st == "live" and a and is_guar(r[2])]
+V["GUAR_PROVEN_MIN"], V["GUAR_PROVEN_MAX"] = min(gd), max(gd)
+V["LONGEST_MIN"] = longest_tx[-1]["days_running"]
+
+# what he re-uploads most: clusters of the new batch, by size
+bets = sorted(clusters.values(), key=lambda g: (-len(g), -sum(x["live"] for x in g)))[:8]
+B["BET_ROWS"] = "".join(
+    f'<tr><td class="n big">{len(g)}</td><td class="n">{sum(x["live"] for x in g)}</td><td>{esc(g[0]["hook"])}</td>'
+    f'<td class="ev">"{esc(opener_txt(g[0], 150))}"</td></tr>' for g in bets)
+V["BET_TOP_N"] = len(bets[0])
+V["BET_MULTI"] = sum(len(g) >= 2 for g in clusters.values())
+
+# the script, piece by piece: how often each move appears in the live scripts
+EL = {
+    "EL_GUAR": r"(don ?t|do not|didn ?t) (even )?(have to )?pay|or it s free|it s free|views (it s |its |it |is )?free",
+    "EL_MECH": r"(sit down|film|record).{0,60}(hour|month)|(edit|post).{0,40}(for you|all platforms|everything)|script.{0,20}film.{0,20}edit",
+    "EL_PROOF": r"15 ?5 million|15 point 5|million views|average client",
+    "EL_REFRAME": r"\bads\b|\bseo\b|referral|traditional (advertising|marketing)|word of mouth",
+    "EL_CTA": r"click (the |on )?(the )?link|link (below|down)|tap (the )?link",
+}
+live_tx = [a for a in live if len(words(a.get("full_transcription"))) >= 20]
+V["LIVE_TX"] = len(live_tx)
+for k, rx in EL.items():
+    V[k] = sum(bool(re.search(rx, norm(a["full_transcription"], 10 ** 6))) for a in live_tx)
+    V[k + "_PCT"] = pct(V[k], len(live_tx))
+    V[k + "_TOP"] = sum(bool(re.search(rx, norm(a["full_transcription"], 10 ** 6))) for a in longest_tx)
+el_n = [sum(bool(re.search(rx, norm(a["full_transcription"], 10 ** 6))) for rx in EL.values()) for a in live_tx]
+V["EL_23_PCT"] = pct(sum(n in (2, 3) for n in el_n), len(live_tx))
+V["EL_ALL5"] = sum(n == 5 for n in el_n)
+ltd = sorted(a["video_duration"] for a in live if a.get("video_duration"))
+V["VDUR_Q1"], V["VDUR_Q3"] = round(ltd[len(ltd) // 4]), round(ltd[3 * len(ltd) // 4])
+
+
+def tags(a):
+    t = norm(a["full_transcription"], 10 ** 6)
+    names = {"EL_GUAR": "guarantee", "EL_MECH": "how it works", "EL_PROOF": "proof", "EL_REFRAME": "reframe", "EL_CTA": "click the link"}
+    return " · ".join(v for k, v in names.items() if re.search(EL[k], t))
+
+
+EXAMPLE_IDS = ["lO2SU1SYXTBeE9IRHpon", "LgyKtlaG1FqFw9ko3sU3", "cs8USFlOVkLbj3KyBeil"]
+ex = [by_id[i] for i in EXAMPLE_IDS if i in by_id and by_id[i]["live"]]
+B["EXAMPLE_SCRIPTS"] = "".join(
+    f'<div class="quote"><p class="out">{a["days_running"]} days live · {esc(a.get("headline") or "")} · {round(a.get("video_duration") or 0)}s · '
+    f'{esc(tags(a))}</p><p>"{esc(re.sub(chr(92) + "s+", " ", a["full_transcription"]).strip())}"</p></div>' for a in ex)
+
+# one template, swapped noun
+noun_c = collections.Counter()
+for a in new:
+    m = re.match(r"\s*if you(?:'re| are) an? ([a-z ]{3,30}?)(?:,| and| struggling| the| who| looking| trying| wanting| you| it| that)",
+                 (a.get("full_transcription") or "").lower())
+    if m:
+        noun_c[m.group(1).strip()] += 1
+V["NICHE_NOUNS"] = ", ".join(k for k, _ in noun_c.most_common(8))
+V["NICHE_SWAP_ADS"] = sum(noun_c.values())
+
+# the same tables for brief.md
+def md(t):
+    return t.replace("|", "/").replace("\n", " ")
+
+
+B["MD_LONGEST"] = "\n".join(f'| {a["days_running"]}d | {md(a["hook"])} | "{md(opener_txt(a, 140))}" |' for a in longest_tx)
+B["MD_HOOKS"] = "\n".join(f'| {md(f)} | {nlive} | {str(old) + "d" if old else "—"} | {launched or ""} | "{md(opener_txt(ex, 100))}" |'
+                          for f, nlive, old, launched, ex in fam_stats)
+B["MD_BETS"] = "\n".join(f'| {len(g)} | {sum(x["live"] for x in g)} | {md(g[0]["hook"])} | "{md(opener_txt(g[0], 120))}" |' for g in bets)
+
+B["LONGEST_CARDS"] = "".join(card(a) for a in sorted(live, key=lambda a: -(a["days_running"] or 0))[:12])
+
 # ---------------------------------------------------------------- assemble
 assert all("hook" in a for a in ads), "run analyze_survival.py on ads.json after build_dataset.py"
+# the bottom line quotes the openers of these ads by position
+assert [a["id"] for a in longest_tx[:3]] == ["olixEmcDbZ5hTpuKeECD", "LgyKtlaG1FqFw9ko3sU3", "zebUcF11kyWtUNW2JH3z"], \
+    "report_body quotes the three longest-running openers"
+assert {"wxxUldVZdqVHPlYwmfWs", "lO2SU1SYXTBeE9IRHpon"} <= {a["id"] for a in longest_tx}, "deck cites the risk-reversal openers"
+assert {"dentist", "chiropractor", "lawyer", "medical professional"} <= set(noun_c), "bottom line names these niches"
 # prose that states a count in words ("none", "all") must still be true for this data
 assert V["TRIAL_FRESH"] == 0, "report_body says the trial is in none of the fresh scripts"
 assert V["HEAD_IN"] == V["HEAD_N"], "report_body says the newest-first head is complete"
