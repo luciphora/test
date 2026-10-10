@@ -14,7 +14,7 @@ Published page: https://claude.ai/artifact/AdPyGPLyravCHHzVs2YU4K
 - Since 29 Sep he has launched **at least 251 ads**, 140 on 7 Oct, after twelve days with
   2 launches on record.
 - Of the 161 new ads with a transcript, **131 (81%) re-use a script that ran by 17 Sep**;
-  95 look like the same recording uploaded again (about 75 recordings). The 161 hold
+  95 look like the same recording uploaded again (about 72 recordings). The 161 hold
   102 distinct scripts: 81 re-used, 6 rewrites, **15 new**.
   The re-used material is nearly all from ads under 30 days old on 17 Sep, not from his long-running ones.
 - Of the 15 ads past 180 days on 17 Sep, **6 are live**: all 4 guarantee videos
@@ -62,7 +62,7 @@ The main ones:
   105 of those (62%) have their script back in an ad launched since.
 - No new offer. Of the 21 new or reworked scripts, 76% promise a "performance guarantee"
   (2% of old scripts), 67% cite "1,000+ five-star reviews" (3%),
-  38% say "no incentive to sell you" (0%). The seven-day trial (7% of
+  67% say "no incentive to sell you" (0%). The seven-day trial (7% of
   old scripts) is in none of them. They are days old, so the close has no survival record yet.
 - Every new or reworked script uses one recurring male presenter on a studio set; among transcribed new ads, other
   creators appear only in re-uploads. Newly shot ads launched 30 Sep–7 Oct went wider (Audience Network, WhatsApp or
@@ -82,7 +82,7 @@ tell whether the re-uploads replaced the originals or run beside them.
 1. Keep a few guarantee videos in the long-running layer: his 4 oldest are all live. It is not shown
    to outlast the 15.5m headline, so test it.
 2. Recycle recent recordings before shooting new ones, and watch whether it works: he re-uploaded about
-   75 recordings as 95 ads and wrote 15 new scripts; 21 re-uploads
+   72 recordings as 95 ads and wrote 15 new scripts; 21 re-uploads
    are already flagged inactive.
 3. Note the close he standardised on (performance guarantee, reviews, no incentive to sell). Untested so far.
 4. Don't read 200+ days as permanent: seven January–February ads went in one window.

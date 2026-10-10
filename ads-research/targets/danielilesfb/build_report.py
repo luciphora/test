@@ -452,7 +452,24 @@ V["FRESH_D_ADS"] = sum(a["_tier"] == "D" for a in NEW)
 V["REUSE_AB_PCT"] = pct(V["REUSE_AB"], len(NEW))
 V["REWRITE_ADS"] = sum(a["_tier"] == "C" for a in NEW)
 A_ads = [a for a in NEW if a["_tier"] == "A"]
-V["SAME_REC_SRC"] = len({norm(a["_src"]["full_transcription"], 10 ** 6) for a in A_ads})
+# distinct recordings behind the re-uploads: merge source transcripts that are themselves one recording
+srcs = list({norm(a["_src"]["full_transcription"], 10 ** 6): a["_src"] for a in A_ads}.values())
+sg = [grams(words(x["full_transcription"])) for x in srcs]
+sp = list(range(len(srcs)))
+
+
+def sroot(i):
+    while sp[i] != i:
+        sp[i] = sp[sp[i]]; i = sp[i]
+    return i
+
+
+for i in range(len(srcs)):
+    for j in range(i + 1, len(srcs)):
+        lo = min(len(sg[i]), len(sg[j])) or 1
+        if len(sg[i] & sg[j]) / lo >= .5:
+            sp[sroot(i)] = sroot(j)
+V["SAME_REC_SRC"] = len({sroot(i) for i in range(len(srcs))})
 V["SAME_REC_FLAG"] = sum(a["status_1010"] == "flagged_inactive" for a in A_ads)
 pp = [a for a in A_ads if a.get("publisher_platform") and a["_src"].get("publisher_platform")]
 V["A_PP_N"] = len(pp)
@@ -470,7 +487,7 @@ V["YOUNG_GONE_BACK_PCT"] = pct(len(back), len(gone))
 PHR = {
     "CLOSE_REVIEWS": r"(1\s?000|thousa?e?nd)\s*(plus)?\s*(5|five)\s?star",   # norm() turns "1,000" into "1 000"
     "CLOSE_PG": r"performance guarantee",
-    "CLOSE_NOINC": r"no (incentive|reason) (to|so) sell",
+    "CLOSE_NOINC": r"incentive|no reason (to|so) sell",   # ASR: "no incentive for us sell", "incentives of sell"
     "TRIAL": r"(seven|7)[ -]days?(?! a week)",
 }
 old_texts = [t for t in OLD]
@@ -819,6 +836,11 @@ V["AUDIT_UNSUP"] = sum(t == "Unsupported" for _, t, _ in AUDIT)
 
 # ---------------------------------------------------------------- assemble
 assert all("hook" in a for a in ads), "run analyze_survival.py on ads.json after build_dataset.py"
+# prose that states a count in words ("none", "all") must still be true for this data
+assert V["TRIAL_FRESH"] == 0, "report_body says the trial is in none of the fresh scripts"
+assert V["HEAD_IN"] == V["HEAD_N"], "report_body says the newest-first head is complete"
+assert V["PROVEN_GUAR_LIVE"] == V["PROVEN_GUAR_N"], "the headline says the guarantee videos held"
+assert V["POSTERS_OFF"] == V["POSTERS_N"], "the headline says the posters went"
 CSS, JS, BODY = open("report.css").read(), open("report.js").read(), open("report_body.html").read()
 
 
