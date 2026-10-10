@@ -191,3 +191,4 @@ td.ev{font-size:.82rem;color:var(--ink-3);line-height:1.45;min-width:16rem}
 @media(min-width:760px){.cols2{grid-template-columns:1fr 1fr}}
 .quote.lost{border-left-color:var(--dead)}
 .quote.new{border-left-color:var(--brass)}
+td.hl{min-width:11rem}

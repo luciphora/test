@@ -12,7 +12,8 @@ Inputs
                                      tenure, headline and transcript are recoverable)
   pages_2026-09-29/live_*.json       five live-set pulls
   pages_2026-10-10/live_*.json       four live-set pulls
-  pages_2026-10-10/history_*.json    every ad started since 17 Sep, live or not
+  pages_2026-10-10/history_*.json    ads started since 17 Sep, live or not (a newest-first sample
+                                     like the live pulls, not a census: it misses live ads)
   pages_2026-10-10/probe_*.json      targeted pulls for the 17 Sep proven set
 Output
   ads.json, one row per ad, with seen_live (dates a live pull returned it), live
@@ -48,8 +49,20 @@ def head(s):
     return re.sub(r"[^a-z0-9]+", "", (s or "").lower())
 
 
+def _repair(s):
+    """Foreplay transcripts lose the odd byte, nearly always an apostrophe ("don\ufffdt")."""
+    if not isinstance(s, str) or "\ufffd" not in s:
+        return s
+    return re.sub(r"(?<=[A-Za-z])\ufffd(?=[A-Za-z])", "'", s).replace("\ufffd", "")
+
+
 def rows(path):
-    return json.load(open(path)).get("data") or []
+    out = json.load(open(path)).get("data") or []
+    for a in out:
+        for k in ("full_transcription", "description", "headline"):
+            if k in a:
+                a[k] = _repair(a[k])
+    return out
 
 
 def baseline_0917():
@@ -123,13 +136,17 @@ def main():
         sd = day(r.get("started_running"))
         for off in (-1, 0, 1):
             index[sig(shift(sd, off), r.get("headline"), r.get("full_transcription"))].append(fid)
-    rekeyed = {}
-    by_meta = {str(r.get("ad_id")): fid for fid, r in recs.items() if r.get("ad_id")}
+    rekeyed, how = {}, {}
+    # Foreplay passes Meta ids above 2**53 through a double, so the same ad prints as
+    # ...190 in one place and ...192 in another. Compare as floats.
+    by_meta = {float(r["ad_id"]): fid for fid, r in sorted(recs.items(), key=lambda kv: bool(kv[1].get("_live_row")))
+               if str(r.get("ad_id") or "").isdigit()}  # a live record wins over its stale twin
     for fid, b in base.items():
         if fid in recs:
             continue
-        if b.get("vid_key") in by_meta:
-            rekeyed[fid] = by_meta[b["vid_key"]]
+        if b.get("vid_key") and float(b["vid_key"]) in by_meta:
+            rekeyed[fid] = by_meta[float(b["vid_key"])]
+            how[fid] = "Meta id"
             seen[rekeyed[fid]].add(S17)
             continue
         cands = [c for c in index.get(sig(b["started_date"], b["headline"], b["tx"]), []) if c not in base]
@@ -137,6 +154,7 @@ def main():
         # distinctive headline; the 15.5m posters share both and cannot be told apart.
         if len(set(cands)) == 1 and (b["tx"] or b["headline"] not in ("", "Our avg clients get 15.5m views")):
             rekeyed[fid] = cands[0]
+            how[fid] = "start date, headline and script"
             seen[cands[0]].add(S17)
 
     ads = []
@@ -156,6 +174,7 @@ def main():
             "days_running": rd if live else None,
             "in_0917": S17 in s,
             "was_id_0917": next((k for k, v in rekeyed.items() if v == fid), None),
+            "rekey_match": next((how[k] for k, v in rekeyed.items() if v == fid), None),
         })
         ads.append(r)
 
