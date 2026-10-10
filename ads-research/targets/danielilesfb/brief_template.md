@@ -11,7 +11,7 @@ Published page: https://claude.ai/artifact/AdPyGPLyravCHHzVs2YU4K
 
 **Same scripts, new ads. The guarantee videos held; the winter posters went.**
 
-- Since 29 Sep he has launched **at least {{NEW_29}} ads**, {{PEAK_DAY_N}} on {{PEAK_DAY}}, after twelve days with
+- Since 29 Sep he has launched **at least {{NEW_29}} ads**, {{PEAK_DAY_N}} on {{PEAK_DAY}}, after {{GAP_DAYS}} days with
   {{GAP_LAUNCHES}} launches on record.
 - Of the {{NEW_TX}} new ads with a transcript, **{{REUSE_AB}} ({{REUSE_AB_PCT}}%) re-use a script that ran by 17 Sep**;
   {{SAME_REC}} look like the same recording uploaded again (about {{SAME_REC_SRC}} recordings). The {{NEW_TX}} hold
@@ -85,7 +85,7 @@ tell whether the re-uploads replaced the originals or run beside them.
    {{SAME_REC_SRC}} recordings as {{SAME_REC}} ads and wrote {{SCRIPTS_FRESH}} new scripts; {{SAME_REC_FLAG}} re-uploads
    are already flagged inactive.
 3. Note the close he standardised on (performance guarantee, reviews, no incentive to sell). Untested so far.
-4. Don't read 200+ days as permanent: seven January–February ads went in one window.
+4. Don't read 200+ days as permanent: {{PROVEN_155_N}} January–February ads went in one window.
 
 ## Limits
 
