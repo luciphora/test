@@ -192,3 +192,4 @@ td.ev{font-size:.82rem;color:var(--ink-3);line-height:1.45;min-width:16rem}
 .quote.lost{border-left-color:var(--dead)}
 .quote.new{border-left-color:var(--brass)}
 td.hl{min-width:11rem}
+.sub{display:block;font:500 11px/1.35 "IBM Plex Mono",monospace;color:var(--ink-3);margin-top:3px;white-space:normal}

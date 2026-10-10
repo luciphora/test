@@ -471,6 +471,10 @@ for i in range(len(srcs)):
             sp[sroot(i)] = sroot(j)
 V["SAME_REC_SRC"] = len({sroot(i) for i in range(len(srcs))})
 V["SAME_REC_FLAG"] = sum(a["status_1010"] == "flagged_inactive" for a in A_ads)
+src_ads = {a["_src"]["id"]: a["_src"] for a in A_ads}.values()
+V["SAME_REC_SRC_ADS"] = len(src_ads)
+V["SAME_REC_SRC_YOUNG"] = sum(x["id"] in young_ids for x in src_ads)
+V["SAME_REC_SRC_LIVE"] = sum(bool(x["live"]) for x in src_ads)
 pp = [a for a in A_ads if a.get("publisher_platform") and a["_src"].get("publisher_platform")]
 V["A_PP_N"] = len(pp)
 V["A_PP_SAME"] = sum(set(a["publisher_platform"]) == set(a["_src"]["publisher_platform"]) for a in pp)
@@ -638,6 +642,7 @@ V["NICHE73_N"], V["NICHE73_LIVE"] = len(niche73), sum(a["live"] for a in niche73
 V["NICHE73_29"] = sum(S29 in a["seen_live"] for a in niche73)
 V["NICHE73_NOW_MIN"] = min((a["days_running"] for a in niche73 if a["live"]), default=0)
 V["NICHE73_NOW_MAX"] = max((a["days_running"] for a in niche73 if a["live"]), default=0)
+V["NICHE73_VERTS"] = ", ".join(sorted({a["vertical"].lower() for a in niche73 if a["live"]}))
 
 # launch volume the 17 Sep month table hid: the probes of the proven posters' launch days
 probe_155, probe_files = collections.Counter(), set()
@@ -864,9 +869,10 @@ top_launch = max(fam_stats, key=lambda r: r[3])
 V["TOPLAUNCH_FAM"], V["TOPLAUNCH_N"] = esc(top_launch[0]), top_launch[3]
 V["TOPLAUNCH_FAM_LC"] = V["TOPLAUNCH_FAM"].lower()
 
-longest_tx = sorted([a for a in live if len(words(a.get("full_transcription"))) >= 20], key=lambda a: -(a["days_running"] or 0))[:10]
+_ltx = sorted([a for a in live if len(words(a.get("full_transcription"))) >= 20], key=lambda a: (-(a["days_running"] or 0), a["id"]))
+longest_tx = [a for a in _ltx if (a["days_running"] or 0) >= (_ltx[9]["days_running"] or 0)]
 B["LONGEST_ROWS"] = "".join(
-    f'<tr><td class="big">{a["days_running"]}d</td><td>{esc(a["hook"])}</td>'
+    f'<tr><td class="big">{a["days_running"]}d{"" if a.get("in_0917") else "<br><span class=sub>not in 17 Sep pulls</span>"}</td><td>{esc(a["hook"])}</td>'
     f'<td class="ev">"{esc(opener_txt(a, 170))}" <a href="{esc(a.get("foreplay_url") or "#")}" target="_blank" rel="noopener">foreplay</a></td></tr>'
     for a in longest_tx)
 V["LONGEST_N"] = len(longest_tx)
@@ -875,30 +881,72 @@ V["DISARM_DAYS"] = by_id["lO2SU1SYXTBeE9IRHpon"]["days_running"]
 gd = [a["days_running"] for r, a, st, _, _ in proven if st == "live" and a and is_guar(r[2])]
 V["GUAR_PROVEN_MIN"], V["GUAR_PROVEN_MAX"] = min(gd), max(gd)
 V["LONGEST_MIN"] = longest_tx[-1]["days_running"]
+V["LONGEST_TIE"] = sum(a["days_running"] == V["LONGEST_MIN"] for a in longest_tx)
+V["LONGEST_UNSEEN17"] = sum(not a.get("in_0917") for a in longest_tx)
+OFFER_HOOKS = {"Guarantee (views or free)", "Risk reversal / free trial", "Free-month offer"}
+V["LONGEST_OFFER"] = sum(a["hook"] in OFFER_HOOKS for a in longest_tx)
+V["LONGEST_NONOFFER"] = V["LONGEST_N"] - V["LONGEST_OFFER"] - sum(a["hook"] == "Unclassified" for a in longest_tx)
+V["LONGEST_NOSCRIPT"] = sum(1 for a in live if (a["days_running"] or 0) > V["LONGEST_MIN"]
+                            and len(words(a.get("full_transcription"))) < 20)
 
 # what he re-uploads most: clusters of the new batch, by size
 bets = sorted(clusters.values(), key=lambda g: (-len(g), -sum(x["live"] for x in g)))[:8]
+def span(g):
+    d = sorted(x.get("started_date") for x in g if x.get("started_date"))
+    return fmt_date(d[0]) if d[0] == d[-1] else f"{fmt_date(d[0])}–{fmt_date(d[-1])}"
+
+
+def niches(g):
+    n = []
+    for x in g:
+        m = re.match(r"\s*if you(?:'re| are| run) an? (?:local )?([a-z ]{3,25}?)(?:,| and| the| who| you)", (x.get("full_transcription") or "").lower())
+        if m and m.group(1) not in n:
+            n.append(m.group(1))
+    return n if len(n) > 1 else []
+
+
 B["BET_ROWS"] = "".join(
-    f'<tr><td class="n big">{len(g)}</td><td class="n">{sum(x["live"] for x in g)}</td><td>{esc(g[0]["hook"])}</td>'
-    f'<td class="ev">"{esc(opener_txt(g[0], 150))}"</td></tr>' for g in bets)
+    f'<tr><td class="n big">{len(g)}</td><td class="n">{sum(x["live"] for x in g)}</td><td>{span(g)}</td><td>{esc(g[0]["hook"])}</td>'
+    f'<td class="ev">"{esc(opener_txt(g[0], 150))}"{"<br><span class=sub>versions: " + esc(", ".join(niches(g))) + "</span>" if niches(g) else ""}</td></tr>'
+    for g in bets)
 V["BET_TOP_N"] = len(bets[0])
 V["BET_MULTI"] = sum(len(g) >= 2 for g in clusters.values())
+V["BET_NICHE_ROWS"] = sum(bool(niches(g)) for g in bets)
+# where the new volume went: case-study openers, all re-uploads of recent client stories
+cs = [a for a in NEW if a["hook"] == "Case study" and (a.get("started_date") or "") >= "2026-09-29"]
+assert len(cs) == V["TOPLAUNCH_N"] and V["TOPLAUNCH_FAM"] == "Case study", "bullet 6 describes the case-study re-uploads"
+cs_src = {a["_src"]["id"]: a["_src"] for a in cs}.values()
+V["CS_STORIES"] = len({id(g) for g in clusters.values() for x in g if x in cs})
+V["CS_REUP"] = sum(a["_tier"] == "A" for a in cs)
+V["CS_SRC_N"], V["CS_SRC_LIVE"] = len(cs_src), sum(bool(x["live"]) for x in cs_src)
+V["CS_SRC_YOUNG"] = sum(x["id"] in young_ids for x in cs_src)
 
 # the script, piece by piece: how often each move appears in the live scripts
 EL = {
-    "EL_GUAR": r"(don ?t|do not|didn ?t) (even )?(have to )?pay|or it s free|it s free|views (it s |its |it |is )?free",
+    "EL_GUAR": r"\b(don ?t|do not|didn ?t|don) (even )?(have to )?pay(?! for tri)|or it s free|views (it s |its |it |is )?free"
+               r"|guarantee (you )?(a |1 |one |10 |ten )?million view|for seven days|seven days and if|within seven days",
     "EL_MECH": r"(sit down|film|record).{0,60}(hour|month)|(edit|post).{0,40}(for you|all platforms|everything)|script.{0,20}film.{0,20}edit",
-    "EL_PROOF": r"15 ?5 million|15 point 5|million views|average client",
-    "EL_REFRAME": r"\bads\b|\bseo\b|referral|traditional (advertising|marketing)|word of mouth",
+    "EL_PROOF": r"15 ?5 million|15 point 5|fifteen point five|average client|our client|helped (our )?client|billion views"
+                r"|\d+ ?(\d )?million (organic )?views (a|per|in|after|from|on) ",
+    "EL_REFRAME": r"\bseo\b|referral|word of mouth|traditional (advertising|marketing)|paid ads|outdated marketing|image ads?\b"
+                  r"|(than|instead of|not|stop\w*|quit\w*|without|cheaper than) (running |spending (money )?on |paying for )?(paid |facebook |google )?ads\b",
     "EL_CTA": r"click (the |on )?(the )?link|link (below|down)|tap (the )?link",
 }
 live_tx = [a for a in live if len(words(a.get("full_transcription"))) >= 20]
 V["LIVE_TX"] = len(live_tx)
+# scripts that sell ad management mention ads as the product, not as the thing video beats
+NOT_REFRAME = {"Ad-spend threshold"}
+
+
+def has(k, a):
+    return bool(re.search(EL[k], norm(a["full_transcription"], 10 ** 6))) and not (k == "EL_REFRAME" and a["hook"] in NOT_REFRAME)
+
+
 for k, rx in EL.items():
-    V[k] = sum(bool(re.search(rx, norm(a["full_transcription"], 10 ** 6))) for a in live_tx)
+    V[k] = sum(has(k, a) for a in live_tx)
     V[k + "_PCT"] = pct(V[k], len(live_tx))
-    V[k + "_TOP"] = sum(bool(re.search(rx, norm(a["full_transcription"], 10 ** 6))) for a in longest_tx)
-el_n = [sum(bool(re.search(rx, norm(a["full_transcription"], 10 ** 6))) for rx in EL.values()) for a in live_tx]
+    V[k + "_TOP"] = sum(has(k, a) for a in longest_tx)
+el_n = [sum(has(k, a) for k in EL) for a in live_tx]
 V["EL_23_PCT"] = pct(sum(n in (2, 3) for n in el_n), len(live_tx))
 V["EL_ALL5"] = sum(n == 5 for n in el_n)
 ltd = sorted(a["video_duration"] for a in live if a.get("video_duration"))
@@ -907,8 +955,8 @@ V["VDUR_Q1"], V["VDUR_Q3"] = round(ltd[len(ltd) // 4]), round(ltd[3 * len(ltd) /
 
 def tags(a):
     t = norm(a["full_transcription"], 10 ** 6)
-    names = {"EL_GUAR": "guarantee", "EL_MECH": "how it works", "EL_PROOF": "proof", "EL_REFRAME": "reframe", "EL_CTA": "click the link"}
-    return " · ".join(v for k, v in names.items() if re.search(EL[k], t))
+    names = {"EL_GUAR": "risk reversal", "EL_MECH": "how it works", "EL_PROOF": "proof", "EL_REFRAME": "reframe", "EL_CTA": "click the link"}
+    return " · ".join(v for k, v in names.items() if has(k, a))
 
 
 EXAMPLE_IDS = ["lO2SU1SYXTBeE9IRHpon", "LgyKtlaG1FqFw9ko3sU3", "cs8USFlOVkLbj3KyBeil"]
@@ -922,7 +970,7 @@ noun_c = collections.Counter()
 for a in new:
     m = re.match(r"\s*if you(?:'re| are) an? ([a-z ]{3,30}?)(?:,| and| struggling| the| who| looking| trying| wanting| you| it| that)",
                  (a.get("full_transcription") or "").lower())
-    if m:
+    if m and "business owner" not in m.group(1):
         noun_c[m.group(1).strip()] += 1
 V["NICHE_NOUNS"] = ", ".join(k for k, _ in noun_c.most_common(8))
 V["NICHE_SWAP_ADS"] = sum(noun_c.values())
@@ -935,12 +983,22 @@ def md(t):
 B["MD_LONGEST"] = "\n".join(f'| {a["days_running"]}d | {md(a["hook"])} | "{md(opener_txt(a, 140))}" |' for a in longest_tx)
 B["MD_HOOKS"] = "\n".join(f'| {md(f)} | {nlive} | {str(old) + "d" if old else "—"} | {launched or ""} | "{md(opener_txt(ex, 100))}" |'
                           for f, nlive, old, launched, ex in fam_stats)
-B["MD_BETS"] = "\n".join(f'| {len(g)} | {sum(x["live"] for x in g)} | {md(g[0]["hook"])} | "{md(opener_txt(g[0], 120))}" |' for g in bets)
+B["MD_BETS"] = "\n".join(f'| {len(g)} | {sum(x["live"] for x in g)} | {span(g)} | {md(g[0]["hook"])} | "{md(opener_txt(g[0], 120))}"{" (versions: " + ", ".join(niches(g)) + ")" if niches(g) else ""} |' for g in bets)
 
 B["LONGEST_CARDS"] = "".join(card(a) for a in sorted(live, key=lambda a: -(a["days_running"] or 0))[:12])
 
 # ---------------------------------------------------------------- assemble
 assert all("hook" in a for a in ads), "run analyze_survival.py on ads.json after build_dataset.py"
+# the bottom line names the two longest scripted ads seen on 17 Sep, and says only risk reversal opens on the offer
+seen17 = [a for a in longest_tx if a.get("in_0917")]
+assert [a["id"] for a in seen17[:2]] == ["LgyKtlaG1FqFw9ko3sU3", "zebUcF11kyWtUNW2JH3z"], "bottom line quotes the two longest seen 17 Sep"
+V["LG_446"], V["LG_435"] = seen17[0]["days_running"], seen17[1]["days_running"]
+assert not longest_tx[0].get("in_0917"), "bottom line says the oldest scripted ad was missing from the 17 Sep pulls"
+assert {a["hook"] for a in longest_tx if a["hook"] in OFFER_HOOKS} <= {"Guarantee (views or free)", "Risk reversal / free trial"}
+assert V["CS_REUP"] == V["TOPLAUNCH_N"], "bottom line says all case-study launches are re-uploads"
+assert V["NICHE73_LIVE"] == V["NICHE73_N"], "bottom line says every niche-template ad is live"
+# how often the new batch re-uses a script from an ad past 180 days on 17 Sep
+V["REUSE_PROVEN"] = sum(a["_tier"] in "AB" and (a["_src"].get("days_0917") or 0) >= 180 for a in NEW)
 # the bottom line quotes the openers of these ads by position
 assert [a["id"] for a in longest_tx[:3]] == ["olixEmcDbZ5hTpuKeECD", "LgyKtlaG1FqFw9ko3sU3", "zebUcF11kyWtUNW2JH3z"], \
     "report_body quotes the three longest-running openers"

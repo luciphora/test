@@ -7,30 +7,38 @@ Full page: https://claude.ai/artifact/AdPyGPLyravCHHzVs2YU4K
 ## Bottom line
 
 **One promise, a few durable hooks, re-shipped at volume.** He sells done-for-you short-form video to business
-owners. His ads sell the same promise two ways: "Our avg clients get 15.5m views" in the headline
-(88% of 312 live ads), and "a million views or you don't pay" inside the oldest scripts. His
-oldest live ad is 509 days; 10 live ads are past 180 days.
+owners. His ads sell one promise two ways: "Our avg clients get 15.5m views" in the headline (88% of
+312 live ads), and a views-or-you-don't-pay guarantee inside the older scripts. His oldest live ad is
+509 days; 10 live ads are past 180 days.
 
-1. **Open on the viewer, a stat, or what you replace, not on the service.** His oldest live ad with a script
-   (509 days) opens on the agency he is replacing; the next two open "your competition isn't
-   smarter than you" and "social media generates three times more leads than traditional advertising". When he does
-   open on the offer, it is risk reversal: "a million views or you don't pay", "try our team for seven days".
+1. **Open on the viewer, a stat, or what you replace, not on the service.** 11 of his
+   13 longest-running scripted ads open on something other than the offer. The two longest seen live on
+   17 Sep and today open "your competition isn't smarter than you" (446 days) and "social media generates
+   three times more leads than traditional advertising" (435 days). When a long runner opens on the offer, it
+   is risk reversal: "a million views or you don't even pay", "try our team for seven days".
 2. **Disarm your own guarantee.** The 345-day ad states the million-view guarantee, admits it is "just
-   kind of what we say for marketing", then gives the real number.
-3. **Build from the same five moves.** Reframe, guarantee, how it works, proof, "click the link below". Most ads use
-   two or three (57%), only 11 use all five.
-4. **Swap the niche noun, keep the script.** Since 17 Sep, 24 new ads open "If you're a …" with the
-   niche dropped in.
-5. **Re-ship before you rewrite.** Since 29 Sep he re-uploaded about 72 recordings as 95 new
-   ads and wrote 15 new scripts.
-6. **His current bet is case study openers:** 25 new ads since 29 Sep, the most of any hook
-   family.
+   kind of what we say for marketing", then gives what he says his average client really gets (unverified). Copy
+   the structure only with a guarantee you will honour and a number you can show.
+3. **Build from the same five moves.** Reframe, risk reversal, how it works, proof, "click the link below". Most ads
+   use two or three (53%); 11 use all five.
+4. **Swap the niche noun, keep the script.** Since 17 Sep, 20 new ads open "If you're a …" with a
+   trade dropped in. The move has lasted: his 7 niche-template ads for attorney, contractor, home services, plastic surgeon, plumber are live at
+   94–96 days.
+5. **He fills batches with re-uploads; that is habit, not proof.** 95 of 161 transcribed new ads
+   re-use about 72 earlier recordings, 74 of 75 sources under 30
+   days old on 17 Sep and 7 still live. Only 15 scripts are new.
+6. **Where the new volume went: client case studies.** 25 ads since 29 Sep, all re-uploads of
+   19 client stories; 3 of the 19 originals still show live. Volume, not a proven
+   winner.
 
-For BYMOE: the hooks, the five moves and the niche swap transfer to local-service clients. The proof has to be your
-own. His 15.5m average and million-view guarantee are his claims, unverified, and not to be borrowed. Longevity
-means he kept paying for an ad, not that it made money.
+For BYMOE: the reframe, how it works and the click-the-link close transfer as they are, and so do the openers and
+the niche swap. Risk reversal and proof need a guarantee you will honour and client numbers you can document. His
+15.5m average, guarantee, stats and client results are his claims, unverified. Longevity means an ad is still
+running; it says nothing about spend or results.
 
-## The hooks that last: his 10 longest-running live ads
+## The hooks that last: his 13 longest-running live ads with a script
+
+5 tie at 128 days, so all are shown. 4 were missing from the 17 Sep pulls (age counts from launch).
 
 | Live | Hook family | Opening line |
 |--:|---|---|
@@ -42,8 +50,11 @@ means he kept paying for an ad, not that it made money.
 | 276d | Contrarian authority | "The most surprising thing about successful business owners these days is that they don't actually spend a whole bunch of time running their…" |
 | 185d | Failed-attempt callout | "Posting on social media is easy. Turning those views into paying customers, that's when it all changes Most business owners stop at posting…" |
 | 179d | Status-quo callout | "Every single marketing strategy you're using right now requires you to spend more money. Paid ads, SEO outbound all of these strategies…" |
-| 128d | Risk reversal / free trial | "Try our team for seven days and if you're not impressed, you don't even have to pay us. We help you strategize ideate script film edit and…" |
+| 128d | Proof number cold open | "15.5 million views that is how many views our average client gets after just 90 days of posting with us most of them had never posted…" |
+| 128d | Founder voice | "I work from the moment i wake up to the moment go to bed and uh... work seven days a week when im not working, Im thinking about working…" |
+| 128d | Proof number cold open | "15.5 million views that is how many views our average client gets after just 90 days of posting with us Most of them had never posted…" |
 | 128d | Contrarian authority | "The most successful entrepreneurs don't actually run their businesses. They sit in front of a camera for most of the week because it's…" |
+| 128d | Risk reversal / free trial | "Try our team for seven days and if you're not impressed, you don't even have to pay us. We help you strategize ideate script film edit and…" |
 
 ## Every hook family (22; 216 of 236 live or new scripts classified)
 
@@ -72,32 +83,32 @@ means he kept paying for an ad, not that it made money.
 | Competitor threat | 4 | 3d | 6 | "Every day you don't start posting on social media is a day that your competitor might. And the…" |
 | Prestige qualifier | 1 | 3d | 2 | "If you make at least a million per year, I can make you one of the most well-known people in your…" |
 
-## The five moves (share of 205 live transcribed ads; of the 10 longest)
+## The five moves (share of 205 live transcribed ads; of the 13 longest; detected by phrase)
 
-| Move | Live ads | Longest 10 |
+| Move | Live ads | Longest 13 |
 |---|--:|--:|
-| Reframe: video beats ads, SEO, referrals | 55% | 5 |
-| Guarantee: "a million views or you don't pay" | 31% | 6 |
+| Reframe: video beats paid ads, SEO, referrals | 37% | 4 |
+| Risk reversal: views guarantee or seven-day trial | 35% | 8 |
 | How it works: you film 1–2 hours a month, we do the rest | 42% | 2 |
-| Proof: 15.5m average, a million views, named clients | 53% | 4 |
-| "Click the link below" | 75% | 5 |
+| Proof: a client number (his claims) | 61% | 6 |
+| "Click the link below" | 75% | 7 |
 
 Median length 68s (middle half 49–103s). Talking head, burned-in captions, Learn More.
 
-## What he is betting on now: scripts uploaded most often since 29 Sep
+## What he is testing now: the scripts behind the most new ads since 29 Sep
 
-35 scripts went up more than once.
+One row per script, niche versions included. 35 scripts went up more than once. All under two weeks old.
 
-| Copies | Live | Hook family | Opening line |
-|--:|--:|---|---|
-| 7 | 7 | Authority / #1 way | "If you're a dentist, the number one way to grow your business right now is social media. Not ads not SEO or traditional…" |
-| 7 | 6 | Channel callout | "If you're a local doctor and you're relying on Google SEO to get found, you are missing the biggest opportunity right…" |
-| 6 | 5 | Guarantee (views or free) | "We will get you a million views or you don't pay. And if you give me 15 seconds, I'll explain exactly how this works…" |
-| 4 | 4 | Status-quo callout | "If the only way you get clients right now is word of mouth and referrals, you're probably missing out on the biggest…" |
-| 4 | 4 | Ad-spend threshold | "If you're a lawyer and you spend over $5,000 per month on ads I want to help you get more money for your money. Last…" |
-| 4 | 3 | Authority / #1 way | "The number one way to grow your business right now is using organic content on social media, not ads. Not SEO and not…" |
-| 4 | 3 | Failed-attempt callout | "If you're trying to grow your business and you've tried social media, but it didn't really get your results. What you…" |
-| 3 | 2 | Founder voice | "We shot an entire month's worth of content in one hour. They set up the studio and I just sat down for an hour, they…" |
+| Ads | Live | Launched | Hook family | Opening line |
+|--:|--:|---|---|---|
+| 7 | 7 | 7 Oct–8 Oct | Authority / #1 way | "If you're a dentist, the number one way to grow your business right now is social media. Not ads not SEO or traditional…" (versions: dentist, lawyer, medical professional, finance professional, chiropractor) |
+| 7 | 6 | 30 Sep–8 Oct | Channel callout | "If you're a local doctor and you're relying on Google SEO to get found, you are missing the biggest opportunity right…" (versions: doctor, med spa, business owner, lawyer, dentist) |
+| 6 | 5 | 29 Sep–7 Oct | Guarantee (views or free) | "We will get you a million views or you don't pay. And if you give me 15 seconds, I'll explain exactly how this works…" |
+| 4 | 4 | 30 Sep–7 Oct | Status-quo callout | "If the only way you get clients right now is word of mouth and referrals, you're probably missing out on the biggest…" |
+| 4 | 4 | 8 Oct | Ad-spend threshold | "If you're a lawyer and you spend over $5,000 per month on ads I want to help you get more money for your money. Last…" (versions: lawyer, finance professional, doctor, medical professional) |
+| 4 | 3 | 29 Sep–7 Oct | Authority / #1 way | "The number one way to grow your business right now is using organic content on social media, not ads. Not SEO and not…" |
+| 4 | 3 | 30 Sep–7 Oct | Failed-attempt callout | "If you're trying to grow your business and you've tried social media, but it didn't really get your results. What you…" |
+| 3 | 2 | 30 Sep–7 Oct | Founder voice | "We shot an entire month's worth of content in one hour. They set up the studio and I just sat down for an hour, they…" |
 
 ## Packaging
 
@@ -106,7 +117,8 @@ Median length 68s (middle half 49–103s). Talking head, burned-in captions, Lea
 - His 21 newest scripts close on "performance guarantee" (76%), "1,000+ five-star
   reviews" (67%) and "no incentive to sell you" (67%). Days old; no track
   record yet.
-- Newly shot ads are one presenter on a studio set; the older ads use a roster of creators in real locations.
+- Every new script since 29 Sep is one presenter on a studio set; the older ads mix that with a roster of creators
+  in homes, cafés and offices.
 
 ## Limits
 
