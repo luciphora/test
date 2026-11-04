@@ -46,3 +46,16 @@ Tests cover the pack chunker (against a generic fixture pack), the DSP core
 (BS.1770 loudness, filters), isochronic synthesis verification, and the
 whisper-stem placement constraints. Nothing in `tests/` or `scripts/` is
 project-specific — everything BYMOE lives in the pack file and `config/`.
+
+## MCP servers
+
+`.mcp.json` registers project-scoped MCP servers for Claude Code.
+
+| server | package | tools |
+|---|---|---|
+| `airbnb` | [`@openbnb/mcp-server-airbnb`](https://github.com/openbnb-org/mcp-server-airbnb) | `airbnb_search`, `airbnb_listing_details` |
+
+Needs Node.js 18+ (`npx` fetches the package on first use). Claude Code asks
+once to approve the project server; `/mcp` shows its status. Searches without a
+`placeId` geocode the location via Photon / Nominatim; add
+`"env": {"DISABLE_GEOCODING": "true"}` to keep all traffic on airbnb.com.
